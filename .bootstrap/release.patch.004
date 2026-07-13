@@ -1,0 +1,514 @@
++## Suggested pilot
++
++Use a contained, high-value cluster:
++
++- Southern California hotel wage and health-benefit obligations
++- 3–7 properties
++- payroll, benefits, and property operations stakeholders
++- one decision record
++- 3–5 linked controls
++- post-cutover assurance
++
++This pilot exercises the full causal chain without requiring nationwide integration on day one.
+diff --git a/product/MIGRATION.md b/product/MIGRATION.md
+new file mode 100644
+index 0000000..f1ee899
+--- /dev/null
++++ b/product/MIGRATION.md
+@@ -0,0 +1,100 @@
++# Migration from the existing platform
++
++## Principle
++
++Preserve the existing site’s substantive authority and search equity while replacing its underlying information and product architecture. Do not copy pages into a new visual shell and call that migration.
++
++## Workstream 1 — corpus inventory
++
++Inventory every current:
++
++- issue brief
++- state / D.C. guide
++- development
++- tool and calculation module
++- methodology and disclaimer page
++- source link
++- rate table
++- hotel-specific ordinance record
++- internal taxonomy and cross-link
++- URL, title, description, canonical, and structured-data field
++
++Create a content manifest with ownership, last review, volatility, source completeness, and target entity mappings.
++
++## Workstream 2 — source and rule normalization
++
++For each substantive proposition:
++
++1. identify the supporting source version
++2. create stable passage locators
++3. separate rule text from explanatory analysis
++4. normalize jurisdiction, effective interval, coverage, exceptions, and computations
++5. record gaps and unresolved interpretations
++6. create rule versions rather than editing history away
++
++## Workstream 3 — URL and SEO preservation
++
++- preserve high-value public URLs where practical
++- maintain canonical links
++- create one-to-one redirects for changed routes
++- preserve titles, descriptions, headings, and structured data intentionally
++- generate XML sitemaps
++- prevent enterprise routes from indexing
++- monitor crawl errors, rankings, and inbound links
++
++## Workstream 4 — tool extraction
++
++Existing calculators should be decomposed into:
++
++- input schema
++- applicability predicates
++- deterministic functions
++- rule-version references
++- explanation steps
++- citations
++- limitations
++- test fixtures
++- export / save-to-matter output
++
++Do not embed legal logic only in UI components.
++
++## Workstream 5 — property and enterprise foundation
++
++Before broad workflow automation, define:
++
++- property schema
++- jurisdiction resolver
++- workforce segment schema
++- system and pay-architecture facts
++- data owners and freshness
++- tenant and permission model
++
++Pilot with a small property cluster and one high-value legal domain.
++
++## Workstream 6 — dual-run and validation
++
++For each migrated issue and tool:
++
++- compare public output against the current site
++- compare calculations against known fixtures
++- attorney-review representative results
++- verify source links and effective dates
++- run accessibility and responsive checks
++- preserve a rollback path
++
++## Recommended release sequence
++
++1. public design system and evidence standard
++2. source registry and canonical content model
++3. public intelligence, jurisdictions, and issue migration
++4. property passports and change intelligence pilot
++5. matter and decision records
++6. controls and evidence
++7. validated tools and integrations
++8. portfolio scale and AI assistance
++
++## Reference-repository findings and audit boundary
++
++Connector-backed reconnaissance of `karadzhyan/hotel-wage-hour` confirmed a zero-dependency Node static-site generator with data-driven states, ordinances, cases, glossary, FAQ, developments, calendar records, calculator parameters, source content, generated `docs/` output, tests, and verification research. The reference repository therefore contains substantial reusable legal content, data, calculator logic, fixtures, and editorial operations—not merely pages to be visually restyled.
++
++That reconnaissance is not a substitute for a file-by-file migration audit. Before production migration, create an explicit source-to-target manifest for `data/`, `lib/`, `src/content/`, `src/assets/`, `test/`, `research/`, the generated route inventory, and every calculation module. Preserve the current platform as the substantive system of record until each migrated rule, citation, URL, and computed output passes dual-run validation. See `product/REPO-AUDIT.md` for the verified access record and remaining audit scope.
+diff --git a/product/PRODUCT-THESIS.md b/product/PRODUCT-THESIS.md
+new file mode 100644
+index 0000000..99ff0b8
+--- /dev/null
++++ b/product/PRODUCT-THESIS.md
+@@ -0,0 +1,156 @@
++# Product thesis
++
++## The category
++
++**Hotel Wage Law should become the hospitality wage-and-hour control plane.**
++
++That category is narrower than a generic employment-law platform and substantially more valuable than a legal-content site. It combines domain authority with the operating context required to turn law into enterprise action.
++
++The category promise is:
++
++> See the change. Know the impact. Prove the response.
++
++Each clause corresponds to a distinct product obligation:
++
++1. **See the change** — monitor, verify, normalize, effective-date, and rank legal developments.
++2. **Know the impact** — resolve rules against properties, workers, pay architecture, schedules, benefits, policies, vendors, and systems.
++3. **Prove the response** — govern matters, findings, controls, evidence, approvals, exceptions, and revalidation.
++
++## The strategic mistake to avoid
++
++The previous four directions—executive briefing, counsel workbench, briefing book, and definitive authority—remain useful capabilities. They should not remain the top-level product taxonomy.
++
++Exposing them as four modes creates several avoidable burdens:
++
++- users must decide which conceptual product they are entering
++- the same matter can appear to exist in four places
++- executive, counsel, research, and authority experiences can drift
++- navigation describes the product team's ideas rather than the customer's work
++- “unification” remains visual rather than structural
++
++In v2, those directions become **rendering and workflow capabilities** over one record:
++
++| Prior direction | Preserved capability |
++|---|---|
++| Executive Briefing Platform | portfolio posture, material signals, decision queue |
++| Counsel Workbench | fact resolution, analysis, scenarios, findings |
++| General Counsel Briefing Book | versioned decision records and leadership alignment |
++| Definitive Authority | public research, jurisdictions, methodology, source chain |
++
++The user navigates by the objects they own: changes, matters, controls, properties, research, and decisions.
++
++## The core product loop
++
++```text
++1. Detect a source change
++2. Normalize the changed rule
++3. Resolve affected portfolio scope
++4. Open or update a governed matter
++5. Identify findings and required controls
++6. Assign owners and collect response evidence
++7. Present a decision with alternatives and conditions
++8. Approve and preserve the record
++9. Revalidate when any dependency changes
++```
++
++The loop is only complete when the platform can answer both:
++
++- **What should we do?**
++- **Why can we defend that answer today?**
++
++## The product’s three planes
++
++### 1. Authority plane
++
++Public, readable, citation-rich, search-discoverable legal intelligence:
++
++- issue briefs
++- jurisdiction guides
++- developments
++- official-source passages
++- tools and methodologies
++- revision histories
++
++This plane earns trust and creates category authority.
++
++### 2. Applicability plane
++
++Private enterprise facts and deterministic resolution:
++
++- properties and localities
++- room counts and thresholds
++- workforces and roles
++- pay, tip, service-charge, schedule, and benefit architectures
++- effective dates
++- source and rule versions
++- assumptions and unresolved facts
++
++This plane converts general law into a scoped enterprise answer.
++
++### 3. Control and decision plane
++
++Private governed response:
++
++- matters
++- findings
++- actions
++- control objectives and controls
++- evidence and exceptions
++- decision records and approvals
++- revalidation and assurance
++
++This plane creates operational value and defensibility.
++
++## Differentiation
++
++### Vertical authority
++
++The platform understands hotel-specific role structures, ownership/operator/brand relationships, staffing arrangements, tipped work, service charges, banquet practices, housekeeper workloads, local hotel ordinances, and property systems.
++
++### Causal continuity
++
++Every downstream artifact points back to the same rule and source versions. A briefing is not a copied summary; it is a governed view of a matter. A control does not merely cite a policy; it links to the obligation it is designed to satisfy.
++
++### Inspectable computation
++
++The result is never the only artifact. A serious workflow exposes:
++
++- scope
++- inputs
++- assumptions
++- rule branches
++- exclusions
++- arithmetic
++- judgment points
++- limitations
++- sources
++- response actions
++
++### Revalidation
++
++When a dependency changes, the system identifies what may no longer be current. A production system should be capable of marking a finding, control assessment, or approved decision record as requiring review when a source, rule, model, or material property fact changes.
++
++## Non-goals
++
++The platform should not become:
++
++- a generic legal chatbot
++- a broad employment-law news site
++- a document repository with decorative dashboards
++- an opaque “risk score” engine
++- a replacement for counsel judgment
++- an employee-rights intake site mixed into privileged enterprise work
++- a generic GRC platform with a wage-and-hour content pack
++
++## Product principles
++
++1. **One fact, one version, many views.**
++2. **Authority and enterprise facts remain distinguishable.**
++3. **Calculation and counsel judgment never collapse into one score.**
++4. **Every material conclusion can be inspected.**
++5. **Every open fact and source gap is disclosed.**
++6. **Every obligation can become an owner, control, and evidence requirement.**
++7. **Every approved decision has provenance and a revalidation trigger.**
++8. **Public authority and private work share structure, not access.**
++9. **Role-based emphasis must not create divergent truth.**
++10. **The interface should communicate consequence, not content volume.**
+diff --git a/product/PRODUCTION-ARCHITECTURE.md b/product/PRODUCTION-ARCHITECTURE.md
+new file mode 100644
+index 0000000..0369f1d
+--- /dev/null
++++ b/product/PRODUCTION-ARCHITECTURE.md
+@@ -0,0 +1,227 @@
++# Production architecture
++
++## Architectural objective
++
++The production system must preserve a defensible chain from external authority to an internal decision while enforcing tenant, privilege, and data-class boundaries at every step.
++
++The platform is not one monolith with a search box. It is a set of bounded capabilities connected by stable identifiers, versioned contracts, and domain events.
++
++```text
++Authority acquisition ─┐
++Rule governance ───────┼─> Applicability ─> Matter ─> Control ─> Evidence ─> Decision
++Portfolio facts ───────┘          │                         │          │
++                                  └──── invalidation / revalidation ───┘
++```
++
++## Recommended bounded contexts
++
++### 1. Authority registry
++
++Responsibilities:
++
++- acquire, fingerprint, and retain source versions
++- normalize source metadata and authority hierarchy
++- preserve canonical URLs, retrieval dates, effective dates, and content hashes
++- provide passage-level locators
++- record source health and supersession
++
++The registry should never overwrite a source version in place. A corrected or changed document becomes a new immutable version.
++
++### 2. Rule and interpretation service
++
++Responsibilities:
++
++- store canonical legal propositions as versioned rules
++- connect every proposition to source passages
++- distinguish deterministic logic, attorney judgment, and hybrid logic
++- support legal/editorial review, approval, and supersession
++- expose rule dependencies to the invalidation service
++
++Rule code should be generated or executed only from approved specifications and fixtures. Free-form analysis may inform a rule draft, but may not silently become executable logic.
++
++### 3. Portfolio fact service
++
++Responsibilities:
++
++- legal entities, properties, brands, operators, and management relationships
++- address and jurisdiction resolution
++- room count, workforce, scheduling, pay, benefit, and service-charge attributes
++- source system, effective period, verification status, and fact freshness
++- unresolved or contradictory facts
++
++Every applicability-relevant fact must have provenance and an effective period. “Unknown” is a first-class value; it must not collapse into “false.”
++
++### 4. Applicability and calculation engine
++
++Responsibilities:
++
++- resolve approved rule versions against a dated portfolio snapshot
++- produce branch traces, not only final answers
++- persist inputs, outputs, assumptions, rule versions, and engine version
++- identify missing facts and alternative outcomes
++- support reproducible replay
++
++The engine should be deterministic for deterministic rules. Attorney-judgment nodes must be explicit review steps rather than hidden model outputs.
++
++### 5. Change intelligence service
++
++Responsibilities:
++
++- detect candidate source changes
++- map a source delta to affected rules
++- propose materiality and portfolio reach
++- open triage work
++- publish approved change records
++
++Detection can be automated. Legal significance and final rule impact require governed review.
++
++### 6. Matter and workflow service
++
++Responsibilities:
++
++- preserve the end-to-end response record
++- assignments, due dates, review gates, and lifecycle state
++- facts, scenarios, findings, actions, controls, and approvals
++- immutable audit history
++- privilege and confidentiality labels
++
++The matter is the continuity object. It should reference canonical records rather than copying their text into local blobs.
++
++### 7. Control and assurance service
++
++Responsibilities:
++
++- map obligations to control objectives
++- define control design, owner, cadence, population, and evidence requirements
++- schedule testing and assurance
++- record exceptions, remediation, and retesting
++- determine whether operating proof is current
++
++A policy, configured system, completed test, and accepted evidence item are separate records.
++
++### 8. Evidence service
++
++Responsibilities:
++
++- secure ingestion and object storage
++- cryptographic hashes and version history
++- retention, legal hold, and disposition
++- classification and privilege metadata
++- evidence requests, validation, and expiry
++
++Evidence access should be evaluated separately from matter access. A user may be permitted to see a finding but not the privileged evidence supporting it.
++
++### 9. Decision-record service
++
++Responsibilities:
++
++- render a concise decision artifact from approved matter objects
++- preserve recommendation, alternatives, conditions, owners, and dates
++- collect approvals and dissent
++- freeze a provenance snapshot
++- invalidate or flag the record when a dependency changes
++
++A decision record is a governed projection of the graph, not an independently edited presentation.
++
++### 10. Search and grounded-assistance service
++
++Responsibilities:
++
++- hybrid retrieval across permitted public and tenant data
++- passage-level evidence return
++- context disclosure and permission filtering
++- answer classification: deterministic, analytical, or judgmental
++- save-to-matter with source snapshot
++
++Retrieval, generation, and action execution should be independently permissioned and audited.
++
++### 11. Identity, policy, and audit plane
++
++Responsibilities:
++
++- SSO, SCIM, MFA, and session policy
++- tenant, portfolio, matter, privilege, and data-class authorization
++- service-to-service identity
++- append-only audit events
++- administrative access review
++
++Authorization should be policy-based and default-deny. UI hiding is not an authorization control.
++
++## Event and invalidation model
++
++The step-function capability is dependency-aware revalidation. Representative events include:
++
++- `source.version.created`
++- `source.version.superseded`
++- `rule.version.approved`
++- `rule.version.superseded`
++- `property.fact.changed`
++- `applicability.evaluation.completed`
++- `finding.approved`
++- `control.exception.opened`
++- `evidence.expired`
++- `decision.approved`
++- `decision.invalidated`
++
++A dependency graph should answer:
++
++1. Which rules cite this source version?
++2. Which properties were evaluated under those rule versions?
++3. Which findings, controls, and decisions depend on those evaluations?
++4. Which records require automatic recomputation, human review, or notice?
++5. What remains valid, and why?
++
++Invalidation should be granular. A changed source should not mark the entire corpus unreliable when only one proposition changed.
++
++## Suggested technical shape
++
++This is a reference architecture, not a mandated vendor stack.
++
++| Concern | Production characteristic |
++|---|---|
++| Web application | server-rendered application with progressively enhanced client interactions |
++| API boundary | typed APIs with object-level authorization and idempotent writes |
++| Transactional data | relational database with row-level tenant controls and temporal/version tables |
++| Search | hybrid lexical/vector index built from permission-filtered passages and records |
++| Documents and evidence | encrypted object storage with immutable versions, hashes, and retention controls |
++| Rules and models | versioned specification repository plus deterministic execution workers |
++| Workflow | durable orchestration with explicit human review tasks |
++| Events | transactional outbox and replayable domain-event stream |
++| Audit | append-only, separately retained audit log with integrity monitoring |
++| Analytics | de-identified event pipeline separated from privileged content |
++| Observability | traces, metrics, structured logs, synthetic checks, and dependency health |
++
++## Public and enterprise deployment boundary
++
++The public authority plane may render approved public records through a CDN. The enterprise control plane should use authenticated application infrastructure and must not be statically published.
++
++Shared identifiers are desirable; shared access paths are not. The public plane must never infer the existence of tenant matters, properties, users, searches, evidence, or decisions.
++
++## Availability and resilience targets
++
++Production targets should be selected after business-impact analysis. A reasonable initial posture is:
++
++- multi-zone deployment for transactional services
++- point-in-time recovery for the primary database
++- immutable source and evidence backups
++- documented recovery-time and recovery-point objectives
++- graceful degradation: approved public authority remains readable when enterprise automation is impaired
++- replayable applicability and invalidation jobs
++- tested restoration, not merely configured backups
++
++## Security gates before pilot
++
++- threat model and data-flow review
++- tenant-isolation tests
++- object-level authorization tests
++- privileged-content leakage tests
++- source and evidence integrity validation
++- secrets management and key rotation
++- dependency and container scanning
++- external penetration test
++- incident response and breach-notification runbooks
++- audit-log access and retention review
++
++## Production data contracts
++
++The normative starting point is [`schemas/legal-intelligence-graph.schema.json`](schemas/legal-intelligence-graph.schema.json). The schema captures lineage requirements; service-specific APIs may add fields but should not weaken identity, version, citation, status, and dependency contracts.
+diff --git a/product/REPO-AUDIT.md b/product/REPO-AUDIT.m
