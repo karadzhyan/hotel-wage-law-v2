@@ -1,0 +1,663 @@
+2-public-private-boundary.md
+new file mode 100644
+index 0000000..2dd290c
+--- /dev/null
++++ b/product/ADRS/0002-public-private-boundary.md
+@@ -0,0 +1,18 @@
++# ADR 0002 — Shared structure, separate public and private planes
++
++**Status:** Accepted for v2 prototype
++
++## Decision
++
++Public authority records and private enterprise work may reference the same source and rule identities, but must use separate authorization, storage, retrieval, and caching boundaries.
++
++## Rationale
++
++The public authority layer creates trust and discoverability. The enterprise layer may contain privileged analysis and sensitive workforce data. “Unified” must not mean commingled access.
++
++## Consequences
++
++- explicit context and permission checks
++- tenant-aware retrieval and AI assembly
++- no implicit private context in public search
++- public content remains reusable without exposing derived tenant records
+diff --git a/product/ADRS/0003-deterministic-logic-and-judgment.md b/product/ADRS/0003-deterministic-logic-and-judgment.md
+new file mode 100644
+index 0000000..a1eb688
+--- /dev/null
++++ b/product/ADRS/0003-deterministic-logic-and-judgment.md
+@@ -0,0 +1,18 @@
++# ADR 0003 — Separate deterministic logic from counsel judgment
++
++**Status:** Accepted for v2 prototype
++
++## Decision
++
++Store and present rule application, arithmetic, assumptions, legal interpretation, and recommendation as distinct layers.
++
++## Rationale
++
++Opaque outputs are difficult to verify and dangerous to operationalize. Many wage-and-hour questions combine computable rules with factual uncertainty and legal judgment.
++
++## Consequences
++
++- tool outputs require branch traces and model versions
++- “confidence” cannot substitute for disclosed dimensions
++- counsel can override or qualify outputs without mutating the underlying computation
++- tests can validate deterministic logic independently
+diff --git a/product/ADRS/0004-static-prototype-boundary.md b/product/ADRS/0004-static-prototype-boundary.md
+new file mode 100644
+index 0000000..48bb6f7
+--- /dev/null
++++ b/product/ADRS/0004-static-prototype-boundary.md
+@@ -0,0 +1,18 @@
++# ADR 0004 — Dependency-free static prototype
++
++**Status:** Accepted for this repository stage
++
++## Decision
++
++Implement the concept as deterministic HTML, CSS, JavaScript, SVG, and structured demo data with no runtime package dependencies.
++
++## Rationale
++
++The current objective is to validate product architecture, information hierarchy, interactions, responsive behavior, and implementation contracts before selecting production services and frameworks.
++
++## Consequences
++
++- the prototype is portable and easy to inspect
++- interactions are illustrative and do not persist
++- authentication, APIs, integrations, and legal engines remain specified rather than simulated as production-ready
++- migration into a production stack remains a deliberate next step
+diff --git a/product/ANALYTICS.md b/product/ANALYTICS.md
+new file mode 100644
+index 0000000..0ebc8a8
+--- /dev/null
++++ b/product/ANALYTICS.md
+@@ -0,0 +1,119 @@
++# Product analytics and operating measures
++
++## Measurement principle
++
++The platform should optimize the quality and speed of legal response—not page views, search volume, or the number of generated summaries.
++
++Analytics must never become a shadow copy of privileged facts or legal work product. Event payloads should use durable record IDs, categorical states, and timing metadata; sensitive text belongs in the system of record, not the analytics pipeline.
++
++## North-star outcome
++
++**Material change response integrity**: the percentage of material legal changes that reach a complete, approved, and current response record before the applicable deadline.
++
++A complete response has:
++
++- verified authority
++- resolved or explicitly open applicability facts
++- approved findings
++- accountable actions
++- linked controls and evidence expectations
++- a decision record when leadership judgment is required
++- no unacknowledged invalidation state
++
++## Primary operating measures
++
++| Measure | Definition | Why it matters |
++|---|---|---|
++| Change-to-triage time | detection to accepted materiality review | monitors signal latency |
++| Triage-to-scope time | accepted change to portfolio reach decision | measures fact and applicability readiness |
++| Scope-to-decision time | scope confirmation to approved decision | measures legal-operating throughput |
++| Decision-to-control time | approval to implemented control state | prevents “approved but not operational” work |
++| Evidence currency | controls with current accepted evidence / controls requiring evidence | measures provability |
++| Revalidation latency | invalidating event to reviewed dependent records | measures system integrity after change |
++| Open material fact gaps | unresolved applicability facts on material matters | exposes hidden uncertainty |
++| Source lineage coverage | approved propositions with passage-level primary authority | measures defensibility |
++| Rework rate | findings or decisions reopened due to missing facts or lineage defects | diagnoses process quality |
++| Deadline reliability | required actions completed by governed due date | measures execution |
++
++## Executive measures
++
++Executives should see a small number of denominator-disclosing measures:
++
++- material decisions due in the next 30 days
++- properties with unresolved high-impact applicability
++- controls with material exceptions
++- approved decisions awaiting implementation proof
++- invalidated records awaiting review
++- changes with no accountable matter owner
++
++A red count without scope, age, materiality, and owner is not an executive metric.
++
++## Product-behavior events
++
++Representative events:
++
++```text
++change.opened
++change.scope_review_started
++change.converted_to_matter
++matter.fact_requested
++matter.finding_submitted
++matter.finding_approved
++scenario.executed
++control.opened
++control.evidence_requested
++control.exception_opened
++research.answer_viewed
++research.answer_saved_to_matter
++decision.submitted
++decision.approved
++decision.invalidated
++source.chain_opened
++```
++
++Each event should include:
++
++- event ID and UTC timestamp
++- tenant ID and pseudonymous actor ID
++- record type and record ID
++- workflow state before and after
++- interface surface
++- latency or duration where relevant
++- result category
++- schema version
++
++It should not include:
++
++- query text by default
++- legal analysis prose
++- evidence contents
++- employee names or payroll values
++- privilege-bearing matter descriptions
++- source excerpts beyond categorical metadata
++
++## Quality telemetry
++
++Legal and model quality require operational telemetry beyond product usage:
++
++- citation resolution success
++- source retrieval and freshness failures
++- source diff false-positive rate
++- rule-fixture pass rate
++- applicability branch coverage
++- deterministic replay success
++- model version drift
++- attorney override frequency and rationale category
++- search answer citation sufficiency
++- unauthorized retrieval attempts
++
++## Experimentation limits
++
++Do not A/B test legal conclusions, warning severity, evidence requirements, or approval standards. Experiments may address navigation, terminology, layout, and workflow efficiency only when they preserve the same governed outcome and are reviewed for bias and privilege leakage.
++
++## Analytics access
++
++- access is role-restricted and audited
++- tenant aggregates require minimum cohort sizes
++- record-level analytics links return the user to the authorized system of record
++- analytics retention is shorter than legal-system retention unless separately justified
++- deletion and legal-hold behavior are documented
+diff --git a/product/CONTENT-DESIGN.md b/product/CONTENT-DESIGN.md
+new file mode 100644
+index 0000000..a6a61d9
+--- /dev/null
++++ b/product/CONTENT-DESIGN.md
+@@ -0,0 +1,159 @@
++# Content design and editorial system
++
++## Core proposition
++
++The product does not sell “more legal content.” It connects a verified legal change to the property, action, control, evidence, and decision it affects.
++
++The public promise is:
++
++> See the change. Know the impact. Prove the response.
++
++The product must earn each clause:
++
++- **See** — current, materially triaged legal intelligence
++- **Know** — dated applicability resolved against governed facts
++- **Prove** — accountable implementation and inspectable evidence
++
++## Page-title rule
++
++Use the question or outcome the user is trying to resolve, not the name of the feature.
++
++Preferred:
++
++- What requires attention now?
++- Turn legal change into accountable response.
++- Resolve the matter once. Reuse the answer everywhere.
++- Turn obligations into controls. Turn controls into proof.
++- Get the answer. Inspect every link in the chain.
++
++Avoid:
++
++- Dashboard
++- Solutions
++- Resources
++- AI insights
++- Risk management platform
++- Single pane of glass
++
++## Legal answer pattern
++
++A supportable answer should present, in order:
++
++1. **Direct answer** — a concise conclusion in the defined scope
++2. **Scope** — jurisdiction, property/workforce facts, and effective date
++3. **Why** — controlling rule and material reasoning
++4. **Dependencies** — facts, assumptions, unresolved questions, and competing interpretations
++5. **Operational consequence** — action, owner, timing, and affected controls
++6. **Authority** — passage-level primary sources and approved analysis
++7. **Status** — draft, reviewed, approved, superseded, or invalidated
++
++Do not hide uncertainty in a footnote. A missing fact that could change the answer belongs beside the answer.
++
++## Change-intelligence pattern
++
++Every development record should distinguish:
++
++- what the authority actually changed
++- publication, effective, and review dates
++- what did not change
++- coverage and exceptions
++- likely portfolio reach
++- affected rules, tools, controls, and existing decisions
++- why the change is or is not material
++- next governed action
++
++Headlines should not overstate unverified scope to create urgency.
++
++## Executive decision-record pattern
++
++A decision record is intentionally concise, but never detached from its basis.
++
++Required sections:
++
++- decision requested
++- recommendation
++- material alternatives
++- business and legal consequences
++- conditions and guardrails
++- accountable owners and dates
++- known gaps and assumptions
++- approval state
++- evidence and rule snapshot
++- revalidation triggers
++
++The first screen must make the requested decision unmistakable. Background belongs beneath it.
++
++## Terminology
++
++Use stable nouns because they correspond to governed objects:
++
++- **Source version** — an immutable captured authority or evidence artifact
++- **Rule version** — an approved legal proposition or logic specification
++- **Change** — a reviewed delta with potential legal significance
++- **Applicability** — a dated evaluation of a rule against facts
++- **Matter** — the governed response record
++- **Finding** — an approved conclusion in a matter
++- **Control** — an operating mechanism intended to satisfy an obligation
++- **Evidence** — an artifact proving control performance or fact state
++- **Decision record** — an approved leadership determination with provenance
++- **Revalidation** — review required after a dependency changes
++
++Avoid using “insight,” “risk,” “compliance,” or “AI” as substitutes for a precise object or outcome.
++
++## Trust language
++
++Trust is demonstrated through inspectability. Preferred language:
++
++- reviewed on
++- effective beginning
++- cites primary authority
++- rule version
++- source retrieved
++- fact not yet verified
++- counsel judgment required
++- deterministic calculation
++- decision invalidated because
++
++Avoid unsupported claims such as:
++
++- always accurate
++- fully compliant
++- eliminates risk
++- trusted by leading companies
++- definitive answer without disclosed scope
++
++## Prototype and legal limitations
++
++Illustrative portfolio, people, financial, and workflow data must be labeled near the relevant experience, not only in global terms. Tool outputs must distinguish:
++
++- educational estimate
++- modeled operational impact
++- validated legal calculation
++- attorney-approved finding
++
++A prototype must never let visual polish imply that illustrative logic is production-validated.
++
++## Search and grounded ask
++
++A grounded response should disclose:
++
++- context used
++- sources retrieved
++- whether tenant facts were included
++- missing facts
++- answer classification: deterministic, analytical, or counsel judgment
++- source/rule snapshot
++- save-to-matter or open-source-chain actions
++
++When evidence is insufficient, abstention is a product behavior—not a failure message.
++
++## Voice
++
++- direct, not promotional
++- precise, not academic
++- calm under material risk
++- operational, not bureaucratic
++- explicit about uncertainty
++- respectful of sophisticated readers’ time
++
++Use strong verbs and short lead sentences. Put qualifications exactly where they change meaning. Prefer one decisive sentence followed by inspectable support over a long preamble.
+diff --git a/product/DATA-MODEL.md b/product/DATA-MODEL.md
+new file mode 100644
+index 0000000..519b765
+--- /dev/null
++++ b/product/DATA-MODEL.md
+@@ -0,0 +1,295 @@
++# Canonical data model
++
++## Design objective
++
++The production system should be modeled as a governed object graph, not as a collection of pages and copied summaries.
++
++```text
++Source
++  └─ SourceVersion
++       └─ Passage
++            └─ RuleVersion
++                 ├─ Development
++                 ├─ ApplicabilityEvaluation
++                 │    └─ Finding
++                 │         ├─ Action
++                 │         ├─ ControlObjective
++                 │         │    └─ Control
++                 │         │         ├─ Test
++                 │         │         ├─ EvidenceItem
++                 │         │         └─ Exception
++                 │         └─ DecisionRecord
++                 └─ CanonicalAnalysis
++
++Property ─┬─ WorkforceSegment
++          ├─ SystemConfiguration
++          ├─ PolicyFact
++          └─ ApplicabilityEvaluation
++
++Matter aggregates the scoped graph and its governance history.
++```
++
++## Core entities
++
++### Source
++
++Stable identity of an authority or official publication.
++
++Key fields:
++
++- `source_id`
++- title
++- authority / publisher
++- source type
++- jurisdiction
++- canonical URI
++- access and redistribution constraints
++- reliability tier
++
++### SourceVersion
++
++A retrieved or reviewed version of a source.
++
++Key fields:
++
++- `source_version_id`
++- `source_id`
++- publication / effective / retrieved / reviewed dates
++- content hash
++- supersedes / superseded-by
++- status
++- reviewer
++- acquisition metadata
++
++### Passage
++
++The smallest citable unit supporting a proposition or rule branch.
++
++Key fields:
++
++- `passage_id`
++- `source_version_id`
++- locator
++- normalized text
++- exact-text hash
++- proposition tags
++- citation display
++
++### RuleVersion
++
++A normalized, effective-dated legal requirement.
++
++Key fields:
++
++- rule identity and version
++- jurisdiction hierarchy
++- issue family
++- effective interval
++- coverage predicates
++- obligation expression
++- exceptions
++- calculation reference
++- supporting passages
++- verification state
++- legal owner
++
++### Development
++
++A material change in authority, guidance, status, interpretation, rate, or enforcement posture.
++
++Key fields:
++
++- change identity
++- changed rule versions
++- delta type
++- publication and effective dates
++- materiality rationale
++- affected issue and jurisdiction dimensions
++- review status
++
++### Property
++
++The enterprise applicability anchor.
++
++Key fields:
++
++- tenant and property identity
++- legal entity, owner, operator, brand
++- address and jurisdiction hierarchy
++- room count and classifications
++- system relationships
++- fact freshness
++- source system and steward
++
++### WorkforceSegment
++
++A governed cohort used in applicability and calculations.
++
++Key fields:
++
++- property
++- role / department
++- employment relationship
++- tipped status
++- pay basis and rate architecture
++- schedule characteristics
++- union / vendor / classification facts
++- population and effective interval
++
++### ApplicabilityEvaluation
++
++A reproducible execution of rule predicates against an effective-dated fact snapshot.
++
++Key fields:
++
++- rule versions
++- fact snapshot
++- evaluation engine version
++- input completeness
++- branch trace
++- outcome
++- unresolved predicates
++- timestamp and actor
++
++### Scenario
++
++An editable, non-final analytical model.
++
++Key fields:
++
++- matter
++- inputs and assumptions
++- rule / calculation versions
++- output range
++- sensitivity variables
++- user edits
++- limitations
++- status
++
++### Finding
++
++A supportable statement about a scoped obligation, gap, or consequence.
++
++Key fields:
++
++- finding type
++- severity / materiality
++- legal basis
++- factual basis
++- deterministic output
++- counsel interpretation
++- confidence dimensions
++- open facts
++- status and owner
++
++### ControlObjective
++
++The intended operating outcome derived from an obligation.
++
++Example: “All covered workers receive the effective hotel wage and any residual health-benefit payment on the first applicable payroll.”
++
++### Control
++
++The designed operating mechanism.
++
++Key fields:
++
++- objective
++- owner and assurance owner
++- system / process
++- cadence and population
++- control type
++- design and operating status
++- evidence requirements
++- test procedure
++- exceptions
++
++### EvidenceItem
++
++An immutable or versioned record offered as proof.
++
++Key fields:
++
++- control / action / decision link
++- evidence type
++- period
++- source system
++- collection method
++- hash and storage reference
++- accepted / rejected / expired state
++- reviewer and date
++- retention / legal-hold metadata
++
++### DecisionRecord
++
++A versioned approval artifact rendered from the matter graph.
++
++Key fields:
++
++- decision request
++- recommendation
++- alternatives
++- consequences
++- conditions
++- provenance snapshot
++- approvers
++- approval state
++- effective interval
++- revalidation status
++
++## Separation of concerns
++
++The model must keep these concepts distinct:
++
++- **legal authority** vs. **canonical analysis**
++- **rule predicates** vs. **enterprise facts**
++- **deterministic computation** vs. **counsel judgment**
++- **scenario output** vs. **approved decision**
++- **control design** vs. **operating evidence**
++- **completeness** vs. **legal correctness**
++- **materiality** vs. **likelihood**
++
++## Confidence model
++
++A single “confidence score” is too lossy for production use. Store dimensions separately:
++
++- source authority quality
++- source freshness
++- rule-verification state
++- fact completeness
++- fact freshness
++- model/test coverage
++- interpretation certainty
++- evidence completeness
++
++A composite may be displayed for triage only if every component remains inspectable and the interface does not imply mathematical certainty about legal outcomes.
++
++## Invalidation graph
++
++A dependency change should create explicit downstream review tasks.
++
++Examples:
++
++- new source version → rule review
++- rule version → applicability rerun
++- property fact change → affected evaluations stale
++- calculation engine version → scenarios and findings stale
++- finding change → linked controls and decision records review
++- control failure → assurance state and approved decision conditions review
++- expired evidence → control assurance no longer current
++
++Approved records should never silently mutate. They should retain the approved snapshot and receive a revalidation state linked to the new dependency.
++
++## Multi-tenancy and permissions
++
++Every enterprise entity carries `tenant_id`. Access is evaluated using both role and attributes such as:
++
++- matter team
++- privilege designation
++- business unit / portfolio scope
++- data class
++- property scope
++- jurisdiction restrictions
++- legal hold
++
++Public source and canonical analysis
