@@ -1,0 +1,608 @@
+ records may be shared across tenants, but tenant facts and derived work must remain isolated.
+diff --git a/product/EXPERIENCE-ARCHITECTURE.md b/product/EXPERIENCE-ARCHITECTURE.md
+new file mode 100644
+index 0000000..8251f7a
+--- /dev/null
++++ b/product/EXPERIENCE-ARCHITECTURE.md
+@@ -0,0 +1,173 @@
++# Experience architecture
++
++## Primary navigation
++
++The enterprise application uses seven durable destinations:
++
++| Destination | Primary question | Canonical object |
++|---|---|---|
++| Overview | What requires attention now? | portfolio posture |
++| Changes | What changed, and where does it land? | development / change |
++| Matters | What is the governed response? | matter |
++| Controls | Is the obligation operating, and can we prove it? | control / evidence |
++| Portfolio | Which properties and workers are in scope? | property / workforce |
++| Research | What is the supportable answer? | rule / passage / analysis |
++| Decision records | What exactly must leadership approve? | decision / approval |
++
++The public platform uses five destinations:
++
++- Platform
++- Intelligence
++- Jurisdictions
++- Tools
++- Evidence standard
++
++## The persistent context model
++
++A production application should preserve context as the user moves through related work:
++
++- tenant
++- portfolio scope
++- active matter
++- property scope
++- effective date
++- permitted data class
++- source/rule snapshot
++- user role and privilege boundary
++
++The user should be able to move from a change to a matter, finding, control, property, source passage, or decision without re-entering scope.
++
++## Overview
++
++The overview is an executive legal-operating surface, not a generic dashboard. Its hierarchy is:
++
++1. decisions due
++2. material changes
++3. active matters
++4. control and evidence conditions
++5. portfolio reach
++6. upcoming assurance events
++
++Metrics are only useful when they lead to accountable records. Every number should be drillable and should disclose its denominator, date, scope, and computation.
++
++## Changes
++
++A change record contains:
++
++- authority and status
++- publication, effective, and review dates
++- normalized rule delta
++- jurisdiction and coverage conditions
++- likely portfolio reach
++- affected obligations, systems, and controls
++- unresolved facts
++- materiality rationale
++- linked matters and decisions
++
++The critical transition is from “development summary” to “governed response.”
++
++## Matters
++
++The matter is the continuity object. It contains:
++
++- scope
++- lifecycle state
++- legal question
++- fact record
++- analysis and assumptions
++- scenarios and model versions
++- findings
++- actions and owners
++- controls
++- evidence
++- decisions
++- approvals
++- audit history
++
++The prototype lifecycle is **Assess → Decide → Implement → Assure**. Production may add triage, closed, reopened, superseded, or privileged-review states, but should avoid overcomplicated project-management taxonomies.
++
++## Controls
++
++A control surface should answer five questions:
++
++1. Which obligation is the control intended to satisfy?
++2. Who owns operation and who owns assurance?
++3. What evidence proves performance?
++4. What is the cadence and population?
++5. Which exceptions remain open?
++
++A policy is not itself proof. The control model should distinguish design, implementation, operation, testing, evidence acceptance, and remediation.
++
++## Portfolio and property passports
++
++The property passport is the applicability anchor. It should include:
++
++- legal entity, owner, operator, brand, and management relationships
++- address, jurisdiction hierarchy, room count, and hotel classifications
++- workforce counts and role segments
++- unions, vendors, and staffing structures
++- payroll, timekeeping, HRIS, benefit, scheduling, and property systems
++- pay and service-charge architecture
++- local ordinance thresholds
++- active obligations, changes, matters, and controls
++- fact freshness and data provenance
++
++A jurisdiction guide or static state table is not a property determination.
++
++## Research
++
++Research should produce a direct answer while preserving expert inspectability:
++
++- answer
++- scope and date
++- authority hierarchy
++- passage-level citations
++- rule stack
++- competing interpretations
++- factual dependencies
++- disclosed limits
++- downstream actions
++
++The research workspace should permit saving an answer to a matter without copying prose into an ungoverned document.
++
++## Decision records
++
++A decision record is a durable executive artifact. It contains:
++
++- precise decision request
++- recommendation
++- alternatives
++- consequences
++- conditions and guardrails
++- accountable owners and dates
++- material assumptions and gaps
++- approval chain
++- provenance snapshot
++- revalidation triggers
++
++It is not a slide deck. It is a versioned view of the governed matter.
++
++## Global grounded ask
++
++A global ask experience is useful only when it respects context and permissions. Every answer should disclose:
++
++- whether it used public authority, enterprise facts, or both
++- the source/rule snapshot
++- missing facts
++- whether the result is deterministic, analytical, or counsel judgment
++- links to the underlying record
++
++The assistant should never silently use privileged matter information in a public or unauthorized context.
++
++## Responsive hierarchy
++
++Mobile is optimized for review and action, not dense research production. It preserves:
++
++- active context
++- decision and exception status
++- next action
++- source inspection
++- concise findings
++- mobile navigation and drawers
++
++Wide matrices and tables remain horizontally scrollable inside bounded containers rather than expanding the document.
+diff --git a/product/GITHUB-BACKLOG.md b/product/GITHUB-BACKLOG.md
+new file mode 100644
+index 0000000..8d8c5a2
+--- /dev/null
++++ b/product/GITHUB-BACKLOG.md
+@@ -0,0 +1,112 @@
++# GitHub implementation backlog
++
++These work items should exist as GitHub issues after repository bootstrap. They are ordered by dependency, not by visual prominence.
++
++## 1. Complete the reference-repository migration inventory
++
++**Outcome:** Create a commit-pinned manifest mapping the current `hotel-wage-hour` corpus, data, calculators, routes, tests, research memos, and generated artifacts into the v2 object graph.
++
++**Acceptance criteria:**
++
++- inventory every tracked file at the audited reference commit
++- classify each item as migrate, transform, retain temporarily, archive, or discard
++- map current URLs to target URLs and redirects
++- map data fields to source, rule, change, jurisdiction, tool, and public-content entities
++- identify calculator functions, parameters, fixtures, and unresolved gaps
++- record owners, review dates, volatility, and source completeness
++- produce a dual-run and rollback plan
++
++## 2. Establish the canonical authority and rule registry
++
++**Outcome:** Replace page-embedded legal propositions with versioned source, passage, rule, and interpretation entities.
++
++**Acceptance criteria:**
++
++- stable IDs and effective intervals
++- immutable source versions and passage locators
++- authority hierarchy and supersession relationships
++- attorney/editorial approval states
++- disclosed ambiguity and competing interpretations
++- dependency events that identify affected public pages and product outputs
++
++## 3. Migrate the public authority layer with URL and SEO parity
++
++**Outcome:** Render the existing substantive corpus through the v2 evidence standard without losing public URLs, citations, accessibility, or search equity.
++
++**Acceptance criteria:**
++
++- canonical URL inventory and one-to-one redirects
++- structured issue, jurisdiction, development, methodology, and tool records
++- preserved titles, descriptions, headings, canonical tags, and structured data where appropriate
++- source lineage, reviewed dates, and revision history visible on every substantive page
++- sitemap, robots, feed, search index, and internal links validated
++- representative pages pass side-by-side editorial and accessibility review
++
++## 4. Extract and validate deterministic tool logic
++
++**Outcome:** Move calculator and audit logic into versioned, testable services independent of interface components.
++
++**Acceptance criteria:**
++
++- input and output schemas
++- applicability predicates and branch trace
++- rule-version and source references
++- known-answer fixtures and boundary tests
++- assumption and missing-fact handling
++- explanation steps and limitations
++- save-to-matter contract
++- attorney approval, monitoring, and rollback plan
++
++## 5. Implement tenant, identity, privilege, and audit foundations
++
++**Outcome:** Establish the security plane before any non-public portfolio, matter, evidence, or decision data is used.
++
++**Acceptance criteria:**
++
++- SSO/MFA and tenant isolation
++- object-level authorization and privileged-matter controls
++- encrypted storage and secrets management
++- immutable security and product audit events
++- legal holds, retention, deletion, and export procedures
++- threat model, abuse cases, incident response, and recovery tests
++- no enterprise route publicly indexable or anonymously accessible
++
++## 6. Build property facts and jurisdiction applicability pilot
++
++**Outcome:** Produce reproducible property-level applicability for a contained Southern California pilot cluster.
++
++**Acceptance criteria:**
++
++- property, entity, brand/operator, workforce, payroll, benefits, and scheduling schemas
++- jurisdiction resolver with source and effective-date lineage
++- fact provenance, ownership, freshness, and unresolved-fact states
++- reproducible applicability evaluations for 3–7 pilot properties
++- property passports and change-to-portfolio reach
++- no silent defaults for missing material facts
++
++## 7. Build governed matters, decisions, controls, and evidence
++
++**Outcome:** Carry one material change from source to approved decision and operating proof without external reconstruction.
++
++**Acceptance criteria:**
++
++- matter scope, facts, assumptions, findings, tasks, owners, and due dates
++- versioned decision record with approvals and conditions
++- control objectives, implementations, tests, evidence, exceptions, and remediation
++- complete provenance snapshot
++- invalidation and revalidation when a dependent source, rule, fact, finding, control, or evidence record changes
++
++## 8. Production-readiness and release governance
++
++**Outcome:** Define and satisfy the gates required to move from prototype to controlled pilot and production.
++
++**Acceptance criteria:**
++
++- branch/ruleset protection and required checks
++- private vulnerability reporting, secret scanning, and push protection where available
++- WCAG 2.2 AA audit and assistive-technology testing
++- performance budgets and production observability
++- backup, recovery, resilience, and incident exercises
++- privacy, retention, privilege, and customer-data review
++- legal/editorial release authority and change-management procedure
++- repository made private before non-public information is introduced
+diff --git a/product/GITHUB-READINESS.md b/product/GITHUB-READINESS.md
+new file mode 100644
+index 0000000..b789d86
+--- /dev/null
++++ b/product/GITHUB-READINESS.md
+@@ -0,0 +1,31 @@
++# GitHub release readiness
++
++## Bootstrap complete when
++
++- [ ] canonical source is present on `main`
++- [ ] commit and tree contents match the local verified release
++- [ ] CI completes successfully
++- [ ] Pages workflow either deploys successfully or records the required repository-setting change
++- [ ] `CODEOWNERS`, issue forms, pull-request template, Dependabot, and security policy are present
++- [ ] reference-repository reconnaissance is accurately documented
++- [ ] obsolete statements claiming connector unavailability have been removed
++- [ ] roadmap issues exist for migration audit, production foundation, public authority migration, and enterprise pilot
++
++## Repository-owner settings
++
++Settings not represented as files must be verified in GitHub:
++
++- branch/ruleset protection for `main`
++- required `CI / Verify` status check
++- private vulnerability reporting
++- Pages source set to GitHub Actions during prototype review
++- repository converted to private before non-public data or work product is introduced
++- secret scanning and push protection where available
++
++## Evidence to retain
++
++- initialization commit SHA
++- workflow run IDs and conclusions
++- Pages deployment URL and commit
++- open issue numbers for remaining gated work
++- final repository visibility and ruleset state
+diff --git a/product/GOVERNANCE.md b/product/GOVERNANCE.md
+new file mode 100644
+index 0000000..9a60897
+--- /dev/null
++++ b/product/GOVERNANCE.md
+@@ -0,0 +1,144 @@
++# Legal intelligence and model governance
++
++## Governance objective
++
++The platform’s credibility depends less on a “verified” badge than on a reviewable operating system for sources, rules, calculations, analysis, and downstream artifacts.
++
++## Source lifecycle
++
++1. **Identify** — monitor authoritative publishers and known volatility points.
++2. **Acquire** — preserve the retrieved version, URI, timestamp, and content hash.
++3. **Classify** — identify authority type, jurisdiction, status, and effective dates.
++4. **Extract** — create passage-level propositions and candidate rule changes.
++5. **Review** — attorney/editor verifies text, dates, scope, and conflicts.
++6. **Publish** — release a versioned source and any affected rule versions.
++7. **Monitor** — watch for amendment, repeal, challenge, guidance, or access failure.
++8. **Supersede** — preserve history and trigger downstream revalidation.
++
++## Rule governance
++
++Every production rule version requires:
++
++- named legal owner
++- effective interval
++- supporting source passages
++- explicit coverage predicates
++- explicit exceptions
++- deterministic test fixtures where computable
++- review and approval history
++- disclosed interpretation points
++- rollback and supersession path
++
++Rules should not be edited in place after use. A material change creates a new version.
++
++## Calculation governance
++
++Every calculation module requires:
++
++- versioned specification
++- unit and integration tests
++- canonical fixtures
++- boundary-value tests
++- jurisdiction and date coverage matrix
++- explicit rounding rules
++- explainable branch trace
++- legal sign-off
++- release notes
++- production monitoring
++
++The user must be able to distinguish:
++
++- input fact
++- user assumption
++- derived value
++- rule branch
++- mathematical operation
++- legal judgment
++- limitation
++
++## Editorial governance
++
++Canonical analysis should include:
++
++- author and reviewer
++- last reviewed date
++- sources and passages
++- jurisdiction and effective scope
++- change log
++- unresolved issues
++- plain-language summary
++- deeper legal analysis
++- operational implications
++- educational-information disclaimer
++
++## Matter governance
++
++A matter should have:
++
++- owner
++- privilege and confidentiality designation
++- scope and lifecycle state
++- required reviewers
++- decision rights
++- due dates
++- evidence expectations
++- closure criteria
++- retention policy
++
++## Decision governance
++
++An approved decision record is immutable. Corrections or changes produce a new version. The record preserves:
++
++- exact content approved
++- supporting rule and source versions
++- fact snapshot
++- scenario/model version
++- named approvers and timestamps
++- conditions
++- known gaps
++- revalidation triggers
++
++## Assurance governance
++
++A control cannot be labeled “effective” solely because a policy exists. Status should reflect:
++
++- design completeness
++- implementation
++- operating cadence
++- evidence receipt
++- test result
++- exception severity
++- remediation
++- assurance acceptance
++
++Evidence should expire or require refresh according to cadence.
++
++## AI governance
++
++AI can assist with retrieval, summarization, proposition extraction, comparison, and drafting. It may not silently become the source of truth.
++
++Required controls:
++
++- retrieval restricted by permission and data class
++- source citations at passage level
++- no unsupported legal propositions
++- clear separation of generated text and approved analysis
++- prompt and model version logging for material outputs
++- human review gates
++- redaction and data-loss prevention
++- evaluation sets for citation accuracy, completeness, and abstention
++- incident response for erroneous or cross-tenant output
++
++## Operating roles
++
++| Role | Accountability |
++|---|---|
++| Legal content owner | substantive legal accuracy and scope |
++| Editorial reviewer | clarity, citation, consistency, publication standard |
++| Rule engineer | normalized predicates and deterministic implementation |
++| Model validator | calculation tests, fixtures, and release acceptance |
++| Data steward | enterprise fact quality and freshness |
++| Matter owner | scoped response and decision continuity |
++| Control owner | operation and evidence production |
++| Assurance owner | independent review and exception acceptance |
++| Product/security | permissions, auditability, resilience, and user experience |
+diff --git a/product/IMPLEMENTATION-ROADMAP.md b/product/IMPLEMENTATION-ROADMAP.md
+new file mode 100644
+index 0000000..2f4f6f3
+--- /dev/null
++++ b/product/IMPLEMENTATION-ROADMAP.md
+@@ -0,0 +1,129 @@
++# Implementation roadmap
++
++## Phase 0 — product and governance foundation
++
++Deliverables:
++
++- canonical object model and IDs
++- source and rule governance
++- tenant / privilege architecture
++- content migration inventory
++- calculation validation standard
++- design tokens and component library
++- analytics and audit-event taxonomy
++
++Exit criteria:
++
++- legal, product, engineering, security, and editorial owners approve the contracts
++- no critical entity depends on unversioned free text
++
++## Phase 1 — authority graph
++
++Deliverables:
++
++- source registry and version acquisition
++- passage-level citations
++- canonical analysis CMS
++- jurisdiction and issue taxonomies
++- developments pipeline
++- public search and revision history
++
++Exit criteria:
++
++- representative public content can be rendered from structured entities
++- a source change can identify affected rules and pages
++
++## Phase 2 — property applicability
++
++Deliverables:
++
++- tenant and property model
++- jurisdiction resolver
++- workforce segments
++- fact provenance and freshness
++- applicability engine
++- property passports
++- change-to-portfolio reach
++
++Exit criteria:
++
++- pilot properties produce reproducible applicability evaluations
++- unresolved facts are explicit rather than defaulted silently
++
++## Phase 3 — matters and decisions
++
++Deliverables:
++
++- governed matter lifecycle
++- scenarios and findings
++- assignments and due dates
++- decision-record generation
++- approval and versioning
++- audit history
++
++Exit criteria:
++
++- one material change can travel from source to approved decision without external reconstruction
++
++## Phase 4 — controls and evidence
++
++Deliverables:
++
++- control objectives and control registry
++- evidence requirements and collection
++- exceptions and remediation
++- assurance calendar
++- decision conditions linked to controls
++- revalidation engine
++
++Exit criteria:
++
++- an obligation can be traced to operating proof and open exceptions
++
++## Phase 5 — validated tools and integrations
++
++Priority integrations:
++
++- HRIS
++- payroll
++- timekeeping
++- benefits
++- scheduling
++- property master data
++- document/evidence storage
++- identity and access
++
++Tool release requirements:
++
++- legal specification
++- test fixtures
++- branch trace
++- source version linkage
++- save-to-matter output
++- monitoring and rollback
++
++## Phase 6 — scaled intelligence and AI
++
++Capabilities:
++
++- permission-aware grounded ask
++- automated change impact proposals
++- draft findings and control mappings
++- anomaly detection
++- portfolio forecasting
++- executive narrative generation
++
++AI remains assistive and governed; approved legal conclusions and decisions retain human ownership.
++
