@@ -1,0 +1,474 @@
+d
+new file mode 100644
+index 0000000..e0864c6
+--- /dev/null
++++ b/product/REPO-AUDIT.md
+@@ -0,0 +1,42 @@
++# Repository access and reconnaissance record
++
++## Connector test
++
++GitHub connector access was explicitly tested on 2026-07-13 before repository claims or write actions were made.
++
++Confirmed through the authenticated connector:
++
++- `karadzhyan/hotel-wage-law-v2` is accessible, uses `main`, and the connected account has administrative and push permissions.
++- `karadzhyan/hotel-wage-hour` is accessible as a private repository, uses `main`, and the connected account has administrative and push permissions.
++- The v2 repository was empty at the start of publication.
++- The connector exposes repository read operations and Git data / contents write operations required to initialize and maintain the v2 repository.
++
++## Reference-repository reconnaissance
++
++The following implementation characteristics were confirmed from the private reference repository's current README and indexed files:
++
++- zero-dependency Node static-site generator
++- source under `src/`, generated GitHub Pages output under `docs/`, and verification research under `research/`
++- data-driven state, ordinance, case, glossary, FAQ, development, calendar, and calculation records
++- 18 issue briefs, 51 state and District of Columbia guides, 19 hotel-specific law records, and 10 interactive tools
++- deterministic build, calculator and template tests, internal-link and semantic checks, staleness reporting, and print-optimized audit materials
++- key migration surfaces including `build.js`, `data/SCHEMA.md`, `lib/`, `src/content/`, `src/assets/`, `test/`, and `research/`
++
++The repository snapshot surfaced by the connector was anchored to commit `74fa16e9dd4b09920b039defa6a3ff4205494210`; the fetched README blob was `c5b8ce406b3a88d3c6e4671b7c65a75abdca3760`.
++
++## Audit boundary
++
++This record is reconnaissance, not a completed file-by-file legal, data, calculator, SEO, accessibility, or security audit. Production migration must still inventory and map:
++
++1. every canonical URL and redirect requirement
++2. every source and passage locator
++3. every data field and effective interval
++4. every calculator branch, parameter, fixture, and limitation
++5. every research memo and unresolved verification gap
++6. every generated artifact and deployment assumption
++7. every analytics, privacy, accessibility, and security dependency
++8. every reusable component versus migration liability
++
++## Publication record
++
++The canonical v2 source is intended to live in `karadzhyan/hotel-wage-law-v2`. GitHub Actions provide build verification and a review-only Pages deployment. Repository state, commits, workflow runs, and deployment status must be verified from connector responses before being represented as complete.
+diff --git a/product/SECURITY-PRIVACY.md b/product/SECURITY-PRIVACY.md
+new file mode 100644
+index 0000000..65b63cd
+--- /dev/null
++++ b/product/SECURITY-PRIVACY.md
+@@ -0,0 +1,135 @@
++# Security, privilege, and privacy architecture
++
++## Threat model
++
++The platform may contain privileged legal advice, litigation-sensitive analysis, employee-level payroll facts, health-benefit information, vendor data, and executive decisions. The security model must therefore assume that unauthorized disclosure could create legal, financial, employment, and reputational harm.
++
++Primary threats include:
++
++- cross-tenant data exposure
++- privilege leakage through search or AI retrieval
++- overbroad portfolio access
++- unauthorized export of evidence or decision records
++- source or rule tampering
++- silent alteration of approved records
++- prompt injection in external source material
++- employee-data overcollection
++- stale permissions after organizational changes
++- insecure third-party integrations
++
++## Public/private boundary
++
++Public authority and enterprise work may share identifiers and data structures, but not storage or authorization assumptions.
++
++Public plane:
++
++- published sources and canonical analysis
++- public jurisdiction and issue content
++- public tools with non-customer inputs
++
++Private plane:
++
++- property and workforce facts
++- matters and counsel analysis
++- scenarios, findings, controls, evidence, decisions
++- customer-specific search and AI context
++
++A public request must never inherit private context merely because the user is authenticated elsewhere.
++
++## Tenant isolation
++
++Recommended controls:
++
++- tenant key on every private record
++- tenant-scoped database policies
++- object storage prefixes and encryption boundaries
++- tenant-aware search indices
++- tenant-aware background jobs and caches
++- automated cross-tenant negative tests
++- support access through time-bound, approved impersonation
++
++## Authorization
++
++Use role-based access as a baseline and attribute-based rules for sensitive work.
++
++Attributes may include:
++
++- tenant
++- business unit
++- property cluster
++- matter team
++- privilege designation
++- data classification
++- region
++- legal hold
++- employment role
++
++Permissions should be evaluated server-side for every object, export, retrieval, and AI context assembly.
++
++## Privilege
++
++Matter records should support:
++
++- attorney-client and work-product designations
++- purpose and counsel involvement
++- distribution restrictions
++- separate factual and advice layers
++- privilege-aware search and exports
++- audit history
++- legal holds
++- configurable waiver warnings
++
++The product must not imply that merely storing an item in a “legal” system creates privilege.
++
++## Data minimization
++
++Applicability should prefer cohorts and governed facts over raw employee records. Employee-level data should be used only when required for calculations, remediation, or evidence, and should have:
++
++- purpose limitation
++- field minimization
++- retention periods
++- masking
++- access logging
++- deletion workflows subject to legal hold
++
++## Evidence integrity
++
++Evidence items should preserve:
++
++- source system
++- collection timestamp
++- period and population
++- content hash
++- uploader or automated collector
++- transformations
++- reviewer and acceptance state
++- retention classification
++
++Immutable event history should record changes to findings, controls, decisions, and approvals.
++
++## AI and retrieval security
++
++- isolate public and private retrieval indices
++- enforce permissions before retrieval, not after generation
++- treat source content as untrusted input
++- neutralize prompt-injection instructions in retrieved documents
++- log material prompts, retrieved objects, model/version, and response metadata
++- prevent models from training on tenant data unless explicitly contracted and controlled
++- redact high-risk personal data before model invocation where possible
++- provide an abstention path when evidence or permissions are insufficient
++
++## Baseline production controls
++
++- SSO/SAML and SCIM
++- MFA and conditional access
++- encryption in transit and at rest
++- secrets management
++- secure SDLC and dependency scanning
++- vulnerability management and penetration testing
++- centralized audit logs and SIEM integration
++- incident response and breach workflows
++- backups and tested recovery
++- regional/data-residency options where required
++- vendor risk management
++- privacy impact assessments
++- WCAG 2.2 AA accessibility program
+diff --git a/product/VISUAL-SYSTEM.md b/product/VISUAL-SYSTEM.md
+new file mode 100644
+index 0000000..bfe2a94
+--- /dev/null
++++ b/product/VISUAL-SYSTEM.md
+@@ -0,0 +1,185 @@
++# Visual system
++
++## Design position
++
++Hotel Wage Law should look neither like a law-firm brochure nor like a generic SaaS dashboard. The visual system is an **institutional operating interface**: authoritative enough for cited legal work, operational enough for payroll and property leaders, and concise enough for executive review.
++
++The system should communicate three things before the user reads the copy:
++
++1. the information has hierarchy
++2. the conclusion has a basis
++3. the next action has an owner
++
++## Structural principles
++
++### Hierarchy before decoration
++
++Use scale, placement, grouping, and whitespace to establish order. Borders, shadows, gradients, and color should reinforce that order rather than manufacture it.
++
++### Fewer interchangeable cards
++
++A uniform grid of cards makes every item feel equally important. Prefer purpose-built surfaces:
++
++- decision bands
++- causal chains
++- governed tables
++- evidence stacks
++- exception queues
++- property passports
++- timeline and approval rails
++- source inspectors
++
++Cards remain useful for bounded secondary objects, but they are not the universal layout primitive.
++
++### One visual grammar across public and private planes
++
++The public platform is editorial and spacious. The enterprise plane is denser and operational. They share typography, color semantics, tokens, iconography, and evidence language so a user understands that both are projections of the same governed system.
++
++## Color
++
++The foundation is institutional midnight rather than pure black. Color is semantic, not audience-themed.
++
++| Token family | Meaning | Representative use |
++|---|---|---|
++| Midnight / navy | institutional foundation, navigation, executive context | masthead, enterprise rail, decision bands |
++| Signal blue | change, attention, jurisdiction reach | developments, impact maps, active navigation |
++| Analysis teal | reasoning, scenario, calculated output | models, fact resolution, research traces |
++| Control green | operating effectiveness, accepted evidence, completion | assurance, controls, resolved actions |
++| Authority gold | primary authority, provenance, approval | source chain, evidence standard, decisive CTA |
++| Material red | high-impact exception or invalidation | deadline failure, control exception, material gap |
++| Warm paper | reading and decision-record background | long-form analysis, public editorial sections |
++| Cool neutral | application canvas and supporting structure | tables, secondary panels, inactive states |
++
++Rules:
++
++- never use red to make an ordinary CTA feel urgent
++- never use green merely to make a metric look positive
++- gold identifies authority or decisive focus; it is not a luxury accent applied everywhere
++- mode or department colors must not compete with legal status colors
++- every status color has a text label and icon or shape distinction
++
++## Typography
++
++### Editorial serif
++
++Use the serif face for category statements, direct legal answers, section theses, and decision-record narrative. It signals considered judgment, not nostalgia.
++
++### Interface sans serif
++
++Use the sans serif for navigation, metadata, tables, controls, status, and operational copy. It must remain highly legible at dense sizes.
++
++### Numeric treatment
++
++Tabular numbers are required for rates, dates, exposure ranges, scores, and comparison tables. Every consequential number must display or reveal:
++
++- unit
++- period
++- denominator
++- scope
++- effective date or as-of date
++- whether it is actual, modeled, or illustrative
++
++### Scale behavior
++
++- public hero: large but bounded; it should not consume the entire viewport
++- enterprise page title: direct question or outcome, not product taxonomy
++- section heading: expresses the conclusion of the section
++- labels: sentence case by default
++- uppercase is reserved for compact metadata and overlines, never long prose
++
++## Layout and density
++
++### Public plane
++
++- strong reading rhythm
++- generous section transitions
++- approximately 60–75 character prose measure
++- visual causal models in place of marketing feature grids
++- evidence and limitations close to claims
++
++### Enterprise plane
++
++- persistent context rail
++- primary work surface plus bounded inspector rail where useful
++- tables for comparable records; cards for non-comparable objects
++- sticky actions only when they remain contextual
++- high-value whitespace around decisions, warnings, and legal conclusions
++
++### Responsive behavior
++
++Mobile is a review-and-action surface, not a compressed desktop production environment.
++
++Preserve on mobile:
++
++- active tenant, matter, property, and effective-date context
++- material status and next action
++- source inspection
++- concise findings and approval state
++- large touch targets and keyboard-equivalent controls
++
++Dense matrices remain bounded and horizontally scrollable. Do not force every column into a narrow stack that destroys comparability.
++
++## Data visualization
++
++Visuals should answer a defined operating question.
++
++Approved patterns:
++
++- portfolio reach by jurisdiction or operating cluster
++- obligation-to-control coverage
++- matter lifecycle and aging
++- source-to-decision causal chain
++- effective-date timeline
++- evidence currency and exception distribution
++- scenario range with explicit assumptions
++
++Avoid:
++
++- decorative donuts without denominator and target
++- unlabeled “risk scores”
++- map shading without a legend, date, and coverage definition
++- trend arrows based on incomparable periods
++- precision that exceeds the evidence
++
++## Iconography
++
++Use a consistent SVG line system with restrained stroke weight. Icons identify object type or action; they do not replace labels in consequential workflows.
++
++Representative object metaphors:
++
++- source / authority — document or institutional column
++- change — delta or signal
++- matter — governed file
++- finding — reasoned determination
++- control — shield/check or operating loop
++- evidence — linked artifact
++- decision — approval mark or decision rail
++- property — building passport
++
++## Motion
++
++Motion communicates state change:
++
++- drawers and inspectors entering
++- scope or scenario recalculation
++- filter result updates
++- approval or invalidation state transitions
++
++Motion should be brief, interruptible, and absent under reduced-motion preferences. No ambient animation is necessary to signal sophistication.
++
++## Accessibility baseline
++
++- WCAG 2.2 AA target
++- visible keyboard focus with sufficient contrast
++- semantic landmarks and one primary page heading
++- accessible names for every icon-only control
++- no information conveyed by color alone
++- table headers and captions for data grids
++- error text adjacent to the affected input
++- touch targets sized for mobile use
++- reflow without document-level horizontal overflow
++- zoom and text-resize resilience
++
++## Prototype token source
++
++The implemented token source is [`src/assets/css/tokens.css`](../src/assets/css/tokens.css). Component and layout expressions are distributed across `base.css`, `components.css`, `public.css`, `app.css`, `responsive.css`, and `v2.css`. Production should migrate these values into a documented token package and component library rather than copying page-level CSS ad hoc.
+diff --git a/product/schemas/legal-intelligence-graph.schema.json b/product/schemas/legal-intelligence-graph.schema.json
+new file mode 100644
+index 0000000..a8e4343
+--- /dev/null
++++ b/product/schemas/legal-intelligence-graph.schema.json
+@@ -0,0 +1,206 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://hotelwagelaw.com/schemas/legal-intelligence-graph.schema.json",
++  "title": "Hotel Wage Law governed intelligence graph",
++  "description": "Normative contract for the objects that connect legal authority to enterprise decisions. Prototype records may omit production-only security metadata, but may not break lineage.",
++  "type": "object",
++  "required": ["sources", "rules", "changes", "properties", "matters", "findings", "controls", "evidence", "decisions"],
++  "properties": {
++    "sources": {"type": "array", "items": {"$ref": "#/$defs/sourceVersion"}},
++    "rules": {"type": "array", "items": {"$ref": "#/$defs/ruleVersion"}},
++    "changes": {"type": "array", "items": {"$ref": "#/$defs/change"}},
++    "properties": {"type": "array", "items": {"$ref": "#/$defs/property"}},
++    "matters": {"type": "array", "items": {"$ref": "#/$defs/matter"}},
++    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
++    "controls": {"type": "array", "items": {"$ref": "#/$defs/control"}},
++    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidenceItem"}},
++    "decisions": {"type": "array", "items": {"$ref": "#/$defs/decisionRecord"}}
++  },
++  "additionalProperties": false,
++  "$defs": {
++    "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,80}$"},
++    "isoDate": {"type": "string", "format": "date"},
++    "isoDateTime": {"type": "string", "format": "date-time"},
++    "status": {"type": "string", "enum": ["draft", "review", "approved", "superseded", "invalidated", "archived"]},
++    "citation": {
++      "type": "object",
++      "required": ["sourceVersionId", "locator"],
++      "properties": {
++        "sourceVersionId": {"$ref": "#/$defs/id"},
++        "locator": {"type": "string", "minLength": 1},
++        "proposition": {"type": "string"},
++        "quotedTextHash": {"type": "string"}
++      },
++      "additionalProperties": false
++    },
++    "sourceVersion": {
++      "type": "object",
++      "required": ["id", "sourceId", "title", "sourceType", "publisher", "retrievedAt", "contentHash", "canonicalUrl"],
++      "properties": {
++        "id": {"$ref": "#/$defs/id"},
++        "sourceId": {"$ref": "#/$defs/id"},
++        "title": {"type": "string", "minLength": 1},
++        "sourceType": {"type": "string", "enum": ["statute", "regulation", "ordinance", "case", "agency-guidance", "official-notice", "secondary-analysis", "customer-evidence"]},
++        "publisher": {"type": "string", "minLength": 1},
++        "jurisdiction": {"type": "string"},
++        "effectiveFrom": {"$ref": "#/$defs/isoDate"},
++        "effectiveTo": {"$ref": "#/$defs/isoDate"},
++        "retrievedAt": {"$ref": "#/$defs/isoDateTime"},
++        "canonicalUrl": {"type": "string", "format": "uri"},
++        "contentHash": {"type": "string", "minLength": 32},
++        "supersedes": {"$ref": "#/$defs/id"},
++        "reviewStatus": {"type": "string", "enum": ["captured", "verified", "rejected", "superseded"]}
++      },
++      "additionalProperties": false
++    },
++    "ruleVersion": {
++      "type": "object",
++      "required": ["id", "ruleId", "name", "version", "effectiveFrom", "status", "citations", "logicType"],
++      "properties": {
++        "id": {"$ref": "#/$defs/id"},
++        "ruleId": {"$ref": "#/$defs/id"},
++        "name": {"type": "string"},
++        "version": {"type": "integer", "minimum": 1},
++        "jurisdiction": {"type": "string"},
++        "effectiveFrom": {"$ref": "#/$defs/isoDate"},
++        "effectiveTo": {"$ref": "#/$defs/isoDate"},
++        "status": {"$ref": "#/$defs/status"},
++        "logicType": {"type": "string", "enum": ["deterministic", "attorney-judgment", "hybrid"]},
++        "inputs": {"type": "array", "items": {"type": "string"}},
++        "outputs": {"type": "array", "items": {"type": "string"}},
++        "citations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/citation"}},
++        "reviewedBy": {"type": "array", "items": {"type": "string"}},
++        "approvedAt": {"$ref": "#/$defs/isoDateTime"}
++      },
++      "additionalProperties": false
++    },
++    "change": {
++      "type": "object",
++      "required": ["id", "title", "detectedAt", "materiality", "sourceVersionIds", "affectedRuleVersionIds", "status"],
++      "properties": {
++        "id": {"$ref": "#/$defs/id"},
++        "title": {"type": "string"},
++        "detectedAt": {"$ref": "#/$defs/isoDateTime"},
++        "effectiveAt": {"$ref": "#/$defs/isoDateTime"},
++        "materiality": {"type": "string", "enum": ["critical", "high", "medium", "low", "watch"]},
++        "sourceVersionIds": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/id"}},
++        "affectedRuleVersionIds": {"type": "array", "items": {"$ref": "#/$defs/id"}},
++        "status": {"type": "string", "enum": ["detected", "triaged", "scoped", "resolved", "dismissed"]}
