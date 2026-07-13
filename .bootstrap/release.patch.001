@@ -1,0 +1,470 @@
+s repository is intentionally not a visual reskin of the existing public resource. It demonstrates a new product architecture in which public legal authority, property-specific applicability, accountable remediation, executive decisions, and response evidence operate on one governed record.
++
++## Product thesis
++
++A material legal change should be able to move through the enterprise without being reconstructed at every handoff:
++
++```text
++Source → Rule → Change → Applicability → Matter → Finding
++       → Control → Evidence → Decision → Revalidation
++```
++
++The public site supplies readable, citable authority. The private control plane resolves that authority against portfolio facts and carries the result through ownership, implementation, assurance, and approval.
++
++The interface is therefore organized around the enterprise's actual objects—not around four conceptual “modes”:
++
++- **Changes** — verified developments and portfolio reach
++- **Matters** — governed response records
++- **Controls** — obligations converted into operating proof
++- **Portfolio** — property and workforce applicability
++- **Research** — grounded answers with source lineage
++- **Decision records** — concise, approved executive artifacts
++
++## What is included
++
++### Public authority layer
++
++| Route | Purpose |
++|---|---|
++| `/` | Category-defining platform narrative and causal system model |
++| `/intelligence/` | Developments, issue architecture, tools, and corpus overview |
++| `/jurisdictions/` | 50-state + D.C. complexity explorer and comparison standard |
++| `/tools/` | Inspectable workflow registry and example audit anatomy |
++| `/methodology/` | Evidence, governance, source, privacy, and calculation standards |
++
++### Enterprise control plane
++
++| Route | Purpose |
++|---|---|
++| `/app/` | Portfolio command view and decision queue |
++| `/app/changes/` | Change-to-response impact analysis |
++| `/app/matters/la-hotel-wage-2026/` | Governed matter with scenario modeling, findings, and evidence |
++| `/app/controls/` | Control coverage, exceptions, testing, and assurance |
++| `/app/research/` | Source-grounded legal research workspace |
++| `/app/briefs/la-hotel-wage-2026/` | Versioned executive decision record |
++| `/app/properties/dtla-01/` | Property passport and applicable-obligation model |
++
++All enterprise names, people, financial ranges, scores, work states, and portfolio values are illustrative prototype data.
++
++## Run locally
++
++Requirements:
++
++- Node.js 20 or later
++- Python 3.11 or later for browser QA and rendering
++- Chromium and Python Playwright for browser QA
++
++```bash
++npm run build
++npm run serve
++```
++
++Open `http://localhost:8080`.
++
++## Validate
++
++```bash
++npm test          # deterministic build + structural/data tests
++npm run qa        # browser, responsive, and interaction acceptance tests
++npm run verify    # both suites
++```
++
++The test suite validates:
++
++- all 12 routes and internal references
++- corpus and jurisdiction dimensions
++- object-graph and evidence-contract semantics
++- explicit prototype/legal limitations
++- no fabricated customer proof
++- desktop and mobile overflow
++- browser-console errors
++- command/search, source drawer, filters, scenario model, control drawer, approvals, and mobile navigation
++
++## Build for GitHub Pages
++
++```bash
++npm run check:pages
++```
++
++This builds with the `/hotel-wage-law-v2` prefix and validates route, asset, robots, and web-manifest paths. The included Pages workflow performs the verified build and deploys the generated `docs/` directory as an artifact; generated output is not versioned.
++
++## Production boundary
++
++This is a high-fidelity front-end prototype and system specification. It is **not** a production legal application and does not provide legal advice. A production release requires, among other things:
++
++- a canonical legal-content and source-version service
++- a validated applicability and calculation engine
++- property, workforce, payroll, benefit, and policy integrations
++- authentication, tenant isolation, privilege controls, and audit logging
++- workflow persistence, evidence storage, approvals, notifications, and legal holds
++- attorney review of legal logic and editorial governance
++- security, privacy, accessibility, resilience, observability, and performance programs
++
++See [`product/`](product/) for the product thesis, experience and production architecture, visual and content systems, governed data schema, analytics, governance, security, migration plan, roadmap, and acceptance criteria.
++
++## Repository governance
++
++The implementation has no runtime package dependencies and produces deterministic static output suitable for review, design handoff, and architectural validation. Continuous integration, review-only Pages deployment, code ownership, structured issue intake, dependency monitoring, security guidance, and a governed pull-request checklist are included.
++
++The private reference implementation was accessed through the authenticated GitHub connector for repository reconnaissance. Its data-driven legal corpus, calculators, tests, generated output, and verification research are treated as migration inputs—not as material to overwrite or casually copy. See [`product/REPO-AUDIT.md`](product/REPO-AUDIT.md) and [`product/MIGRATION.md`](product/MIGRATION.md).
++
++See [`GITHUB-OPERATIONS.md`](GITHUB-OPERATIONS.md) for repository controls and the deployment boundary.
++The ordered implementation backlog is maintained in [`product/GITHUB-BACKLOG.md`](product/GITHUB-BACKLOG.md) and should be mirrored into GitHub issues.
++
++## License
++
++All rights reserved. See [`LICENSE`](LICENSE).
+diff --git a/SECURITY.md b/SECURITY.md
+new file mode 100644
+index 0000000..debc44b
+--- /dev/null
++++ b/SECURITY.md
+@@ -0,0 +1,39 @@
++# Security and privacy policy
++
++## Prototype status
++
++This repository contains a production-fidelity prototype and product specification. It is not an approved production system and must not be used to store or process customer data, employee data, privileged material, credentials, secrets, or production legal work product.
++
++## Reporting a vulnerability
++
++Do **not** open a public issue for a suspected vulnerability, exposed credential, privacy incident, or privileged-data concern.
++
++Use GitHub's private vulnerability-reporting channel when it is enabled for this repository. Until then, contact the repository owner privately through the contact method associated with the GitHub account. Include:
++
++- affected commit and path
++- reproduction steps
++- likely impact
++- any mitigation already taken
++
++Do not include live credentials or unnecessary personal data in the report.
++
++## Supported versions
++
++Only the current `main` branch is supported during the prototype phase.
++
++## Security gates before production
++
++A production release requires, at minimum:
++
++- tenant isolation and object-level authorization
++- privileged-matter and need-to-know access controls
++- encrypted evidence and document storage
++- secrets management and key rotation
++- immutable audit events and legal-hold support
++- dependency, SAST, DAST, and infrastructure scanning
++- incident response and breach-notification procedures
++- privacy review, retention schedules, and deletion workflows
++- backup, disaster recovery, observability, and resilience testing
++- manual accessibility and security review of every material workflow
++
++The normative production requirements are documented in [`product/SECURITY-PRIVACY.md`](product/SECURITY-PRIVACY.md).
+diff --git a/build.js b/build.js
+new file mode 100644
+index 0000000..fece7e9
+--- /dev/null
++++ b/build.js
+@@ -0,0 +1,134 @@
++'use strict';
++
++const fs = require('node:fs');
++const path = require('node:path');
++
++const renderHome = require('./src/pages/home');
++const renderOverview = require('./src/pages/overview');
++const renderChanges = require('./src/pages/changes');
++const renderMatter = require('./src/pages/matter');
++const renderControls = require('./src/pages/controls');
++const renderResearch = require('./src/pages/research');
++const renderBrief = require('./src/pages/brief');
++const renderProperty = require('./src/pages/property');
++const renderMethodology = require('./src/pages/methodology');
++const renderIntelligence = require('./src/pages/intelligence');
++const renderJurisdictions = require('./src/pages/jurisdictions');
++const renderTools = require('./src/pages/tools');
++const platformData = require('./src/data/platform-data');
++
++const ROOT = __dirname;
++const OUT = path.join(ROOT, 'docs');
++const BASE_PATH = normalizeBase(process.env.BASE_PATH || '');
++
++const routes = [
++  { route: '/', render: renderHome },
++  { route: '/intelligence/', render: renderIntelligence },
++  { route: '/jurisdictions/', render: renderJurisdictions },
++  { route: '/tools/', render: renderTools },
++  { route: '/methodology/', render: renderMethodology },
++  { route: '/app/', render: renderOverview },
++  { route: '/app/changes/', render: renderChanges },
++  { route: '/app/matters/la-hotel-wage-2026/', render: renderMatter },
++  { route: '/app/controls/', render: renderControls },
++  { route: '/app/research/', render: renderResearch },
++  { route: '/app/briefs/la-hotel-wage-2026/', render: renderBrief },
++  { route: '/app/properties/dtla-01/', render: renderProperty }
++];
++
++function normalizeBase(value) {
++  if (!value || value === '/') return '';
++  return `/${value.replace(/^\/+|\/+$/g, '')}`;
++}
++
++function cleanOutput() {
++  fs.rmSync(OUT, { recursive: true, force: true });
++  fs.mkdirSync(OUT, { recursive: true });
++}
++
++function copyDirectory(source, target) {
++  fs.mkdirSync(target, { recursive: true });
++  for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
++    const src = path.join(source, entry.name);
++    const dest = path.join(target, entry.name);
++    if (entry.isDirectory()) copyDirectory(src, dest);
++    else fs.copyFileSync(src, dest);
++  }
++}
++
++function outputPath(route) {
++  if (route === '/') return path.join(OUT, 'index.html');
++  return path.join(OUT, route.replace(/^\//, ''), 'index.html');
++}
++
++function applyBase(html) {
++  if (!BASE_PATH) return html;
++  return html
++    .replace(/(href|src)="\/(?!\/)/g, `$1="${BASE_PATH}/`)
++    .replace(/content="\/assets\//g, `content="${BASE_PATH}/assets/`);
++}
++
++function writePage(route, render) {
++  const destination = outputPath(route);
++  fs.mkdirSync(path.dirname(destination), { recursive: true });
++  const html = applyBase(render());
++  fs.writeFileSync(destination, html, 'utf8');
++}
++
++function renderNotFound() {
++  const base = BASE_PATH || '';
++  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found · Hotel Wage Law</title><link rel="stylesheet" href="${base}/assets/css/tokens.css"><link rel="stylesheet" href="${base}/assets/css/base.css"><style>body{display:grid;min-height:100vh;place-items:center;padding:24px;background:#07182f;color:#fff}.not-found{max-width:680px}.not-found small{color:#8fb4e8;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.not-found h1{margin:15px 0;color:#fff;font-family:var(--font-serif);font-size:clamp(52px,9vw,90px);font-weight:500}.not-found p{color:#b7c8d8;font-size:17px}.not-found a{display:inline-flex;margin-top:22px;padding:13px 18px;background:#d7981f;border-radius:8px;color:#07182f;font-weight:750}</style></head><body><main class="not-found"><small>Error 404</small><h1>This record does not exist.</h1><p>The requested route is not part of this prototype build. Return to the public platform or enterprise workspace.</p><a href="${base}/">Return to Hotel Wage Law</a></main></body></html>`;
++}
++
++function writeMetadata() {
++  const publicRoutes = routes.map(item => `${BASE_PATH}${item.route}`);
++  const manifest = {
++    name: platformData.product.name,
++    version: require('./package.json').version,
++    builtAt: process.env.BUILD_TIMESTAMP || '2026-07-13T00:00:00.000Z',
++    basePath: BASE_PATH || '/',
++    routes: publicRoutes,
++    sourceFiles: countFiles(path.join(ROOT, 'src')),
++    architecture: 'Static, dependency-free, deterministic prototype build'
++  };
++  fs.mkdirSync(path.join(OUT, 'assets', 'data'), { recursive: true });
++  fs.writeFileSync(path.join(OUT, 'assets', 'data', 'platform-data.json'), JSON.stringify(platformData, null, 2));
++  fs.writeFileSync(path.join(OUT, 'build-manifest.json'), JSON.stringify(manifest, null, 2));
++
++  const appPrefix = `${BASE_PATH}/app/`.replace(/\/\//g, '/');
++  fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nDisallow: ${appPrefix}\n`);
++  fs.writeFileSync(path.join(OUT, '404.html'), renderNotFound());
++  fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
++
++  const webManifestPath = path.join(OUT, 'assets', 'manifest.webmanifest');
++  if (fs.existsSync(webManifestPath)) {
++    const webManifest = JSON.parse(fs.readFileSync(webManifestPath, 'utf8'));
++    webManifest.start_url = `${BASE_PATH}/app/`.replace(/\/\//g, '/');
++    webManifest.scope = `${BASE_PATH}/`.replace(/\/\//g, '/');
++    fs.writeFileSync(webManifestPath, `${JSON.stringify(webManifest, null, 2)}\n`);
++  }
++}
++
++function countFiles(directory) {
++  let total = 0;
++  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
++    total += entry.isDirectory() ? countFiles(path.join(directory, entry.name)) : 1;
++  }
++  return total;
++}
++
++function validateBuild() {
++  const missing = [];
++  for (const item of routes) {
++    const file = outputPath(item.route);
++    if (!fs.existsSync(file) || fs.statSync(file).size < 1000) missing.push(item.route);
++  }
++  if (missing.length) throw new Error(`Build validation failed. Missing or undersized routes: ${missing.join(', ')}`);
++}
++
++cleanOutput();
++copyDirectory(path.join(ROOT, 'src', 'assets'), path.join(OUT, 'assets'));
++for (const item of routes) writePage(item.route, item.render);
++writeMetadata();
++validateBuild();
++console.log(`Built ${routes.length} routes to ${path.relative(ROOT, OUT)}${BASE_PATH ? ` with base ${BASE_PATH}` : ''}.`);
+diff --git a/package-lock.json b/package-lock.json
+new file mode 100644
+index 0000000..e9d75a6
+--- /dev/null
++++ b/package-lock.json
+@@ -0,0 +1,16 @@
++{
++  "name": "hotel-wage-law-v2",
++  "version": "1.0.0",
++  "lockfileVersion": 3,
++  "requires": true,
++  "packages": {
++    "": {
++      "name": "hotel-wage-law-v2",
++      "version": "1.0.0",
++      "license": "UNLICENSED",
++      "engines": {
++        "node": ">=20"
++      }
++    }
++  }
++}
+diff --git a/package.json b/package.json
+new file mode 100644
+index 0000000..c03c2ad
+--- /dev/null
++++ b/package.json
+@@ -0,0 +1,29 @@
++{
++  "name": "hotel-wage-law-v2",
++  "version": "1.0.0",
++  "private": true,
++  "description": "A production-fidelity prototype for the hospitality wage-and-hour intelligence and control platform.",
++  "scripts": {
++    "build": "node build.js",
++    "test": "node build.js && node --test tests/*.test.js",
++    "qa": "node build.js && python3 tests/browser-qa.py",
++    "verify": "npm test && npm run qa",
++    "serve": "python3 -m http.server 8080 --directory docs",
++    "build:pages": "BASE_PATH=/hotel-wage-law-v2 node build.js",
++    "check:pages": "npm run build:pages && node scripts/check-pages-build.js",
++    "preview": "npm run build && python3 -m http.server 8080 --directory docs",
++    "render": "node build.js && python3 scripts/render.py"
++  },
++  "engines": {
++    "node": ">=20"
++  },
++  "license": "UNLICENSED",
++  "repository": {
++    "type": "git",
++    "url": "https://github.com/karadzhyan/hotel-wage-law-v2.git"
++  },
++  "homepage": "https://karadzhyan.github.io/hotel-wage-law-v2/",
++  "bugs": {
++    "url": "https://github.com/karadzhyan/hotel-wage-law-v2/issues"
++  }
++}
+diff --git a/product/ACCEPTANCE-CRITERIA.md b/product/ACCEPTANCE-CRITERIA.md
+new file mode 100644
+index 0000000..0433219
+--- /dev/null
++++ b/product/ACCEPTANCE-CRITERIA.md
+@@ -0,0 +1,76 @@
++# Product acceptance criteria
++
++## Public authority
++
++- Every published legal proposition has a review date and inspectable source basis.
++- Source type and authority hierarchy are visible.
++- Effective dates and jurisdiction scope are explicit.
++- Public pages disclose educational-information limitations.
++- Existing high-value URLs have tested redirects or preservation plans.
++
++## Change intelligence
++
++- A change record identifies the changed rule version and delta.
++- Materiality includes a rationale and portfolio denominator.
++- Likely reach is distinguishable from resolved reach.
++- Open facts and source gaps are visible.
++- The record can open or update a governed matter.
++
++## Applicability
++
++- An evaluation records rule, engine, and fact-snapshot versions.
++- Every failed or unresolved predicate is inspectable.
++- Property and workforce facts have owners, sources, and freshness.
++- No material missing fact is silently assumed.
++
++## Matters
++
++- Scope, owner, lifecycle, privilege, and next action are explicit.
++- Findings separate law, fact, computation, judgment, and limitation.
++- Scenarios retain inputs, assumptions, and model versions.
++- Actions and controls link to findings.
++- Closure criteria and revalidation triggers are defined.
++
++## Controls and evidence
++
++- Every control links to an obligation or finding.
++- Operation and assurance ownership are distinct where required.
++- Cadence, population, evidence, and test method are specified.
++- Exceptions are tracked through remediation or acceptance.
++- Evidence integrity and retention metadata are preserved.
++
++## Decision records
++
++- The decision request is unambiguous.
++- Recommendation, alternatives, consequences, and conditions are present.
++- Approvers and timestamps are immutable.
++- The approved provenance snapshot is preserved.
++- Dependency changes create a revalidation state rather than mutating history.
++
++## Security and privacy
++
++- Every private request is tenant- and permission-scoped server-side.
++- Public and private retrieval contexts cannot bleed into one another.
++- Privileged matters support restricted search and export.
++- Employee data is minimized and access-logged.
++- Audit events cover material reads, changes, exports, approvals, and AI use.
++
++## Accessibility and quality
++
++- WCAG 2.2 AA target with automated and manual testing.
++- Keyboard navigation and visible focus for every interactive control.
++- No document-level horizontal overflow at supported viewports.
++- Dense tables and matrices remain bounded and scrollable.
++- Core workflows work without browser-console errors.
++- Performance budgets are established for public and enterprise routes.
++
++## Prototype repository
++
++- deterministic build
++- complete route manifest
++- internal-link validation
++- data-integrity tests
++- responsive browser QA
++- interaction acceptance tests
++- GitHub Pages build path
++- documented production boundary
+diff --git a/product/ADRS/0001-governed-object-graph.md b/product/ADRS/0001-governed-object-graph.md
+new file mode 100644
+index 0000000..1890dcc
+--- /dev/null
++++ b/product/ADRS/0001-governed-object-graph.md
+@@ -0,0 +1,19 @@
++# ADR 0001 — Governed object graph over page-centric architecture
++
++**Status:** Accepted for v2 prototype
++
++## Decision
++
++Model legal intelligence and enterprise response as versioned, linked entities. Pages and reports are projections of those entities.
++
++## Rationale
++
++A page-centric architecture duplicates facts, permits drift, and makes downstream invalidation difficult. The product’s differentiator depends on causal continuity from authority to response evidence.
++
++## Consequences
++
++- more up-front schema and governance work
++- stable IDs and versioning required
++- content authors and rule engineers work against explicit contracts
++- executive artifacts can be regenerated without losing provenance
++- dependency changes can trigger targeted revalidation
+diff --git a/product/ADRS/0002-public-private-boundary.md b/product/ADRS/0002-public-private-boundary.md
+new file mode 100644
+index 0000000..0d86d89
+--- /dev/null
++++ b/product/ADRS/000
