@@ -25,25 +25,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Reconstruct verified source archive
+      - name: Reconstruct and verify release patch
         shell: bash
         run: |
           set -euo pipefail
-          cat .bootstrap/release.zip.b64.* | base64 --decode > /tmp/hotel-wage-law-v2.zip
-          actual="$(sha256sum /tmp/hotel-wage-law-v2.zip | awk '{print $1}')"
-          expected="e78056be828fc87fc27999fe7b247aee97e03c86acf8bc14f501fee2d942685a"
+          cat .bootstrap/release.patch.* > /tmp/hotel-wage-law-v2.patch
+          actual="$(sha256sum /tmp/hotel-wage-law-v2.patch | awk '{print $1}')"
+          expected="57adb3fa16ee656b68985b062c1f71c847a6f9c7b87792b536d1b92f3101323b"
           test "$actual" = "$expected"
-          echo "Verified release archive: $actual"
+          echo "Verified release patch: $actual"
 
-      - name: Replace transfer payload with release source
+      - name: Apply complete release source
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf /tmp/hotel-wage-law-v2-release
-          mkdir -p /tmp/hotel-wage-law-v2-release
-          unzip -q /tmp/hotel-wage-law-v2.zip -d /tmp/hotel-wage-law-v2-release
-          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -a /tmp/hotel-wage-law-v2-release/. .
+          git apply --check /tmp/hotel-wage-law-v2.patch
+          git apply /tmp/hotel-wage-law-v2.patch
+          rm -rf .bootstrap .github/workflows/bootstrap-release.yml
 
       - name: Verify deterministic contracts and deployment paths
         shell: bash
