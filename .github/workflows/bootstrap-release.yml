@@ -1,0 +1,65 @@
+name: Bootstrap verified v2 release
+
+on:
+  push:
+    branches:
+      - bootstrap/unified-platform-v2
+    paths:
+      - .bootstrap/READY
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bootstrap-v2-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Reconstruct, verify, and publish release branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out transfer branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct verified source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .bootstrap/release.zip.b64.* | base64 --decode > /tmp/hotel-wage-law-v2.zip
+          actual="$(sha256sum /tmp/hotel-wage-law-v2.zip | awk '{print $1}')"
+          expected="e78056be828fc87fc27999fe7b247aee97e03c86acf8bc14f501fee2d942685a"
+          test "$actual" = "$expected"
+          echo "Verified release archive: $actual"
+
+      - name: Replace transfer payload with release source
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/hotel-wage-law-v2-release
+          mkdir -p /tmp/hotel-wage-law-v2-release
+          unzip -q /tmp/hotel-wage-law-v2.zip -d /tmp/hotel-wage-law-v2-release
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a /tmp/hotel-wage-law-v2-release/. .
+
+      - name: Verify deterministic contracts and deployment paths
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm test
+          npm run check:pages
+          npm run build
+          git diff --exit-code -- docs
+
+      - name: Commit verified release source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git commit -m "Publish Hotel Wage Law v2 verified platform"
+          git push origin HEAD:bootstrap/unified-platform-v2
