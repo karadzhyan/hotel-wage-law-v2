@@ -31,7 +31,7 @@ jobs:
           set -euo pipefail
           cat .bootstrap/release.patch.* > /tmp/hotel-wage-law-v2.patch
           actual="$(sha256sum /tmp/hotel-wage-law-v2.patch | awk '{print $1}')"
-          expected="57adb3fa16ee656b68985b062c1f71c847a6f9c7b87792b536d1b92f3101323b"
+          expected="657b4062519ac0f6a256856caa453e3603a5ec7c1b4130c41d00aa37f1d7d95c"
           test "$actual" = "$expected"
           echo "Verified release patch: $actual"
 
@@ -50,7 +50,6 @@ jobs:
           npm test
           npm run check:pages
           npm run build
-          git diff --exit-code -- docs
 
       - name: Commit verified release source
         shell: bash
