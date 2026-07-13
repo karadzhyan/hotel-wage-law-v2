@@ -1,0 +1,329 @@
+diff --git a/.editorconfig b/.editorconfig
+new file mode 100644
+index 0000000..192c070
+--- /dev/null
++++ b/.editorconfig
+@@ -0,0 +1,11 @@
++root = true
++
++[*]
++charset = utf-8
++end_of_line = lf
++insert_final_newline = true
++indent_style = space
++indent_size = 2
++
++[*.md]
++trim_trailing_whitespace = false
+diff --git a/.gitattributes b/.gitattributes
+new file mode 100644
+index 0000000..c62104a
+--- /dev/null
++++ b/.gitattributes
+@@ -0,0 +1,8 @@
++* text=auto eol=lf
++
++# Generated static output remains reviewable but should not dominate language statistics.
++docs/** linguist-generated=true
++
++# Preserve executable scripts.
++scripts/*.py text eol=lf
++tests/*.py text eol=lf
+diff --git a/.github/CODEOWNERS b/.github/CODEOWNERS
+new file mode 100644
+index 0000000..ec783ff
+--- /dev/null
++++ b/.github/CODEOWNERS
+@@ -0,0 +1,13 @@
++# Repository-wide ownership
++* @karadzhyan
++
++# Product contracts and legal-intelligence architecture
++/product/ @karadzhyan
++/src/data/ @karadzhyan
++/tests/ @karadzhyan
++
++# Release and repository automation
++/.github/ @karadzhyan
++/build.js @karadzhyan
++/package.json @karadzhyan
++/package-lock.json @karadzhyan
+diff --git a/.github/ISSUE_TEMPLATE/bug.yml b/.github/ISSUE_TEMPLATE/bug.yml
+new file mode 100644
+index 0000000..91fd0b3
+--- /dev/null
++++ b/.github/ISSUE_TEMPLATE/bug.yml
+@@ -0,0 +1,52 @@
++name: Product or implementation defect
++description: Report a reproducible defect in the prototype, build, data contract, or interaction.
++title: "[Bug]: "
++labels: ["bug"]
++body:
++  - type: markdown
++    attributes:
++      value: |
++        Do not include privileged material, personal data, credentials, or non-public customer information.
++  - type: textarea
++    id: summary
++    attributes:
++      label: Defect summary
++      description: What is wrong, and what should happen instead?
++    validations:
++      required: true
++  - type: textarea
++    id: reproduction
++    attributes:
++      label: Reproduction steps
++      placeholder: |
++        1. Open …
++        2. Select …
++        3. Observe …
++    validations:
++      required: true
++  - type: input
++    id: route
++    attributes:
++      label: Route or file
++      placeholder: /app/changes/ or src/pages/changes.js
++  - type: dropdown
++    id: severity
++    attributes:
++      label: Severity
++      options:
++        - Blocks review or release
++        - Material functional defect
++        - Minor functional defect
++        - Visual or editorial defect
++    validations:
++      required: true
++  - type: textarea
++    id: environment
++    attributes:
++      label: Environment
++      description: Browser, viewport, operating system, branch, and commit if relevant.
++  - type: textarea
++    id: evidence
++    attributes:
++      label: Supporting evidence
++      description: Add screenshots, logs, or failing test output after removing sensitive material.
+diff --git a/.github/ISSUE_TEMPLATE/config.yml b/.github/ISSUE_TEMPLATE/config.yml
+new file mode 100644
+index 0000000..36b3455
+--- /dev/null
++++ b/.github/ISSUE_TEMPLATE/config.yml
+@@ -0,0 +1,5 @@
++blank_issues_enabled: false
++contact_links:
++  - name: Security or privacy report
++    url: https://github.com/karadzhyan/hotel-wage-law-v2/security/policy
++    about: Use the private reporting guidance in SECURITY.md. Never put a vulnerability, secret, privileged material, or personal data in a public issue.
+diff --git a/.github/ISSUE_TEMPLATE/legal-content.yml b/.github/ISSUE_TEMPLATE/legal-content.yml
+new file mode 100644
+index 0000000..425a60e
+--- /dev/null
++++ b/.github/ISSUE_TEMPLATE/legal-content.yml
+@@ -0,0 +1,63 @@
++name: Legal-content or source change
++description: Propose a new or revised source, rule, interpretation, effective date, or jurisdiction record.
++title: "[Authority]: "
++labels: ["documentation"]
++body:
++  - type: markdown
++    attributes:
++      value: |
++        This template is for source-governed legal-content changes. Do not submit privileged advice, customer facts, or personal data in a public repository.
++  - type: input
++    id: jurisdiction
++    attributes:
++      label: Jurisdiction
++      placeholder: California / Los Angeles / Federal
++    validations:
++      required: true
++  - type: input
++    id: source
++    attributes:
++      label: Primary-source URL or citation
++      description: Provide the authoritative source whenever available.
++    validations:
++      required: true
++  - type: input
++    id: published
++    attributes:
++      label: Publication date
++      placeholder: YYYY-MM-DD
++  - type: input
++    id: effective
++    attributes:
++      label: Effective date or interval
++      placeholder: YYYY-MM-DD or describe the interval
++  - type: textarea
++    id: proposition
++    attributes:
++      label: Proposed legal proposition
++      description: State the proposition precisely and distinguish rule text from analysis.
++    validations:
++      required: true
++  - type: textarea
++    id: impact
++    attributes:
++      label: Affected objects and outputs
++      description: Identify issue briefs, jurisdiction records, calculators, applicability logic, matters, controls, and decision records that may require revalidation.
++    validations:
++      required: true
++  - type: textarea
++    id: uncertainty
++    attributes:
++      label: Uncertainty or competing interpretation
++      description: Identify unresolved language, conflicting guidance, or facts necessary to apply the rule.
++  - type: checkboxes
++    id: review
++    attributes:
++      label: Review gates
++      options:
++        - label: Primary authority has been attached or linked.
++          required: true
++        - label: The change has not been represented as approved legal advice.
++          required: true
++        - label: Any volatile rate or deadline includes an effective date.
++          required: true
+diff --git a/.github/ISSUE_TEMPLATE/product-engineering.yml b/.github/ISSUE_TEMPLATE/product-engineering.yml
+new file mode 100644
+index 0000000..65f4ae4
+--- /dev/null
++++ b/.github/ISSUE_TEMPLATE/product-engineering.yml
+@@ -0,0 +1,54 @@
++name: Product, architecture, or engineering work
++description: Propose a scoped implementation, architecture, migration, accessibility, security, or platform task.
++title: "[Workstream]: "
++labels: ["enhancement"]
++body:
++  - type: textarea
++    id: outcome
++    attributes:
++      label: Required outcome
++      description: Describe the measurable end state rather than only the proposed feature.
++    validations:
++      required: true
++  - type: textarea
++    id: problem
++    attributes:
++      label: Problem and users
++      description: Who is affected, at what point in the legal-response lifecycle, and why the current state is insufficient?
++    validations:
++      required: true
++  - type: textarea
++    id: scope
++    attributes:
++      label: In scope
++      description: List the routes, governed objects, services, or product contracts involved.
++    validations:
++      required: true
++  - type: textarea
++    id: exclusions
++    attributes:
++      label: Explicitly out of scope
++  - type: textarea
++    id: acceptance
++    attributes:
++      label: Acceptance criteria
++      description: Include functional, accessibility, security, data-lineage, and test requirements.
++    validations:
++      required: true
++  - type: textarea
++    id: dependencies
++    attributes:
++      label: Dependencies and decisions
++      description: Identify prerequisite schemas, source audits, integrations, ADRs, or repository settings.
++  - type: dropdown
++    id: horizon
++    attributes:
++      label: Roadmap horizon
++      options:
++        - Foundation
++        - Public authority layer
++        - Enterprise pilot
++        - Production hardening
++        - Later / exploratory
++    validations:
++      required: true
+diff --git a/.github/dependabot.yml b/.github/dependabot.yml
+new file mode 100644
+index 0000000..7e0a950
+--- /dev/null
++++ b/.github/dependabot.yml
+@@ -0,0 +1,14 @@
++version: 2
++updates:
++  - package-ecosystem: github-actions
++    directory: /
++    schedule:
++      interval: monthly
++    open-pull-requests-limit: 5
++
++  - package-ecosystem: npm
++    directory: /
++    schedule:
++      interval: monthly
++    open-pull-requests-limit: 5
++    versioning-strategy: increase-if-necessary
+diff --git a/.github/pull_request_template.md b/.github/pull_request_template.md
+new file mode 100644
+index 0000000..bd1e816
+--- /dev/null
++++ b/.github/pull_request_template.md
+@@ -0,0 +1,26 @@
++## What changed
++
++Describe the user, product, legal-content, data, or infrastructure change.
++
++## Why it changed
++
++State the problem, governing requirement, or decision this change addresses.
++
++## Evidence and validation
++
++- [ ] `npm test` passes
++- [ ] `npm run qa` passes for interface changes
++- [ ] New or changed legal propositions identify their authority and review date
++- [ ] Deterministic logic is separated from counsel judgment
++- [ ] Prototype data remains clearly identified as illustrative
++- [ ] Keyboard, responsive, and reduced-motion behavior were checked
++- [ ] No secrets, privileged material, or personal data are included
++- [ ] Product contracts or ADRs were updated when architecture changed
++
++## Screenshots or recordings
++
++Include before/after evidence for material interface changes.
++
++## Revalidation impact
++
++Identify any source versions, rules, findings, controls, evidence records, or decision records that this change invalidates or requires to be reviewed.
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+new file mode 100644
+index 0000000..c3808b8
+--- /dev/null
++++ b/.github/workflows/ci.yml
+@@ -0,0 +1,64 @@
++name: CI
++
++on:
++  push:
++    branches: [main]
++  pull_request:
++  workflow_dispatch:
++
++permissions:
++  contents: read
++
++concurrency:
++  group: ci-${{ github.workflow }}-${{ github.ref }}
++  cancel-in-progress: true
++
++jobs:
++  verify:
++    name: Verify
++    runs-on: ubuntu-latest
++    timeout-minutes: 20
++    steps:
++      - name: Check out repository
++        u
