@@ -1,0 +1,9 @@
+# Codex Directive — Final Adversarial Release Audit
+
+After all workstream pull requests are merged, independently review both `karadzhyan/hotel-wage-law-v2` and `karadzhyan/hotel-wage-hour` from top to bottom. Do not trust README files, closed issues, prior summaries, checkboxes, or CI labels without verifying underlying implementation and evidence.
+
+Audit the complete legacy migration ledger against actual legacy contents; route/content/citation/source/SEO/search/feed/sitemap/accessibility/print/redirect parity; all ten tools through source-linked fixtures and differential tests; the full Source → Rule → Change → Applicability → Matter → Finding → Control → Evidence → Decision → Revalidation chain; tenant isolation; authorization; privilege boundaries; source immutability; temporal rule evaluation; calculation reproducibility; revalidation; evidence integrity; approvals; exports; search isolation; deep links; and deployment paths.
+
+Review every workflow, permission, dependency, configuration, environment, secret boundary, sentence, TODO, FIXME, skipped test, ignored error, disclosed gap, unresolved PR thread, and accepted risk. Classify findings P0–P3. Fix every P0/P1 within scope, add regression tests, and open precise residual issues.
+
+Create one final release pull request containing the audit report, remediations, tests and evidence, migration-parity result, source/rule manifest, security and accessibility results, residual-risk register, release/rollback manifest, and explicit go/no-go recommendation. Do not recommend production release if legal, security, accessibility, manual, or owner approvals lack real retained evidence.
