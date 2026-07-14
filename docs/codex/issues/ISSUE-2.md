@@ -1,0 +1,3 @@
+# Codex Directive — Issue #2
+
+Read `AGENTS.md`, `docs/CODEX-START-HERE.md`, and `docs/CODEX-EXECUTION-PLAN.md`. Execute Issue #2 completely on a feature branch. Audit `karadzhyan/hotel-wage-hour` exhaustively and produce the authoritative machine-readable migration ledger, parity matrices, ownership map, tool and research inventories, source-of-truth conflict register, migration sequence, risks, and automated completeness tests described in the execution plan. Do not begin broad migration. Open a PR titled `Build authoritative legacy-to-v2 migration ledger`, verify remote CI, and update Issue #2 with evidence. Do not close it unless every legacy artifact family has a disposition and every acceptance criterion is proven.
