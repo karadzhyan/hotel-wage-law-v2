@@ -1,0 +1,31 @@
+name: Product or engineering work
+about: Propose a product, architecture, implementation, QA, or accessibility change.
+title: "[Product] "
+labels: []
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Intended outcome
+      description: What user or platform outcome should be achieved?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and affected objects
+      description: Identify routes, services, data objects, dependencies, and boundaries.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: State observable completion criteria and required validation.
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risks, security, and data considerations
+      description: Include privilege, privacy, migration, accessibility, and rollback implications.

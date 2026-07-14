@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.svg text
+*.json text
+*.md text diff=markdown
+*.yml text
+*.yaml text

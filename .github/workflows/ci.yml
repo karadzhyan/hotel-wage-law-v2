@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Test
+        run: npm test
+      - name: Structural checks
+        run: npm run check
+      - name: Production build
+        run: BASE_PATH=/hotel-wage-law-v2/ npm run build
+      - name: Verify generated routes
+        run: |
+          test -f dist/index.html
+          test -f dist/intelligence/index.html
+          test -f dist/app/index.html
+          test -f dist/app/decisions/index.html
+          test -f dist/assets/main.js
+          test -f dist/.nojekyll
+      - name: Upload verified build
+        uses: actions/upload-artifact@v4
+        with:
+          name: hotel-wage-law-v2-dist
+          path: dist
+          if-no-files-found: error
+          retention-days: 14
