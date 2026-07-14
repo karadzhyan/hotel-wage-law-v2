@@ -1,0 +1,1 @@
+Normalize and verify the final main-branch repository state, remove temporary bootstrap and release artifacts, and trigger the canonical CI and Pages workflows.
