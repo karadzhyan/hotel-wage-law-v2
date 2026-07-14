@@ -1,0 +1,41 @@
+name: Remove temporary release branches
+
+on:
+  push:
+    branches: [main]
+    paths: [.release/DELETE_BRANCHES]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Verify main before branch cleanup
+        run: npm run verify
+        env:
+          BASE_PATH: /hotel-wage-law-v2/
+      - name: Remove temporary branches
+        run: |
+          git push origin --delete release/unified-platform-v2 || true
+          git push origin --delete bootstrap/unified-platform-v2 || true
+      - name: Remove one-time workflow and marker
+        run: |
+          rm -f .release/DELETE_BRANCHES .github/workflows/final-branch-cleanup.yml
+          rmdir .release 2>/dev/null || true
+          git config user.name "hotel-wage-law-release-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Remove temporary release branches"
+          git push origin main
