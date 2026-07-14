@@ -77,11 +77,23 @@ Review screenshots:
 
 These local results are not remote CI or deployment evidence.
 
-Pending remote evidence:
+## Post-change remote verification
 
-- Phase 0 pull request and head commit.
-- CI Verify and Browser job URLs and artifact names.
-- Pages Validate and Deploy job URLs and artifact/deployment identifiers.
+GitHub evaluated implementation head `66c0ba884c062c5dda5695ca39ab3e85030ad487` in draft PR [#12](https://github.com/karadzhyan/hotel-wage-law-v2/pull/12):
+
+| Surface | Evidence | Observed result |
+| --- | --- | --- |
+| CI | [run 29301415897](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415897) | Successful. Verify job `86985779879` and Browser/accessibility job `86985806235` both completed successfully. |
+| Dist artifact | [artifact 8298647971](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415897/artifacts/8298647971) | `hotel-wage-law-v2-dist`, 46,674 bytes, SHA-256 `d7cf5dbebe45071a3421c2ef55469d6cc13470961e82f25da4db02428d669471`, retained through July 28, 2026. |
+| Browser artifact | [artifact 8298671843](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415897/artifacts/8298671843) | `playwright-report`, 235,526 bytes, SHA-256 `b02c0eb425ae170889c62383fdfcbabc9ad21ab6de6e8ea5f873eed9a73f3be5`, retained through July 28, 2026. |
+| Pages validation | [run 29301415898](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415898), [job 86985779987](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415898/job/86985779987) | Successful deterministic install, project-path build, Chromium suite, and Pages artifact upload. |
+| Pages artifact | artifact `8298659423` in [run 29301415898](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415898) | `github-pages`, 38,688 bytes, SHA-256 `502306d7ed62661d154c369119613ec9f94cda2411b3b242677139df5e3a0f86`, retained through July 15, 2026. |
+| Pages deployment | deploy job `86985904640` | Skipped as designed on the pull-request event. No deployment success is claimed. |
+
+Pending deployment evidence:
+
+- Repository-level Pages source enabled for GitHub Actions with old/new state retained in Issue #10.
+- A non-PR Pages run with successful Deploy job and deployment identifier.
 - Live project URL returning the deployed artifact, including a direct deep link.
 - Issue #11 evidence comment.
 

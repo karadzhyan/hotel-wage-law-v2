@@ -33,6 +33,8 @@ The latest pre-repair Pages run was [Actions run 29296844059](https://github.com
 
 The exact captured failure signatures, one-time workflow dispositions, and verification commands are retained in [`docs/evidence/phase-0/README.md`](evidence/phase-0/README.md). Post-repair PR, CI, artifact, deployment, and site evidence must be added there and to Issue #11 only after GitHub reports the corresponding result.
 
+The implementation head `66c0ba884c062c5dda5695ca39ab3e85030ad487` is proposed in [PR #12](https://github.com/karadzhyan/hotel-wage-law-v2/pull/12). GitHub reported [CI run 29301415897](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415897) successful for both Verify and Browser/accessibility jobs, with dist and Playwright artifacts. GitHub also reported [Pages run 29301415898](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415898) successful for artifact validation. Its deploy job was skipped because the event was a pull request; this is not deployment or live-site evidence.
+
 ## Workflow state
 
 Two continuing workflows remain:
@@ -58,7 +60,7 @@ GitHub Pages must be configured to use GitHub Actions before deployment can succ
 
 ## Known residual work
 
-- Obtain and retain post-repair remote CI artifact evidence.
+- Retain the final head's remote CI and Pages validation links in Issue #11 after any evidence-only commit reruns.
 - Configure and verify the repository-level Pages source, then retain the successful deployment run and live HTTP evidence.
 - Review and decide the remaining owner-level settings in Issue #10.
 - Merge the Phase 0 PR only after the governing issue's required remote CI and deployment evidence are green.
