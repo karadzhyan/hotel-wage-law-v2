@@ -1,0 +1,51 @@
+name: Fix project-path routing and jurisdiction filters
+
+on:
+  push:
+    branches: [main]
+    paths: [.release/FIX_ROUTING]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Apply routing and filter corrections
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('src/main.js')
+          text = path.read_text()
+          anchor = "root.innerHTML = route.startsWith('/app/') ? renderApp(route) : renderPublic(route);"
+          addition = """root.innerHTML = route.startsWith('/app/') ? renderApp(route) : renderPublic(route);\n\n// Preserve local navigation when deployed under a GitHub Pages project path.\nconst deploymentBase = new URL(document.baseURI).pathname.replace(/\\/$/, '');\nif (deploymentBase) {\n  document.querySelectorAll('a[href^=\\"/\\"]').forEach(link => {\n    link.setAttribute('href', `${deploymentBase}${link.getAttribute('href')}`);\n  });\n}\n"""
+          if addition not in text:
+              if anchor not in text:
+                  raise SystemExit('render anchor not found')
+              text = text.replace(anchor, addition)
+          text = text.replace("JSON.parse(card.dataset.jurisdiction).tier!==tier", "String(JSON.parse(card.dataset.jurisdiction).tier)!==tier")
+          path.write_text(text)
+          PY
+          rm -f .release/FIX_ROUTING .github/workflows/fix-pages-routing.yml
+          rmdir .release 2>/dev/null || true
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Verify corrected release
+        run: npm run verify
+        env:
+          BASE_PATH: /hotel-wage-law-v2/
+      - name: Commit verified corrections
+        run: |
+          git config user.name "hotel-wage-law-release-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix Pages routing and jurisdiction filtering"
+          git push origin main
