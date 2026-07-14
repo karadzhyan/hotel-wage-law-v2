@@ -1,0 +1,16 @@
+{
+  "name": "hotel-wage-law-v2",
+  "version": "2.0.0-prototype.1",
+  "private": true,
+  "description": "Hospitality wage-and-hour intelligence and control-plane prototype.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test",
+    "verify": "npm run test && npm run check && npm run build"
+  }
+}
