@@ -1,0 +1,47 @@
+name: Normalize release branch
+
+on:
+  push:
+    branches: [release/unified-platform-v2]
+    paths: [.release/NORMALIZE]
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release/unified-platform-v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Normalize source and repository entry point
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('src/main.js')
+          text = path.read_text()
+          bad = "const factor=structure==='cash'?1.18:structure==='benefit'?.84:1;"
+          good = "const factor = structure === 'cash' ? 1.18 : structure === 'benefit' ? .84 : 1;"
+          if bad not in text:
+              raise SystemExit('expected scenario expression not found')
+          path.write_text(text.replace(bad, good))
+          Path('README.md').write_text('''# Hotel Wage Law v2\n\nA production-fidelity prototype and system specification for a hospitality wage-and-hour intelligence and control plane.\n\nThe platform connects verified authority to effective-dated rules, property applicability, governed matters, controls, evidence, and executive decisions.\n\nSee [PROJECT.md](PROJECT.md) for the product model, commands, architecture, implementation boundary, and relationship to the reference repository.\n\n```bash\nnpm install --ignore-scripts\nnpm run verify\n```\n\nThe repository is proprietary and temporarily public for review. Prototype facts, people, scores, ranges, and workflow states are illustrative. Legal content and calculation logic require attorney validation before production use.\n''')
+          PY
+          rm -f .release/NORMALIZE .github/workflows/normalize-release.yml
+      - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: npm run verify
+        env:
+          BASE_PATH: /hotel-wage-law-v2/
+      - name: Commit verified normalization
+        run: |
+          git config user.name "hotel-wage-law-release-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Normalize and verify v2 release"
+          git push origin HEAD:release/unified-platform-v2
