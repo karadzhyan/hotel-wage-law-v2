@@ -15,8 +15,11 @@
 3. Run:
 
 ```bash
-npm install --ignore-scripts
+npm ci --ignore-scripts
 npm run verify
+npm run verify:pages
+npx playwright install chromium
+npm run test:browser
 ```
 
 4. Open a pull request using the repository template.

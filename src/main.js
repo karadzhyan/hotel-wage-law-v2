@@ -5,8 +5,17 @@ const route = document.body.dataset.route || '/';
 const root = document.querySelector('#app');
 root.innerHTML = route.startsWith('/app/') ? renderApp(route) : renderPublic(route);
 
+// Root-relative application routes must stay under the GitHub Pages project path.
+const deploymentBase = new URL(document.baseURI).pathname.replace(/\/$/, '');
+if (deploymentBase) {
+  document.querySelectorAll('a[href^="/"]').forEach(link => {
+    link.setAttribute('href', `${deploymentBase}${link.getAttribute('href')}`);
+  });
+}
+
 const $ = (selector, context=document) => context.querySelector(selector);
 const $$ = (selector, context=document) => [...context.querySelectorAll(selector)];
+let overlayTrigger = null;
 
 function toast(message) {
   const node = $('[data-toast]');
@@ -20,6 +29,7 @@ function toast(message) {
 function openOverlay() {
   const overlay = $('[data-overlay]');
   if (!overlay) return;
+  overlayTrigger = document.activeElement;
   overlay.hidden = false;
   document.body.classList.add('locked');
   setTimeout(() => $('[data-query]', overlay)?.focus(), 0);
@@ -28,13 +38,22 @@ function closeOverlay() {
   const overlay = $('[data-overlay]');
   if (overlay) overlay.hidden = true;
   document.body.classList.remove('locked');
+  overlayTrigger?.focus();
+  overlayTrigger = null;
 }
 $$('[data-command]').forEach(button => button.addEventListener('click', openOverlay));
 $('[data-close-overlay]')?.addEventListener('click', closeOverlay);
 $('[data-overlay]')?.addEventListener('click', event => { if (event.target.matches('[data-overlay]')) closeOverlay(); });
 document.addEventListener('keydown', event => {
   if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase()==='k') { event.preventDefault(); openOverlay(); }
-  if (event.key==='Escape') { closeOverlay(); $('[data-sidebar]')?.classList.remove('open'); $('[data-mobile-nav]')?.setAttribute('hidden',''); }
+  if (event.key==='Escape') {
+    closeOverlay();
+    $('[data-sidebar]')?.classList.remove('open');
+    $('[data-open-sidebar]')?.setAttribute('aria-expanded','false');
+    $('[data-mobile-nav]')?.setAttribute('hidden','');
+    $('[data-menu]')?.setAttribute('aria-expanded','false');
+    $('[data-menu]')?.setAttribute('aria-label','Open navigation');
+  }
 });
 
 const query = $('[data-query]');
@@ -55,9 +74,18 @@ $('[data-reset]')?.addEventListener('click', () => {
 $('[data-menu]')?.addEventListener('click', () => {
   const nav=$('[data-mobile-nav]');
   nav.hidden=!nav.hidden;
+  $('[data-menu]').setAttribute('aria-expanded',String(!nav.hidden));
+  $('[data-menu]').setAttribute('aria-label',nav.hidden?'Open navigation':'Close navigation');
 });
-$('[data-open-sidebar]')?.addEventListener('click', () => $('[data-sidebar]')?.classList.add('open'));
-$('[data-close-sidebar]')?.addEventListener('click', () => $('[data-sidebar]')?.classList.remove('open'));
+$('[data-open-sidebar]')?.addEventListener('click', () => {
+  $('[data-sidebar]')?.classList.add('open');
+  $('[data-open-sidebar]').setAttribute('aria-expanded','true');
+});
+$('[data-close-sidebar]')?.addEventListener('click', () => {
+  $('[data-sidebar]')?.classList.remove('open');
+  $('[data-open-sidebar]')?.setAttribute('aria-expanded','false');
+  $('[data-open-sidebar]')?.focus();
+});
 
 $$('[data-action]').forEach(button => button.addEventListener('click', event => {
   event.preventDefault();
@@ -67,7 +95,23 @@ $$('[data-action]').forEach(button => button.addEventListener('click', event => 
 
 $$('[data-change-item]').forEach(item => item.addEventListener('click', () => {
   $$('[data-change-item]').forEach(x=>x.classList.toggle('active',x===item));
-  $('[data-change-title]').textContent=item.dataset.title;
+  const detail=JSON.parse(item.dataset.change);
+  $('[data-change-eyebrow]').textContent=detail.eyebrow;
+  $('[data-change-title]').textContent=detail.title;
+  $('[data-change-summary]').textContent=detail.summary;
+  const detailStatus=$('[data-change-status]');
+  detailStatus.textContent=detail.status;
+  detailStatus.className=`status status--${detail.tone}`;
+  $('[data-change-delta]').textContent=detail.delta;
+  $('[data-change-published]').textContent=detail.published;
+  $('[data-change-effective]').textContent=detail.effective;
+  $('[data-change-authority]').textContent=detail.authority;
+  $('[data-change-source-health]').textContent=detail.sourceHealth;
+  $('[data-change-scope]').textContent=detail.scope;
+  $('[data-change-property-table]').hidden=!detail.hasPropertyScope;
+  $('[data-change-unmodeled]').hidden=detail.hasPropertyScope;
+  $$('[data-change-modeled]').forEach(node=>{node.hidden=!detail.hasPropertyScope;});
+  $$('[data-change-unmodeled-only]').forEach(node=>{node.hidden=detail.hasPropertyScope;});
 }));
 
 const scenarioInputs=$$('[data-scenario]');
@@ -89,7 +133,7 @@ updateScenario();
 $$('[data-tier]').forEach(button=>button.addEventListener('click',()=>{
   $$('[data-tier]').forEach(x=>x.classList.toggle('active',x===button));
   const tier=button.dataset.tier;
-  $$('[data-jurisdiction]').forEach(card=>card.hidden=tier!=='all'&&JSON.parse(card.dataset.jurisdiction).tier!==tier);
+  $$('[data-jurisdiction]').forEach(card=>card.hidden=tier!=='all'&&String(JSON.parse(card.dataset.jurisdiction).tier)!==tier);
 }));
 $('[data-jurisdiction-search]')?.addEventListener('input',event=>{
   const q=event.target.value.toLowerCase();

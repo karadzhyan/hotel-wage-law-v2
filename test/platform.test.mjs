@@ -53,7 +53,7 @@ test('control coverage is bounded and IDs are unique', () => {
 
 test('jurisdiction tiers are valid and codes are unique', () => {
   assert.equal(new Set(jurisdictions.map(item=>item.code)).size,jurisdictions.length);
-  for (const item of jurisdictions) assert.ok(['1','2','3','4'].includes(item.tier));
+  for (const item of jurisdictions) assert.ok([1,2,3,4].includes(item.tier));
 });
 
 test('tool registry contains ten unique inspectable workflows', () => {
