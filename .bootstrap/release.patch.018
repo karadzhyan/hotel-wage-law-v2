@@ -1,0 +1,1694 @@
+__facts span { color: var(--ink-500); font-size: 6.5px; }
++.jurisdiction-inspector__obligations { padding: 16px 18px; }
++.jurisdiction-inspector__obligations > small { color: var(--ink-500); font-size: 6px; text-transform: uppercase; }
++.jurisdiction-inspector__obligations ul { margin: 10px 0 0; padding: 0; list-style: none; }
++.jurisdiction-inspector__obligations li { display: flex; align-items: center; gap: 7px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 7.5px; }
++.jurisdiction-inspector__obligations svg { color: var(--green-700); }
++.jurisdiction-inspector__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 16px 18px; background: var(--ink-50); border-top: 1px solid var(--line); }
++.jurisdiction-inspector__actions .button:first-child { grid-column: 1 / -1; }
++.compare-table { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-md); }
++.compare-table__row { display: grid; grid-template-columns: 180px repeat(4, 1fr); min-width: 850px; }
++.compare-table__row > div { min-height: 70px; padding: 14px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 9px; }
++.compare-table__row > div:last-child { border-right: 0; }
++.compare-table__row:last-child > div { border-bottom: 0; }
++.compare-table__row--head > div { display: grid; align-content: center; min-height: 82px; background: var(--ink-50); }
++.compare-table__row--head strong,
++.compare-table__row--head small { display: block; }
++.compare-table__row--head small { color: var(--ink-500); font-size: 6.5px; }
++.compare-table__row > div:first-child { color: var(--ink-500); background: var(--ink-50); font-size: 7px; font-weight: 760; text-transform: uppercase; }
++.compare-table__row svg { color: var(--green-700); }
++
++/* ---------- Inspectable tools ---------- */
++.tools-hero { background:
++  radial-gradient(circle at 80% 5%, rgba(7,134,138,.50), transparent 38%),
++  radial-gradient(circle at 12% 100%, rgba(36,101,216,.24), transparent 40%),
++  linear-gradient(135deg, #051222, #09273d 62%, #0a4549); }
++.tool-contract-card > header { padding: 17px 21px; color: var(--paper); background: var(--ink-900); }
++.tool-contract-card > header strong { display: block; font-size: 12px; }
++.tool-contract-card > header small { color: #91a7bc; font-size: 7px; }
++.tool-contract-card ol { margin: 0; padding: 0 21px; list-style: none; }
++.tool-contract-card li { display: grid; grid-template-columns: 31px 1fr 21px; gap: 12px; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--line); }
++.tool-contract-card li > span { color: var(--teal-700); font-family: var(--font-serif); font-size: 15px; }
++.tool-contract-card strong,
++.tool-contract-card small { display: block; }
++.tool-contract-card strong { font-size: 10px; }
++.tool-contract-card small { color: var(--ink-500); font-size: 7px; }
++.tool-contract-card li > svg { color: var(--green-700); }
++.tool-contract-card footer { padding: 13px 20px; color: var(--ink-500); background: var(--ink-50); font-size: 7px; }
++.tool-filter-bar { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin-bottom: 18px; padding: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md); }
++.tool-filter-bar > div { display: flex; flex-wrap: wrap; gap: 6px; }
++.tool-filter-bar button { min-height: 31px; padding: 0 11px; color: var(--ink-600); background: transparent; border: 1px solid transparent; border-radius: var(--radius-pill); font-size: 8px; }
++.tool-filter-bar button.is-active { color: var(--teal-700); background: var(--teal-50); border-color: #bfe9e3; }
++.tool-filter-bar > span { color: var(--ink-500); font-size: 8px; white-space: nowrap; }
++.tool-registry { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
++.tool-registry-card { position: relative; overflow: hidden; min-height: 300px; padding: 25px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md); box-shadow: var(--shadow-xs); }
++.tool-registry-card::before { position: absolute; top: 0; left: 0; width: 5px; height: 100%; content: ""; background: var(--teal-500); }
++.tool-registry-card--planning::before { background: var(--blue-500); }
++.tool-registry-card--risk::before { background: var(--red-500); }
++.tool-registry-card--assessment::before { background: var(--gold-500); }
++.tool-registry-card > header { display: flex; justify-content: space-between; gap: 15px; align-items: flex-start; }
++.tool-registry-card__icon { display: grid; place-items: center; width: 43px; height: 43px; color: var(--teal-700); background: var(--teal-50); border-radius: 12px; }
++.tool-registry-card__meta { display: flex; gap: 5px; }
++.tool-registry-card__meta span { padding: 4px 7px; color: var(--ink-500); background: var(--ink-50); border: 1px solid var(--line); border-radius: var(--radius-pill); font-size: 6.5px; }
++.tool-registry-card > small { display: block; margin-top: 27px; color: var(--ink-500); font-size: 7px; font-weight: 760; text-transform: uppercase; }
++.tool-registry-card h3 { margin: 6px 0 10px; font-size: 20px; }
++.tool-registry-card > p { color: var(--ink-600); font-size: 10px; line-height: 1.6; }
++.tool-registry-card footer { position: absolute; right: 25px; bottom: 22px; left: 25px; display: flex; justify-content: space-between; gap: 15px; align-items: center; padding-top: 15px; border-top: 1px solid var(--line); }
++.tool-registry-card footer span { display: inline-flex; align-items: center; gap: 5px; color: var(--green-700); font-size: 7px; }
++.tool-registry-card footer a { display: inline-flex; align-items: center; gap: 6px; color: var(--blue-700); font-size: 8px; font-weight: 720; }
++.tool-demo-section { padding-top: 70px; }
++.tool-demo-window { display: grid; grid-template-columns: 325px minmax(0, 1fr); overflow: hidden; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
++.tool-demo-inputs { padding: 25px; background: var(--ink-50); border-right: 1px solid var(--line); }
++.tool-demo-inputs > header { display: grid; grid-template-columns: 37px 1fr; gap: 11px; align-items: center; margin-bottom: 24px; }
++.tool-demo-inputs > header > span { display: grid; place-items: center; width: 36px; height: 36px; color: var(--teal-700); background: var(--teal-100); border-radius: 10px; }
++.tool-demo-inputs small,
++.tool-demo-inputs strong { display: block; }
++.tool-demo-inputs small { color: var(--ink-500); font-size: 6.5px; }
++.tool-demo-inputs strong { font-size: 10px; }
++.demo-field { margin-top: 15px; }
++.demo-field label { display: flex; justify-content: space-between; margin-bottom: 6px; color: var(--ink-600); font-size: 7px; }
++.demo-field input,
++.demo-field select { width: 100%; height: 37px; padding: 0 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 7px; font-size: 8px; }
++.demo-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
++.tool-demo-inputs .button { width: 100%; margin-top: 22px; background: var(--teal-700); }
++.tool-demo-output { padding: 27px; }
++.tool-demo-output > header { display: flex; justify-content: space-between; gap: 15px; align-items: flex-start; }
++.tool-demo-output h2 { margin: 6px 0 0; font-size: 22px; }
++.tool-demo-output__verdict { display: grid; grid-template-columns: 1fr 105px; gap: 20px; align-items: center; margin-top: 22px; padding: 21px; color: var(--paper); background: linear-gradient(135deg, var(--ink-950), #0a5960); border-radius: var(--radius-md); }
++.tool-demo-output__verdict small,
++.tool-demo-output__verdict strong,
++.tool-demo-output__verdict p { display: block; }
++.tool-demo-output__verdict small { color: #8fb8c0; font-size: 6.5px; text-transform: uppercase; }
++.tool-demo-output__verdict strong { margin: 5px 0; font-family: var(--font-serif); font-size: 27px; font-weight: 500; }
++.tool-demo-output__verdict p { margin: 0; color: #b8d2d6; font-size: 7.5px; }
++.demo-score { position: relative; display: grid; place-items: center; width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(#55d0bf 71%, rgba(255,255,255,.14) 0); }
++.demo-score::after { position: absolute; inset: 7px; content: ""; background: #0b4e58; border-radius: 50%; }
++.demo-score strong,
++.demo-score small { position: relative; z-index: 1; }
++.demo-score strong { align-self: end; color: var(--paper); font-family: var(--font-sans); font-size: 18px; font-weight: 760; }
++.demo-score small { align-self: start; color: #9dc9cf; }
++.tool-branch-trace { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 17px; border: 1px solid var(--line); border-radius: var(--radius-sm); }
++.tool-branch-trace article { padding: 14px; border-right: 1px solid var(--line); }
++.tool-branch-trace article:last-child { border-right: 0; }
++.tool-branch-trace article > span { display: grid; place-items: center; width: 28px; height: 28px; color: var(--teal-700); background: var(--teal-50); border-radius: 8px; font-family: var(--font-serif); font-size: 11px; }
++.tool-branch-trace small,
++.tool-branch-trace strong,
++.tool-branch-trace p { display: block; }
++.tool-branch-trace small { margin-top: 12px; color: var(--ink-500); font-size: 6px; text-transform: uppercase; }
++.tool-branch-trace strong { margin: 3px 0; font-size: 8px; }
++.tool-branch-trace p { margin: 0; color: var(--ink-500); font-size: 6.5px; }
++.tool-output-contract { display: grid; grid-template-columns: 31px 1fr auto; gap: 11px; align-items: center; margin-top: 17px; padding: 14px; background: var(--gold-50); border: 1px solid #ead7a5; border-radius: var(--radius-sm); }
++.tool-output-contract > span { color: var(--gold-700); }
++.tool-output-contract strong,
++.tool-output-contract p { display: block; }
++.tool-output-contract strong { font-size: 8.5px; }
++.tool-output-contract p { margin: 2px 0 0; color: var(--ink-600); font-size: 7px; }
++.tool-output-contract button { color: var(--blue-700); background: transparent; border: 0; font-size: 7px; font-weight: 720; }
++.tools-governance-section { padding: 105px max(32px, calc((100vw - var(--public-max)) / 2)); color: var(--paper); background: linear-gradient(135deg, #061526, #0a3044); }
++.tools-governance-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
++.tools-governance-grid article { min-height: 250px; padding: 23px; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-md); }
++.tools-governance-grid article > span { display: grid; place-items: center; width: 39px; height: 39px; color: #85b7f5; background: rgba(255,255,255,.08); border-radius: 10px; }
++.tools-governance-grid small { display: block; margin-top: 34px; color: #7690a6; font-size: 7px; text-transform: uppercase; }
++.tools-governance-grid h3 { margin: 5px 0 10px; color: var(--paper); font-size: 17px; }
++.tools-governance-grid p { color: #9eafbf; font-size: 9px; line-height: 1.6; }
++
++/* ---------- Public page responsive ---------- */
++@media (max-width: 1180px) {
++  .intelligence-hero__inner,
++  .tools-hero__inner,
++  .jurisdictions-hero { grid-template-columns: 1fr; gap: 42px; }
++  .intelligence-index,
++  .tool-contract-card,
++  .jurisdiction-metrics { max-width: 720px; }
++  .public-intelligence-nav > div { grid-template-columns: repeat(3, 1fr); }
++  .public-intelligence-nav a:nth-child(3) { border-right: 0; }
++  .public-intelligence-nav a:nth-child(-n+3) { border-bottom: 1px solid var(--line); }
++  .public-signal-layout,
++  .jurisdiction-preview { grid-template-columns: 1fr; }
++  .signal-method { max-width: 760px; }
++  .issue-family-grid,
++  .public-tool-grid { grid-template-columns: repeat(2, 1fr); }
++  .jurisdiction-workspace { grid-template-columns: minmax(0, 1fr) 340px; }
++  .jurisdiction-grid { grid-template-columns: repeat(4, 1fr); }
++  .tool-demo-window { grid-template-columns: 290px minmax(0, 1fr); }
++  .tools-governance-grid { grid-template-columns: repeat(2, 1fr); }
++}
++
++@media (max-width: 820px) {
++  .intelligence-hero,
++  .tools-hero,
++  .jurisdictions-hero { padding-right: 18px; padding-left: 18px; }
++  .intelligence-hero h1,
++  .tools-hero h1,
++  .jurisdictions-hero h1 { font-size: 48px; }
++  .public-intelligence-nav > div,
++  .developments-section,
++  .issue-library-section,
++  .public-tools-section,
++  .jurisdiction-explorer,
++  .jurisdiction-compare-demo,
++  .tool-registry-section,
++  .tool-demo-section { width: calc(100% - 28px); }
++  .public-intelligence-nav > div { grid-template-columns: repeat(2, 1fr); }
++  .public-intelligence-nav a,
++  .public-intelligence-nav a:nth-child(3) { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
++  .public-intelligence-nav a:nth-child(2n) { border-right: 0; }
++  .public-signal { grid-template-columns: 75px 1fr; }
++  .public-signal > a { grid-column: 2; justify-self: start; }
++  .issue-family-grid,
++  .public-tool-grid,
++  .tool-registry { grid-template-columns: 1fr; }
++  .issue-family { min-height: 280px; }
++  .public-enterprise-bridge,
++  .jurisdiction-bridge,
++  .tools-bridge { display: grid; padding: 75px 18px; }
++  .public-enterprise-bridge h2,
++  .jurisdiction-bridge h2,
++  .tools-bridge h2 { font-size: 38px; }
++  .jurisdiction-workspace { grid-template-columns: 1fr; }
++  .jurisdiction-grid { grid-template-columns: repeat(4, 1fr); }
++  .jurisdiction-inspector { position: static; }
++  .tier-ribbon { grid-template-columns: repeat(2, 1fr); }
++  .tier-ribbon button { border-bottom: 1px solid var(--line); }
++  .tool-filter-bar { display: grid; }
++  .tool-demo-window { grid-template-columns: 1fr; }
++  .tool-demo-inputs { border-right: 0; border-bottom: 1px solid var(--line); }
++  .tools-governance-grid { grid-template-columns: 1fr; }
++}
++
++@media (max-width: 500px) {
++  .intelligence-hero h1,
++  .tools-hero h1,
++  .jurisdictions-hero h1 { font-size: 41px; }
++  .public-intelligence-nav > div { grid-template-columns: 1fr; }
++  .public-intelligence-nav a,
++  .public-intelligence-nav a:first-child { border-right: 0; border-left: 0; }
++  .public-signal { grid-template-columns: 1fr; }
++  .public-signal > a { grid-column: 1; }
++  .library-callout,
++  .public-tools-footer { display: grid; }
++  .jurisdiction-grid { grid-template-columns: repeat(2, 1fr); }
++  .jurisdiction-metrics { grid-template-columns: 1fr; }
++  .jurisdiction-metrics > div { border-right: 0; }
++  .tier-ribbon { grid-template-columns: 1fr; }
++  .tool-branch-trace { grid-template-columns: repeat(2, 1fr); }
++  .tool-branch-trace article:nth-child(2) { border-right: 0; }
++  .tool-branch-trace article:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
++  .tool-output-contract { grid-template-columns: 31px 1fr; }
++  .tool-output-contract button { grid-column: 2; justify-self: start; }
++}
+diff --git a/src/assets/icons.svg b/src/assets/icons.svg
+new file mode 100644
+index 0000000..0305c9c
+--- /dev/null
++++ b/src/assets/icons.svg
+@@ -0,0 +1,92 @@
++<svg xmlns="http://www.w3.org/2000/svg">
++  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
++  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
++  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
++  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
++  <symbol id="i-command" viewBox="0 0 24 24"><path d="M9 6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6Z"/></symbol>
++  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
++  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
++  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></symbol>
++  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
++  <symbol id="i-signal" viewBox="0 0 24 24"><path d="M3 18h18M5 15l4-4 4 3 6-8"/><path d="M15 6h4v4"/></symbol>
++  <symbol id="i-matter" viewBox="0 0 24 24"><path d="M4 5h6l2 2h8v12H4V5Z"/><path d="M8 11h8M8 15h5"/></symbol>
++  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></symbol>
++  <symbol id="i-building" viewBox="0 0 24 24"><path d="M4 21V7l8-4v18M12 9h8v12M7 8h2M7 12h2M7 16h2M15 12h2M15 16h2M2 21h20"/></symbol>
++  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H12v18H7.5A3.5 3.5 0 0 0 4 23V5.5ZM20 5.5A3.5 3.5 0 0 0 16.5 2H12v18h4.5A3.5 3.5 0 0 1 20 23V5.5Z"/></symbol>
++  <symbol id="i-decision" viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M9 8h6M9 12h6M9 16h3"/><path d="m15 16 1.5 1.5L20 14"/></symbol>
++  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20V7M2 20h21"/></symbol>
++  <symbol id="i-source" viewBox="0 0 24 24"><path d="M6 2h9l4 4v16H6z"/><path d="M14 2v5h5M9 12h7M9 16h7"/></symbol>
++  <symbol id="i-link" viewBox="0 0 24 24"><path d="m10 13 4-4M8 17l-2 2a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0M16 7l2-2a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0" transform="scale(.86) translate(2 2)"/></symbol>
++  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
++  <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16.5 8"/></symbol>
++  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 21h20L12 3Z"/><path d="M12 9v5M12 18h.01"/></symbol>
++  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></symbol>
++  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 5h16M7 12h10M10 19h4"/></symbol>
++  <symbol id="i-sort" viewBox="0 0 24 24"><path d="m8 4-3 3 3 3M5 7h12M16 14l3 3-3 3M19 17H7"/></symbol>
++  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v7H4V6h7"/></symbol>
++  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M4 21h16"/></symbol>
++  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m9 10 6-3M9 14l6 3"/></symbol>
++  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol>
++  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
++  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 19a6 6 0 0 1 12 0M16 5a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4 5"/></symbol>
++  <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 .6 1.7 1.7 0 0 0-.4 1V21H9.6v-.1A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-.6-1A1.7 1.7 0 0 0 3 13.6H3V9.6h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.88L4.2 7.06l2.83-2.83.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-.6 1.7 1.7 0 0 0 .4-1V3h4v.1A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06 2.83 2.83-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 .6 1 1.7 1.7 0 0 0 1 .4H21v4h-.1a1.7 1.7 0 0 0-1.5.6Z"/></symbol>
++  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 5H4v14h6M14 8l4 4-4 4M8 12h10"/></symbol>
++  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
++  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 12h18M10 12v2h4v-2"/></symbol>
++  <symbol id="i-calculator" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 5h8v4H8zM8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01M16 17h.01"/></symbol>
++  <symbol id="i-clipboard" viewBox="0 0 24 24"><path d="M9 4H6v18h12V4h-3"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 11h6M9 15h6"/></symbol>
++  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></symbol>
++  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7V3l-3 3a8 8 0 1 0 2 8"/></symbol>
++  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
++  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 22V3M5 4h11l-2 4 2 4H5"/></symbol>
++  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></symbol>
++  <symbol id="i-edit" viewBox="0 0 24 24"><path d="m4 20 4-1 11-11-3-3L5 16l-1 4ZM14 6l3 3"/></symbol>
++  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
++  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
++  <symbol id="i-export" viewBox="0 0 24 24"><path d="M14 3h7v7M21 3l-9 9"/><path d="M18 13v8H3V6h8"/></symbol>
++  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2"/></symbol>
++  <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
++  <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 5-5 7 5 7M16 5l5 7-5 7M14 3 10 21"/></symbol>
++  <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-7M3 4v5h5M12 7v5l3 2"/></symbol>
++  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
++  <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/></symbol>
++  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
++  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 6h14M7 6 3 13h8L7 6ZM17 6l-4 7h8l-4-7ZM8 21h8"/></symbol>
++  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h5l2-6 4 12 3-8 2 4h4"/></symbol>
++  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2ZM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16Z"/></symbol>
++  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
++  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4H4v12h4"/></symbol>
++  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8M5 10v11h14V10M9 21v-7h6v7"/></symbol>
++</svg>
+diff --git a/src/assets/js/app.js b/src/assets/js/app.js
+new file mode 100644
+index 0000000..b0d7738
+--- /dev/null
++++ b/src/assets/js/app.js
+@@ -0,0 +1,395 @@
++(function () {
++  'use strict';
++
++  const body = document.body;
++  const $ = (selector, root = document) => root.querySelector(selector);
++  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
++
++  function lockBody() {
++    body.classList.add('is-locked');
++  }
++
++  function unlockBody() {
++    if (!$('[data-overlay]:not([hidden])')) body.classList.remove('is-locked');
++  }
++
++  function showToast(message) {
++    let region = $('.toast-region');
++    if (!region) {
++      region = document.createElement('div');
++      region.className = 'toast-region';
++      region.setAttribute('aria-live', 'polite');
++      document.body.append(region);
++    }
++    const toast = document.createElement('div');
++    toast.className = 'toast';
++    toast.textContent = message;
++    region.append(toast);
++    window.setTimeout(() => toast.remove(), 3600);
++  }
++
++  function openOverlay(name) {
++    const overlay = $(`[data-overlay="${name}"]`);
++    if (!overlay) return;
++    overlay.hidden = false;
++    lockBody();
++    window.setTimeout(() => {
++      const focusable = $('input, textarea, button, a[href], [tabindex]:not([tabindex="-1"])', overlay);
++      if (focusable) focusable.focus();
++    }, 0);
++  }
++
++  function closeOverlay(overlay) {
++    if (!overlay) return;
++    overlay.hidden = true;
++    unlockBody();
++  }
++
++  $$('[data-open-overlay]').forEach(button => {
++    button.addEventListener('click', () => openOverlay(button.dataset.openOverlay));
++  });
++
++  $$('[data-close-overlay]').forEach(button => {
++    button.addEventListener('click', () => closeOverlay(button.closest('[data-overlay]')));
++  });
++
++  $$('[data-overlay]').forEach(overlay => {
++    overlay.addEventListener('mousedown', event => {
++      if (event.target === overlay) closeOverlay(overlay);
++    });
++  });
++
++  document.addEventListener('keydown', event => {
++    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
++      event.preventDefault();
++      openOverlay('command');
++    }
++    if (event.key === 'Escape') {
++      const open = $('[data-overlay]:not([hidden])');
++      if (open) closeOverlay(open);
++      closeSidebar();
++      closeMobileNav();
++    }
++  });
++
++  const commandInput = $('[data-command-input]');
++  const commandDefault = $('[data-command-default]');
++  const commandAnswer = $('[data-command-answer]');
++  if (commandInput && commandDefault && commandAnswer) {
++    commandInput.addEventListener('keydown', event => {
++      if (event.key === 'Enter' && commandInput.value.trim()) {
++        event.preventDefault();
++        commandDefault.hidden = true;
++        commandAnswer.hidden = false;
++        const question = $('[data-answer-question]');
++        if (question) question.textContent = commandInput.value.trim();
++      }
++    });
++    $('[data-reset-command]')?.addEventListener('click', () => {
++      commandInput.value = '';
++      commandDefault.hidden = false;
++      commandAnswer.hidden = true;
++      commandInput.focus();
++    });
++  }
++
++  const sidebar = $('[data-sidebar]');
++  function openSidebar() {
++    if (!sidebar) return;
++    sidebar.classList.add('is-open');
++    lockBody();
++  }
++  function closeSidebar() {
++    if (!sidebar) return;
++    sidebar.classList.remove('is-open');
++    unlockBody();
++  }
++  $('[data-open-sidebar]')?.addEventListener('click', openSidebar);
++  $('[data-close-sidebar]')?.addEventListener('click', closeSidebar);
++
++  const mobileNav = $('[data-mobile-nav]');
++  function closeMobileNav() {
++    if (!mobileNav) return;
++    mobileNav.hidden = true;
++    $('[data-toggle-mobile-nav]')?.setAttribute('aria-expanded', 'false');
++  }
++  $('[data-toggle-mobile-nav]')?.addEventListener('click', event => {
++    if (!mobileNav) return;
++    const willOpen = mobileNav.hidden;
++    mobileNav.hidden = !willOpen;
++    event.currentTarget.setAttribute('aria-expanded', String(willOpen));
++  });
++
++  const portfolioButton = $('[data-portfolio-button]');
++  const portfolioMenu = $('[data-portfolio-menu]');
++  portfolioButton?.addEventListener('click', () => {
++    const open = portfolioMenu.hidden;
++    portfolioMenu.hidden = !open;
++    portfolioButton.setAttribute('aria-expanded', String(open));
++  });
++  $$('[data-portfolio-option]').forEach(option => {
++    option.addEventListener('click', () => {
++      const label = $('[data-portfolio-label]');
++      if (label) label.textContent = option.dataset.portfolioOption;
++      portfolioMenu.hidden = true;
++      portfolioButton?.setAttribute('aria-expanded', 'false');
++      showToast(`Portfolio context changed to ${option.dataset.portfolioOption}.`);
++    });
++  });
++
++  $$('[data-toast]').forEach(element => {
++    element.addEventListener('click', event => {
++      if (element.tagName === 'A' && element.getAttribute('href') === '#') event.preventDefault();
++      showToast(element.dataset.toast);
++    });
++  });
++
++  $$('[data-signal-tab]').forEach(tab => {
++    tab.addEventListener('click', () => {
++      $$('[data-signal-tab]').forEach(item => item.classList.toggle('is-selected', item === tab));
++      const panel = $('[data-signal-detail]');
++      const data = {
++        ca: {
++          title: 'California hotel wage and benefit step',
++          source: 'City ordinance · effective July 1, 2026',
++          status: 'Material',
++          properties: '7 properties',
++          systems: '4 payroll groups',
++          decisions: '2 due'
++        },
++        ny: {
++          title: 'New York hospitality spread-of-hours rule',
++          source: 'Wage order guidance · reviewed June 9',
++          status: 'High',
++          properties: '5 properties',
++          systems: '2 payroll groups',
++          decisions: '1 due'
++        },
++        chi: {
++          title: 'Chicago tipped-wage freeze and local coverage',
++          source: 'City notice · reviewed June 8',
++          status: 'Elevated',
++          properties: '4 properties',
++          systems: '2 payroll groups',
++          decisions: '1 due'
++        },
++        dol: {
++          title: 'Federal contractor classification posture',
++          source: 'Agency action · reviewed June 7',
++          status: 'Watch',
++          properties: '18 properties',
++          systems: 'Policy review',
++          decisions: '0 due'
++        }
++      }[tab.dataset.signalTab];
++      if (!panel || !data) return;
++      $('[data-signal-title]', panel).textContent = data.title;
++      $('[data-signal-source]', panel).textContent = data.source;
++      $('[data-signal-status]', panel).textContent = data.status;
++      $('[data-signal-properties]', panel).textContent = data.properties;
++      $('[data-signal-systems]', panel).textContent = data.systems;
++      $('[data-signal-decisions]', panel).textContent = data.decisions;
++    });
++  });
++
++  $$('[data-change-item]').forEach(item => {
++    item.addEventListener('click', () => {
++      $$('[data-change-item]').forEach(candidate => candidate.classList.toggle('is-active', candidate === item));
++      const title = $('[data-change-detail-title]');
++      const meta = $('[data-change-detail-meta]');
++      if (title) title.textContent = item.dataset.title;
++      if (meta) meta.textContent = item.dataset.meta;
++    });
++  });
++
++  $$('[data-change-filter]').forEach(button => {
++    button.addEventListener('click', () => {
++      $$('[data-change-filter]').forEach(item => item.classList.toggle('is-active', item === button));
++      const filter = button.dataset.changeFilter;
++      $$('[data-change-item]').forEach(item => {
++        item.hidden = filter !== 'all' && item.dataset.materiality !== filter;
++      });
++    });
++  });
++
++  $$('[data-matter-tab]').forEach(tab => {
++    tab.addEventListener('click', () => {
++      const selected = tab.dataset.matterTab;
++      $$('[data-matter-tab]').forEach(item => {
++        item.classList.toggle('is-active', item === tab);
++        item.setAttribute('aria-selected', String(item === tab));
++      });
++      $$('[data-matter-panel]').forEach(panel => {
++        panel.hidden = panel.dataset.matterPanel !== selected;
++      });
++    });
++  });
++
++  function formatCurrency(value) {
++    return new Intl.NumberFormat('en-US', {
++      style: 'currency',
++      currency: 'USD',
++      maximumFractionDigits: 0
++    }).format(value);
++  }
++
++  function updateScenario() {
++    const properties = Number($('[data-scenario-properties]')?.value || 7);
++    const employees = Number($('[data-scenario-employees]')?.value || 842);
++    const benefit = Number($('[data-scenario-benefit]')?.value || 6.28);
++    const structure = $('[data-scenario-structure]:checked')?.value || 'mixed';
++    const structureFactor = structure === 'cash' ? 1.22 : structure === 'benefit' ? .82 : 1;
++    const base = properties * 72000 + employees * benefit * 210 * structureFactor;
++    const low = Math.round(base * .89);
++    const high = Math.round(base * 1.19);
++    $('[data-scenario-properties-output]').textContent = String(properties);
++    $('[data-scenario-employees-output]').textContent = employees.toLocaleString();
++    $('[data-scenario-benefit-output]').textContent = `$${benefit.toFixed(2)}`;
++    $('[data-scenario-range]').textContent = `${formatCurrency(low)} – ${formatCurrency(high)}`;
++    $('[data-scenario-annual]').textContent = formatCurrency(Math.round(base));
++    $('[data-scenario-readiness]').textContent = properties <= 5 ? '82%' : properties <= 7 ? '74%' : '66%';
++  }
++  $$('[data-scenario-input], [data-scenario-structure]').forEach(input => {
++    input.addEventListener('input', updateScenario);
++    input.addEventListener('change', updateScenario);
++  });
++  updateScenario();
++
++  $$('[data-control-row]').forEach(row => {
++    row.addEventListener('click', event => {
++      if (event.target.closest('a, button, input, select')) return;
++      const drawer = $('[data-control-drawer]');
++      if (!drawer) return;
++      $('[data-control-drawer-title]', drawer).textContent = row.dataset.controlTitle;
++      $('[data-control-drawer-id]', drawer).textContent = row.dataset.controlId;
++      openOverlay('control-detail');
++    });
++  });
++
++  $$('[data-research-example]').forEach(button => {
++    button.addEventListener('click', () => {
++      const input = $('[data-research-input]');
++      if (!input) return;
++      input.value = button.dataset.researchExample;
++      input.focus();
++    });
++  });
++  $('[data-run-research]')?.addEventListener('click', () => {
++    const input = $('[data-research-input]');
++    const status = $('[data-research-status]');
++    if (!input?.value.trim()) {
++      showToast('Enter a scoped legal question before running grounded research.');
++      return;
++    }
++    status.textContent = 'Grounded answer regenerated · 4 primary authorities · 1 disclosed fact gap';
++    showToast('Answer regenerated against the current source and property snapshot.');
++  });
++
++  $('[data-approve-decision]')?.addEventListener('click', event => {
++    event.currentTarget.textContent = 'Approved';
++    event.currentTarget.disabled = true;
++    const state = $('[data-decision-state]');
++    if (state) {
++      state.textContent = 'Approved for controlled implementation';
++      state.className = 'status status--good';
++    }
++    showToast('Decision approved. The provenance snapshot has been preserved.');
++  });
++
++  const jurisdictionSearch = $('[data-jurisdiction-search]');
++  jurisdictionSearch?.addEventListener('input', () => {
++    const query = jurisdictionSearch.value.toLowerCase().trim();
++    $$('[data-jurisdiction-card]').forEach(card => {
++      card.hidden = Boolean(query) && !card.dataset.jurisdictionName.toLowerCase().includes(query) && !card.dataset.jurisdictionCode.toLowerCase().includes(query);
++    });
++  });
++
++  $$('[data-jurisdiction-tier]').forEach(button => {
++    button.addEventListener('click', () => {
++      $$('[data-jurisdiction-tier]').forEach(item => item.classList.toggle('is-active', item === button));
++      const tier = button.dataset.jurisdictionTier;
++      $$('[data-jurisdiction-card]').forEach(card => {
++        card.hidden = tier !== 'all' && card.dataset.jurisdictionTier !== tier;
++      });
++    });
++  });
++
++  $$('[data-jurisdiction-card]').forEach(card => {
++    card.addEventListener('click', () => {
++      $$('[data-jurisdiction-card]').forEach(item => item.classList.toggle('is-selected', item === card));
++      const inspector = $('[data-jurisdiction-inspector]');
++      if (!inspector) return;
++      $('[data-jurisdiction-inspector-code]', inspector).textContent = card.dataset.jurisdictionCode;
++      $('[data-jurisdiction-inspector-name]', inspector).textContent = card.dataset.jurisdictionName;
++      $('[data-jurisdiction-inspector-tier]', inspector).textContent = `Tier ${card.dataset.jurisdictionTier} complexity`;
++      $('[data-jurisdiction-inspector-rate]', inspector).textContent = card.dataset.jurisdictionRate;
++      $('[data-jurisdiction-inspector-tip]', inspector).textContent = card.dataset.jurisdictionTip;
++      $('[data-jurisdiction-inspector-overtime]', inspector).textContent = card.dataset.jurisdictionOvertime;
++      $('[data-jurisdiction-inspector-hotel]', inspector).textContent = card.dataset.jurisdictionHotel;
++    });
++  });
++
++  $$('[data-tool-filter]').forEach(button => {
++    button.addEventListener('click', () => {
++      $$('[data-tool-filter]').forEach(item => item.classList.toggle('is-active', item === button));
++      const filter = button.dataset.toolFilter;
++      $$('[data-tool-card]').forEach(card => {
++        card.hidden = filter !== 'all' && card.dataset.toolFamily !== filter;
++      });
++    });
++  });
++
++  const demoRun = $('[data-run-tool-demo]');
++  demoRun?.addEventListener('click', () => {
++    const rooms = Number($('[data-demo-rooms]')?.value || 438);
++    const city = $('[data-demo-city]')?.value || 'Los Angeles';
++    const employees = Number($('[data-demo-employees]')?.value || 312);
++    const count = Math.max(3, Math.round(rooms / 110 + employees / 170));
++    $('[data-demo-obligation-count]').textContent = `${count} applicable obligations`;
++    $('[data-demo-property]').textContent = `${city} · ${rooms} rooms · ${employees} employees`;
++    showToast('Property profile recomputed. Every result retains its fact and source lineage.');
++  });
++})();
+diff --git a/src/assets/manifest.webmanifest b/src/assets/manifest.webmanifest
+new file mode 100644
+index 0000000..273c8cb
+--- /dev/null
++++ b/src/assets/manifest.webmanifest
+@@ -0,0 +1,14 @@
++{
++  "name": "Hotel Wage Law",
++  "short_name": "Hotel Wage Law",
++  "description": "Hospitality wage-and-hour intelligence and control plane.",
++  "start_url": "/app/",
++  "scope": "/",
++  "display": "standalone",
++  "background_color": "#f3f5f6",
++  "theme_color": "#07182f",
++  "icons": [
++    {"src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
++  ]
++}
+diff --git a/src/components/app-shell.js b/src/components/app-shell.js
+new file mode 100644
+index 0000000..a3d6238
+--- /dev/null
++++ b/src/components/app-shell.js
+@@ -0,0 +1,163 @@
++'use strict';
++
++const { icon, brand } = require('./icons');
++const { appNav, appRouteMeta, appBase } = require('../data/platform-data');
++
++function navGroup(group, activeKey) {
++  return `<div class="nav-group">
++    <span>${group.label}</span>
++    ${group.items.map(item => `<a href="${item.href}" ${item.key === activeKey ? 'aria-current="page"' : ''}>
++      ${icon(item.icon)}<span>${item.label}</span>${item.count ? `<b class="nav-count">${item.count}</b>` : ''}
++    </a>`).join('')}
++  </div>`;
++}
++
++function sidebar(activeKey) {
++  return `<aside class="app-sidebar" data-sidebar>
++    <div class="app-sidebar__brand">
++      <a href="/app/" aria-label="Hotel Wage Law overview">${brand('inverse compact')}</a>
++      <button class="sidebar-close" data-close-sidebar aria-label="Close navigation">${icon('close')}</button>
++    </div>
++    <div class="portfolio-switcher">
++      <span class="portfolio-switcher__label">Active portfolio</span>
++      <button type="button" data-portfolio-button aria-expanded="false">
++        ${icon('building')}
++        <span><strong data-portfolio-label>North America portfolio</strong><small>34 properties · 8 jurisdictions</small></span>
++        ${icon('chevron-down')}
++      </button>
++      <div class="portfolio-menu" data-portfolio-menu hidden>
++        <button data-portfolio-option="North America portfolio">North America portfolio <small>34 properties</small></button>
++        <button data-portfolio-option="Southern California cluster">Southern California cluster <small>7 properties</small></button>
++        <button data-portfolio-option="Northeast portfolio">Northeast portfolio <small>8 properties</small></button>
++      </div>
++    </div>
++    <nav class="app-sidebar__nav" aria-label="Enterprise navigation">
++      ${appNav.map(group => navGroup(group, activeKey)).join('')}
++    </nav>
++    <div class="app-sidebar__footer">
++      <div class="source-health source-health--compact">
++        <span class="source-health__ring" style="--score:94"><i></i><b>94</b></span>
++        <span><strong>Source health</strong><small>1 item requires review</small></span>
++      </div>
++      <a href="/methodology/">${icon('shield')} Evidence standard</a>
++      <button type="button" data-toast="Settings are outside this prototype's persistence boundary.">${icon('settings')} Platform settings</button>
++    </div>
++  </aside>`;
++}
++
++function topbar(activeKey) {
++  const meta = appRouteMeta[activeKey] || appRouteMeta.overview;
++  return `<header class="app-topbar">
++    <button class="sidebar-open" data-open-sidebar aria-label="Open navigation">${icon('menu')}</button>
++    <nav class="breadcrumbs" aria-label="Breadcrumb">
++      <a href="/app/">North America</a>${icon('chevron-right')}<span aria-current="page">${meta.label}</span>
++    </nav>
++    <span class="topbar-status"><i></i> Authority graph current through Jun 13, 2026</span>
++    <div class="app-topbar__actions">
++      <button class="global-ask" data-open-overlay="command">${icon('spark')} <span>Ask across law + portfolio</span><kbd>⌘K</kbd></button>
++      <button class="icon-button" type="button" aria-label="Notifications" data-toast="You have 4 material notifications.">${icon('bell')}<i class="notification-dot"></i></button>
++      <button class="avatar-button" type="button" aria-label="Account menu" data-toast="Account controls are not persisted in this prototype.">AK</button>
++    </div>
++  </header>`;
++}
++
++function commandOverlay() {
++  return `<div class="command-backdrop" data-overlay="command" hidden>
++    <section class="command-palette" role="dialog" aria-modal="true" aria-labelledby="command-title">
++      <header>
++        <div>${icon('spark')}<span><strong id="command-title">Grounded ask</strong><small>Public authority + permitted portfolio context</small></span></div>
++        <button data-close-overlay aria-label="Close grounded ask">${icon('close')}</button>
++      </header>
++      <div class="command-input">${icon('search')}<input data-command-input aria-label="Ask a legal or portfolio question" placeholder="Ask a legal or portfolio question…"><kbd>↵</kbd></div>
++      <div class="command-results">
++        <div data-command-default>
++          <div class="command-section"><span>Continue working</span>
++            <a href="/app/matters/la-hotel-wage-2026/">${icon('matter')}<span><strong>Los Angeles hotel wage step</strong><small>MTR-2026-041 · 7 properties · decision due</small></span>${icon('arrow-right')}</a>
++            <a href="/app/controls/">${icon('shield')}<span><strong>Benefit credit variance control</strong><small>CTL-PAY-014 · 2 open exceptions</small></span>${icon('arrow-right')}</a>
++          </div>
++          <div class="command-section"><span>Try asking</span>
++            <button type="button" data-command-suggestion="Which properties are affected by the July 1 Los Angeles hotel wage step?">${icon('building')}<span><strong>Which properties are affected by the July 1 wage step?</strong><small>Uses current property and rule snapshots</small></span></button>
++            <button type="button" data-command-suggestion="Why is the benefit credit blocked at Downtown LA Hotel 01?">${icon('source')}<span><strong>Why is the benefit credit blocked at DTLA-01?</strong><small>Returns the fact gap and source chain</small></span></button>
++          </div>
++        </div>
++        <article class="command-answer" data-command-answer hidden>
++          <div class="answer-status"><span>${icon('check-circle')} Grounded in 6 governed records</span><span>As of Jun 13, 2026</span></div>
++          <h2 data-answer-question></h2>
++          <p>Seven Southern California properties require review. Three are confirmed above the ordinance threshold, two require benefit-credit substantiation, and two are not covered based on current location and room-count facts.</p>
++          <div class="answer-actions"><a href="/app/changes/">Open impact analysis</a><button type="button" data-open-overlay="sources">Inspect source chain</button><button type="button" data-reset-command>Ask another question</button></div>
++        </article>
++      </div>
++      <footer><span><kbd>↑↓</kbd> Navigate</span><span><kbd>↵</kbd> Open</span><span><kbd>Esc</kbd> Close</span><span>${icon('lock')} Permission scoped</span></footer>
++    </section>
++  </div>`;
++}
++
++function sourceOverlay() {
++  return `<div class="drawer-backdrop" data-overlay="sources" hidden>
++    <aside class="source-drawer" role="dialog" aria-modal="true" aria-labelledby="source-title">
++      <header><div><span class="eyebrow">Evidence chain</span><h2 id="source-title">Why this conclusion is supportable</h2></div><button data-close-overlay aria-label="Close source chain">${icon('close')}</button></header>
++      <div class="source-drawer__summary">${icon('shield')}<div><strong>Current and internally consistent</strong><p>Three primary authorities, one approved interpretation, and two verified property facts support this conclusion.</p></div></div>
++      <ol class="evidence-chain">
++        <li><span>1</span><div><small>Primary authority · verified</small><strong>Los Angeles Municipal Code § 187.02</strong><p>Effective July 1, 2026 · passage retained · reviewed Jun 13</p><button data-toast="The source viewer is represented by this evidence drawer in the prototype.">Open cited passage</button></div>${icon('external')}</li>
++        <li><span>2</span><div><small>Official guidance · verified</small><strong>Office of Wage Standards implementation guidance</strong><p>Health-benefit treatment and covered-hotel threshold.</p><button data-toast="Guidance passage opened in the evidence workflow.">Open cited passage</button></div>${icon('external')}</li>
++        <li><span>3</span><div><small>Rule version · approved</small><strong>LA hotel wage and health-benefit rule v3</strong><p>Deterministic coverage predicates + counsel-reviewed ambiguity note.</p><button data-toast="Rule specification opened.">Inspect rule trace</button></div>${icon('code')}</li>
++        <li><span>4</span><div><small>Enterprise fact · verified</small><strong>DTLA-01 room count and locality</strong><p>438 rooms · City of Los Angeles · source: property master.</p><button data-toast="Property fact provenance opened.">Inspect fact provenance</button></div>${icon('database')}</li>
++        <li><span>5</span><div><small>Enterprise fact · open</small><strong>Qualifying health-benefit contribution</strong><p>Carrier statement for June remains outstanding.</p><button data-toast="Evidence request opened.">Open evidence request</button></div>${icon('alert')}</li>
++      </ol>
++      <div class="disclosed-gap">${icon('alert')}<div><strong>One fact gap remains</strong><p>The wage floor is confirmed. The amount of any lawful health-benefit credit remains conditional pending June carrier evidence.</p></div></div>
++      <footer><a class="button button--secondary" href="/methodology/">Evidence standard</a><button class="button button--primary" data-toast="Source bundle prepared for export.">${icon('download')} Export source bundle</button></footer>
++    </aside>
++  </div>`;
++}
++
++function appShell({ activeKey, content, rail = '' }) {
++  const meta = appRouteMeta[activeKey] || appRouteMeta.overview;
++  return `${appBase({ title: meta.title, description: meta.description, bodyClass: 'app-page' })}
++    <a class="skip-link" href="#main-content">Skip to content</a>
++    <div class="app-shell">
++      ${sidebar(activeKey)}
++      <div class="app-main">
++        ${topbar(activeKey)}
++        <main class="app-content" id="main-content">
++          <div class="page-layout ${rail ? 'page-layout--with-rail' : ''}">
++            <div class="page-primary">${content}</div>
++            ${rail ? `<aside class="page-rail">${rail}</aside>` : ''}
++          </div>
++        </main>
++      </div>
++    </div>
++    ${commandOverlay()}
++    ${sourceOverlay()}
++    <div class="toast-region" aria-live="polite"></div>
++  </body></html>`;
++}
++
++module.exports = { appShell };
+diff --git a/src/components/icons.js b/src/components/icons.js
+new file mode 100644
+index 0000000..31d1f99
+--- /dev/null
++++ b/src/components/icons.js
+@@ -0,0 +1,22 @@
++'use strict';
++
++function icon(name, className = '') {
++  return `<svg class="icon ${className}" aria-hidden="true"><use href="/assets/icons.svg#i-${name}"></use></svg>`;
++}
++
++function brand(variant = '') {
++  const inverse = variant.includes('inverse') ? ' brand--inverse' : '';
++  const compact = variant.includes('compact') ? ' brand--compact' : '';
++  return `<span class="brand${inverse}${compact}">
++    <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
++    <span class="brand-copy"><strong>Hotel Wage Law</strong><small>Hospitality intelligence & control</small></span>
++  </span>`;
++}
++
++module.exports = { icon, brand };
+diff --git a/src/components/public-shell.js b/src/components/public-shell.js
+new file mode 100644
+index 0000000..667d9ff
+--- /dev/null
++++ b/src/components/public-shell.js
+@@ -0,0 +1,96 @@
++'use strict';
++
++const { icon, brand } = require('./icons');
++const { publicBase, publicNav } = require('../data/platform-data');
++
++function header(activeKey = 'platform') {
++  return `<header class="public-header">
++    <div class="public-header__inner">
++      <a href="/" aria-label="Hotel Wage Law home">${brand('inverse')}</a>
++      <nav class="public-nav" aria-label="Primary navigation">
++        ${publicNav.map(item => `<a href="${item.href}" ${item.key === activeKey ? 'aria-current="page"' : ''}>${item.label}</a>`).join('')}
++      </nav>
++      <div class="public-header__actions">
++        <button class="quiet-action quiet-action--inverse" data-open-overlay="command">${icon('search')} Search <kbd>/</kbd></button>
++        <a class="button button--ghost-light button--small" href="/app/">Enterprise access ${icon('arrow-right')}</a>
++      </div>
++      <button class="mobile-menu-button" data-toggle-mobile-nav aria-expanded="false" aria-label="Open navigation">${icon('menu')}</button>
++    </div>
++    <nav class="public-mobile-nav" data-mobile-nav hidden aria-label="Mobile navigation">
++      ${publicNav.map(item => `<a href="${item.href}">${item.label}</a>`).join('')}
++      <a href="/app/">Enterprise access</a>
++    </nav>
++  </header>`;
++}
++
++function footer() {
++  return `<footer class="public-footer">
++    <div class="public-footer__main">
++      <div>${brand('inverse')}<p>Independent, source-governed hospitality wage-and-hour intelligence. Built to connect legal change to accountable enterprise response.</p></div>
++      <div><h2>Intelligence</h2><a href="/intelligence/">Issue architecture</a><a href="/jurisdictions/">Jurisdictions</a><a href="/tools/">Tools</a><a href="/methodology/">Evidence standard</a></div>
++      <div><h2>Platform</h2><a href="/app/">Portfolio command</a><a href="/app/changes/">Change intelligence</a><a href="/app/research/">Grounded research</a><a href="/app/controls/">Control assurance</a></div>
++      <div class="public-footer__cta"><span class="eyebrow eyebrow--light">Enterprise</span><h2>Turn authority into accountable response.</h2><a class="button button--accent" href="/app/">Enter the control plane ${icon('arrow-right')}</a></div>
++    </div>
++    <div class="public-footer__legal"><span>© 2026 Hotel Wage Law</span><span>Educational information—not legal advice</span><span>Independent · No sponsors · No customer data in this prototype</span></div>
++  </footer>`;
++}
++
++function publicOverlays() {
++  return `<div class="command-backdrop" data-overlay="command" hidden>
++    <section class="command-palette" role="dialog" aria-modal="true" aria-labelledby="public-command-title">
++      <header><div>${icon('search')}<span><strong id="public-command-title">Search Hotel Wage Law</strong><small>Public authority only · no private enterprise context</small></span></div><button data-close-overlay aria-label="Close search">${icon('close')}</button></header>
++      <div class="command-input">${icon('search')}<input data-command-input aria-label="Search public authority" placeholder="Search issues, jurisdictions, tools, and developments…"><kbd>↵</kbd></div>
++      <div class="command-results">
++        <div data-command-default>
++          <div class="command-section"><span>Popular intelligence</span>
++            <a href="/intelligence/">${icon('book')}<span><strong>Hotel ordinances and local wage floors</strong><small>Issue briefs + jurisdiction records</small></span>${icon('arrow-right')}</a>
++            <a href="/tools/">${icon('calculator')}<span><strong>Workweek compliance auditor</strong><small>Inspectable calculation workflow</small></span>${icon('arrow-right')}</a>
++            <a href="/methodology/">${icon('shield')}<span><strong>How the evidence standard works</strong><small>Sources, rules, dates, and disclosed gaps</small></span>${icon('arrow-right')}</a>
++          </div>
++        </div>
++        <article class="command-answer" data-command-answer hidden><div class="answer-status"><span>${icon('check-circle')} Public authority search</span><span>No private context used</span></div><h2 data-answer-question></h2><p>Search results in the production system would return verified source passages, approved analysis, jurisdiction scope, effective dates, and any disclosed uncertainty.</p><div class="answer-actions"><a href="/intelligence/">Open intelligence library</a><button type="button" data-reset-command>Search again</button></div></article>
++      </div>
++      <footer><span><kbd>↑↓</kbd> Navigate</span><span><kbd>↵</kbd> Open</span><span><kbd>Esc</kbd> Close</span><span>${icon('globe')} Public context</span></footer>
++    </section>
++  </div>`;
++}
++
++function publicShell({ activeKey, title, description, content, bodyClass = 'public-page' }) {
++  return `${publicBase({ title, description, bodyClass })}
++    <a class="skip-link" href="#main-content">Skip to content</a>
++    ${header(activeKey)}
++    <main id="main-content">${content}</main>
++    ${footer()}
++    ${publicOverlays()}
++    <div class="toast-region" aria-live="polite"></div>
++  </body></html>`;
++}
++
++module.exports = { publicShell };
+diff --git a/src/data/platform-data.js b/src/data/platform-data.js
+new file mode 100644
+index 0000000..f704afb
+--- /dev/null
++++ b/src/data/platform-data.js
+@@ -0,0 +1,289 @@
++'use strict';
++
++const product = {
++  name: 'Hotel Wage Law',
++  descriptor: 'Hospitality wage-and-hour intelligence and control',
++  publicUrl: 'https://www.hotelwagelaw.com',
++  reviewedThrough: '2026-06-13',
++  corpus: {
++    issueBriefs: 18,
++    jurisdictions: 51,
++    hotelLaws: 19,
++    tools: 10
++  },
++  disclaimer: 'Educational information—not legal advice. Enterprise data, people, financial ranges, and workflow states in this prototype are illustrative.'
++};
++
++const publicNav = [
++  { key: 'platform', label: 'Platform', href: '/' },
++  { key: 'intelligence', label: 'Intelligence', href: '/intelligence/' },
++  { key: 'jurisdictions', label: 'Jurisdictions', href: '/jurisdictions/' },
++  { key: 'tools', label: 'Tools', href: '/tools/' },
++  { key: 'methodology', label: 'Evidence standard', href: '/methodology/' }
++];
++
++const appNav = [
++  {
++    label: 'Command',
++    items: [
++      { key: 'overview', label: 'Overview', href: '/app/', icon: 'grid' },
++      { key: 'changes', label: 'Changes', href: '/app/changes/', icon: 'signal', count: 4 },
++      { key: 'matters', label: 'Matters', href: '/app/matters/la-hotel-wage-2026/', icon: 'matter', count: 7 },
++      { key: 'controls', label: 'Controls', href: '/app/controls/', icon: 'shield', count: 3 },
++      { key: 'portfolio', label: 'Portfolio', href: '/app/properties/dtla-01/', icon: 'building' }
++    ]
++  },
++  {
++    label: 'Intelligence',
++    items: [
++      { key: 'research', label: 'Research', href: '/app/research/', icon: 'book' },
++      { key: 'decision-records', label: 'Decision records', href: '/app/briefs/la-hotel-wage-2026/', icon: 'decision', count: 2 }
++    ]
++  }
++];
++
++const appRouteMeta = {
++  overview: {
++    label: 'Portfolio command',
++    title: 'Portfolio command · Hotel Wage Law',
++    description: 'Material changes, decisions, matters, controls, and evidence across the hospitality portfolio.'
++  },
++  changes: {
++    label: 'Change intelligence',
++    title: 'Change intelligence · Hotel Wage Law',
++    description: 'Verified legal change translated into portfolio reach, accountable response, and decision requirements.'
++  },
++  matters: {
++    label: 'Matter MTR-2026-041',
++    title: 'Los Angeles hotel wage matter · Hotel Wage Law',
++    description: 'A governed legal-response record from authority through decision, controls, and evidence.'
++  },
++  controls: {
++    label: 'Control assurance',
++    title: 'Control assurance · Hotel Wage Law',
++    description: 'Obligations translated into operating controls, evidence, testing, exceptions, and remediation.'
++  },
++  research: {
++    label: 'Grounded research',
++    title: 'Grounded research · Hotel Wage Law',
++    description: 'Source-linked legal research with explicit scope, facts, reasoning, uncertainty, and operational implications.'
++  },
++  'decision-records': {
++    label: 'Decision DR-2026-018',
++    title: 'Executive decision record · Hotel Wage Law',
++    description: 'A versioned decision artifact with recommendation, alternatives, conditions, owners, and provenance.'
++  },
++  portfolio: {
++    label: 'Property DTLA-01',
++    title: 'Property intelligence · Hotel Wage Law',
++    description: 'A property passport connecting jurisdiction, workforce, systems, matters, controls, and evidence.'
++  }
++};
++
++const changes = [
++  {
++    id: 'CHG-2026-118',
++    date: 'Jun 13',
++    jurisdiction: 'California · Los Angeles',
++    title: 'Hotel wage and health-benefit step takes effect July 1',
++    meta: '7 likely properties · 3 controls · 2 decisions',
++    materiality: 'critical',
++    status: 'Response open'
++  },
++  {
++    id: 'CHG-2026-114',
++    date: 'Jun 12',
++    jurisdiction: 'Federal',
++    title: 'Independent-contractor enforcement posture changes',
++    meta: '11 properties · 2 vendor categories',
++    materiality: 'high',
++    status: 'Triage complete'
++  },
++  {
++    id: 'CHG-2026-109',
++    date: 'Jun 10',
++    jurisdiction: 'New York',
++    title: 'Hospitality wage-order spread-of-hours guidance revised',
++    meta: '5 properties · payroll configuration review',
++    materiality: 'high',
++    status: 'Matter opened'
++  },
++  {
++    id: 'CHG-2026-105',
++    date: 'Jun 8',
++    jurisdiction: 'Illinois · Chicago',
++    title: 'Tipped-wage freeze and local coverage clarified',
++    meta: '4 properties · effective-date review',
++    materiality: 'elevated',
++    status: 'Scoped'
++  },
++  {
++    id: 'CHG-2026-101',
++    date: 'Jun 7',
++    jurisdiction: 'Nevada',
++    title: 'Minimum-wage step updates overtime threshold inputs',
++    meta: '3 properties · model rerun complete',
++    materiality: 'elevated',
++    status: 'Resolved'
++  }
++];
++
++const properties = [
++  { id: 'DTLA-01', name: 'Downtown Los Angeles Hotel', city: 'Los Angeles', rooms: 438, employees: 312, readiness: 62, status: 'Critical', matter: 'MTR-2026-041' },
++  { id: 'SM-02', name: 'Santa Monica Coastal Hotel', city: 'Santa Monica', rooms: 286, employees: 224, readiness: 79, status: 'High', matter: 'MTR-2026-041' },
++  { id: 'LGB-03', name: 'Long Beach Waterfront Hotel', city: 'Long Beach', rooms: 374, employees: 271, readiness: 83, status: 'Elevated', matter: 'MTR-2026-041' },
++  { id: 'WH-04', name: 'West Hollywood Hotel', city: 'West Hollywood', rooms: 164, employees: 141, readiness: 92, status: 'Monitor', matter: 'MTR-2026-041' }
++];
++
++const controls = [
++  { id: 'CTL-PAY-014', name: 'Hotel wage rate table deployment', domain: 'Payroll', owner: 'Priya Shah', coverage: 88, evidence: 'Current', exceptions: 1, nextTest: 'Jun 20' },
++  { id: 'CTL-BEN-006', name: 'Qualifying health-benefit contribution validation', domain: 'Benefits', owner: 'Marcus Lee', coverage: 71, evidence: 'Gap', exceptions: 2, nextTest: 'Jun 18' },
++  { id: 'CTL-TIME-021', name: 'Housekeeper workload exception review', domain: 'Timekeeping', owner: 'Elena Ruiz', coverage: 94, evidence: 'Current', exceptions: 0, nextTest: 'Jul 8' },
++  { id: 'CTL-SCH-010', name: 'Predictive-schedule change logging', domain: 'Scheduling', owner: 'Jamie Chen', coverage: 91, evidence: 'Current', exceptions: 1, nextTest: 'Jul 2' },
++  { id: 'CTL-TIP-008', name: 'Service-charge classification review', domain: 'F&B / Banquets', owner: 'Noah Williams', coverage: 86, evidence: 'Review', exceptions: 1, nextTest: 'Jun 27' }
++];
++
++const sources = [
++  { number: '01', type: 'Municipal code', title: 'Los Angeles Municipal Code § 187.02', status: 'Verified', reviewed: 'Jun 13, 2026', version: 'SRC-LA-187-2026-03' },
++  { number: '02', type: 'Official guidance', title: 'Office of Wage Standards hotel wage guidance', status: 'Verified', reviewed: 'Jun 13, 2026', version: 'SRC-OWS-2026-07' },
++  { number: '03', type: 'State statute', title: 'California Labor Code wage-payment provisions', status: 'Verified', reviewed: 'Jun 11, 2026', version: 'SRC-CA-LC-2026-18' },
++  { number: '04', type: 'Approved analysis', title: 'Hotel wage and health-benefit rule v3', status: 'Approved', reviewed: 'Jun 13, 2026', version: 'RULE-LA-HOTEL-3.0' }
++];
++
++const jurisdictionRecords = [
++  { code: 'CA', name: 'California', tier: '4', rate: '$16.90+', tip: 'No tip credit', overtime: 'Daily + weekly', hotel: 'Extensive local laws' },
++  { code: 'NY', name: 'New York', tier: '4', rate: '$15.50–$16.50', tip: 'Hospitality tiers', overtime: 'Weekly + spread', hotel: 'Industry wage order' },
++  { code: 'WA', name: 'Washington', tier: '4', rate: '$16.66+', tip: 'No tip credit', overtime: 'Weekly', hotel: 'Seattle / SeaTac laws' },
++  { code: 'MA', name: 'Massachusetts', tier: '4', rate: '$15.00', tip: '$6.75 cash wage', overtime: 'Weekly', hotel: 'Tips Act overlay' },
++  { code: 'IL', name: 'Illinois', tier: '4', rate: '$15.00', tip: 'Credit limited', overtime: 'Weekly', hotel: 'Chicago overlay' },
++  { code: 'CO', name: 'Colorado', tier: '3', rate: '$14.81+', tip: 'Credit limited', overtime: 'Daily / 12-hour', hotel: 'Local rates' },
++  { code: 'DC', name: 'District of Columbia', tier: '3', rate: '$17.95', tip: 'Phasing out', overtime: 'Weekly + split', hotel: 'Local tipped rules' },
++  { code: 'OR', name: 'Oregon', tier: '3', rate: '$14.70+', tip: 'No tip credit', overtime: 'Weekly', hotel: 'Fair workweek reach' },
++  { code: 'NV', name: 'Nevada', tier: '3', rate: '$12.00', tip: 'No tip credit', overtime: 'Daily / rolling 24', hotel: 'Local hospitality' },
++  { code: 'CT', name: 'Connecticut', tier: '3', rate: '$16.35', tip: 'Occupation tiers', overtime: 'Weekly', hotel: 'Daily duties rules' },
++  { code: 'NJ', name: 'New Jersey', tier: '3', rate: '$15.49', tip: 'Credit limited', overtime: 'Weekly', hotel: 'Hotel protection law' },
++  { code: 'MD', name: 'Maryland', tier: '3', rate: '$15.00', tip: '$3.63 cash wage', overtime: 'Weekly', hotel: 'County overlays' },
++  { code: 'HI', name: 'Hawaii', tier: '3', rate: '$14.00', tip: 'Narrow credit', overtime: 'Weekly', hotel: 'Service-charge law' },
++  { code: 'AK', name: 'Alaska', tier: '2', rate: '$13.00', tip: 'No tip credit', overtime: 'Daily + weekly', hotel: 'Statewide' },
++  { code: 'AZ', name: 'Arizona', tier: '2', rate: '$14.70', tip: 'Credit limited', overtime: 'Weekly', hotel: 'Local floors limited' },
++  { code: 'FL', name: 'Florida', tier: '2', rate: '$14.00', tip: 'Credit limited', overtime: 'Weekly', hotel: 'Statewide floor' },
++  { code: 'TX', name: 'Texas', tier: '1', rate: '$7.25', tip: 'Federal model', overtime: 'Weekly', hotel: 'Federal baseline' },
++  { code: 'TN', name: 'Tennessee', tier: '1', rate: '$7.25', tip: 'Federal model', overtime: 'Weekly', hotel: 'Federal baseline' },
++  { code: 'GA', name: 'Georgia', tier: '1', rate: '$7.25 federal', tip: 'Federal model', overtime: 'Weekly', hotel: 'Federal baseline' },
++  { code: 'AL', name: 'Alabama', tier: '1', rate: '$7.25 federal', tip: 'Federal model', overtime: 'Weekly', hotel: 'Federal baseline' },
++  { code: 'PA', name: 'Pennsylvania', tier: '2', rate: '$7.25', tip: 'State rules', overtime: 'Weekly', hotel: 'Pay-law remedies' },
++  { code: 'OH', name: 'Ohio', tier: '2', rate: '$10.70', tip: 'Credit limited', overtime: 'Weekly', hotel: 'Statewide' },
++  { code: 'MI', name: 'Michigan', tier: '3', rate: '$12.48', tip: 'Changing', overtime: 'Weekly', hotel: 'Tip phase changes' },
++  { code: 'MN', name: 'Minnesota', tier: '3', rate: '$11.13', tip: 'No tip credit', overtime: '48-hour state', hotel: 'Pool restrictions' }
++];
++
++const toolRecords = [
++  { id: 'TL-001', family: 'audit', label: 'Audit engine', title: 'Workweek compliance auditor', description: 'Resolve federal, state, local, and hotel-specific pay obligations against one worker week—with each branch and dollar explained.', inputs: 'Shifts · pay · location · date', output: 'Itemized findings + cited math', status: 'Inspectable', icon: 'activity' },
++  { id: 'TL-002', family: 'audit', label: 'Audit engine', title: 'Housekeeper workload auditor', description: 'Test square-footage caps, proration, premium pay, and piece-rate decomposition against property and shift facts.', inputs: 'Rooms · square feet · shifts', output: 'Coverage + premium trace', status: 'Inspectable', icon: 'clipboard' },
++  { id: 'TL-003', family: 'design', label: 'Design workflow', title: 'Tip pool & service charge architect', description: 'Model participant eligibility, pool structure, service-charge classification, and downstream regular-rate effects.', inputs: 'Roles · charges · distribution', output: 'Per-person verdicts', status: 'Inspectable', icon: 'users' },
++  { id: 'TL-004', family: 'planning', label: 'Planning', title: 'Portfolio rate forecaster', description: 'Project scheduled wage and benefit steps across properties and expose budget deltas with effective-date lineage.', inputs: 'Properties · schedules · horizon', output: 'Forecast + calendar', status: 'Inspectable', icon: 'chart' },
++  { id: 'TL-005', family: 'risk', label: 'Risk model', title: 'Exposure & penalty modeler', description: 'Model statutory remedies, penalties, assumptions, and scenario sensitivity without collapsing uncertainty into one number.', inputs: 'Population · period · findings', output: 'Range + assumptions', status: 'Counsel review', icon: 'scale' },
++  { id: 'TL-006', family: 'planning', label: 'Coverage', title: 'Fair workweek premium calculator', description: 'Apply covered-employer, worker, schedule-change, notice, and premium rules across hotel-relevant laws.', inputs: 'Employer · worker · schedule', output: 'Coverage + premium trace', status: 'Inspectable', icon: 'calendar' },
++  { id: 'TL-007', family: 'assessment', label: 'Property profile', title: 'Hotel compliance profiler', description: 'Turn property, location, room-count, workforce, and system facts into an effective-dated obligation profile.', inputs: 'Property passport facts', output: 'Applicable obligations', status: 'Fact dependent', icon: 'building' },
++  { id: 'TL-008', family: 'audit', label: 'Calculator', title: 'Tipped overtime calculator', description: 'Show state-aware weekly pay, credit assumptions, overtime math, and the consequence of a disallowed tip credit.', inputs: 'Rate · hours · credit · state', output: 'Step-by-step calculation', status: 'Inspectable', icon: 'calculator' },
++  { id: 'TL-009', family: 'audit', label: 'Calculator', title: 'Regular-rate calculator', description: 'Build a regular rate from multiple rates, bonuses, service charges, premiums, and alternative calculation methods.', inputs: 'Pay codes · hours · bonuses', output: 'Rate build + true-up', status: 'Inspectable', icon: 'calculator' },
++  { id: 'TL-010', family: 'assessment', label: 'Assessment', title: 'Exemption checker', description: 'Resolve salary basis, salary level, duties, state overlays, and commissioned-employee paths with disclosed judgment points.', inputs: 'Role · salary · duties', output: 'Layered determination', status: 'Counsel review', icon: 'briefcase' }
++];
++
++function stylesheetLinks() {
++  return ['tokens', 'base', 'components', 'public', 'app', 'responsive', 'v2']
++    .map(name => `<link rel="stylesheet" href="/assets/css/${name}.css">`).join('');
++}
++
++function baseHtml({ title, description, bodyClass }) {
++  return `<!doctype html>
++<html lang="en">
++<head>
++  <meta charset="utf-8">
++  <meta name="viewport" content="width=device-width,initial-scale=1">
++  <meta name="description" content="${description}">
++  <meta name="theme-color" content="#07182f">
++  <meta name="robots" content="noindex,nofollow">
++  <title>${title}</title>
++  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
++  <link rel="manifest" href="/assets/manifest.webmanifest">
++  ${stylesheetLinks()}
++  <script src="/assets/js/app.js" defer></script>
++</head>
++<body class="${bodyClass}">`;
++}
++
++function publicBase(args) {
++  return baseHtml(args);
++}
++
++function appBase(args) {
++  return baseHtml(args);
++}
++
++module.exports = {
++  product,
++  publicNav,
++  appNav,
++  appRouteMeta,
++  changes,
++  properties,
++  controls,
++  sources,
++  jurisdictionRecords,
++  toolRecords,
++  publicBase,
++  appBase
++};
+diff --git a/src/pages/brief.js b/src/pages/brief.js
+new file mode 100644
+index 0000000..688963e
+--- /dev/null
++++ b/src/pages/brief.js
+@@ -0,0 +1,260 @@
++'use strict';
++
++const { appShell } = require('../components/app-shell');
++const { icon } = require('../components/icons');
++
++function pageHeading() {
++  return `<header class="page-heading">
++    <div><span class="eyebrow">Decision record · DR-2026-018</span><h1>Approve one response. Preserve every reason.</h1><p>The executive artifact is rendered from the governed matter. Recommendation, alternatives, conditions, approvals, and provenance remain versioned together.</p></div>
++    <div class="page-heading__actions"><button class="button button--secondary" data-toast="A PDF snapshot was prepared from the current decision-record version.">${icon('download')} Export PDF</button><button class="button button--secondary" data-toast="The current decision-record link was copied.">${icon('share')} Share governed link</button></div>
++  </header>`;
++}
++
++function decisionHead() {
++  return `<section class="panel decision-record-head">
++    <div class="decision-record-head__identity">
++      <span class="record-seal">${icon('decision')}</span>
++      <div><span class="eyebrow">Executive decision · Version 4</span><h2>Los Angeles hotel wage and health-benefit response</h2><p>MTR-2026-041 · Seven properties · Prepared for General Counsel and Chief People Officer</p></div>
++    </div>
++    <div class="decision-record-head__state">
++      <span class="status status--critical" data-decision-state>Decision due in 3 days</span>
++      <small>Required before payroll lock · Jun 17, 2026</small>
++      <div><span>${icon('shield')} Source current</span><span>${icon('history')} 4 versions</span></div>
++    </div>
++    <ol class="approval-chain" aria-label="Approval chain">
++      <li class="is-complete"><span>${icon('check')}</span><div><small>Prepared</small><strong>Employment Counsel</strong><p>Jun 12 · 4:18 PM</p></div></li>
++      <li class="is-complete"><span>${icon('check')}</span><div><small>Validated</small><strong>Payroll + Benefits</strong><p>Jun 13 · 2:40 PM</p></div></li>
++      <li class="is-active"><span>${icon('decision')}</span><div><small>Decision</small><strong>General Counsel</strong><p>Due Jun 16</p></div></li>
++      <li><span>${icon('shield')}</span><div><small>Assurance</small><strong>Post-cutover review</strong><p>Scheduled Jul 8</p></div></li>
++    </ol>
++  </section>`;
++}
++
++function decisionDocument() {
++  return `<article class="panel decision-document" aria-label="Executive decision record">
++    <header class="decision-document__cover">
++      <div><span class="eyebrow eyebrow--light">Decision record</span><h2>Approve the controlled July 1 implementation plan.</h2><p>This recommendation reflects the current authority, rule, property, workforce, payroll, and benefit snapshots. One property-level benefit fact remains expressly conditional.</p></div>
++      <aside class="decision-document__ask"><small>Decision requested</small><strong>Authorize payroll implementation at seven properties, subject to the conditions in Section 4.</strong><span>Decision owner · General Counsel · Due Jun 16</span></aside>
++    </header>
++
++    <div class="decision-document__body">
++      <section class="record-section">
++        <span class="record-section__number">1</span>
++        <div><span class="eyebrow">Executive posture</span><h3>The ordinance applies across the Southern California cluster, but the response differs by property fact state.</h3><p>Four properties have complete facts and are ready for implementation. Two require evidence to substantiate the planned health-benefit credit. One requires an employee-population reconciliation before the final payroll delta is approved.</p>
++          <div class="executive-readout-grid">
++            <div><small>Properties in scope</small><strong>7</strong><span>4 ready · 3 conditional</span></div>
++            <div><small>Covered employees</small><strong>842</strong><span>Current governed population</span></div>
++            <div><small>Modeled annual impact</small><strong>$1.14M</strong><span>Illustrative · fact-sensitive</span></div>
++            <div><small>Open material gaps</small><strong>2</strong><span>Evidence + population</span></div>
++          </div>
++        </div>
++      </section>
++
++      <section class="record-section">
++        <span class="record-section__number">2</span>
++        <div><span class="eyebrow">Recommendation</span>
++          <div class="recommendation-callout"><span>${icon('check-circle')}</span><div><h3>Approve the controlled implementation plan.</h3><p>Release verified rate changes on schedule; hold only the conditional benefit-credit treatment and unreconciled population.</p></div></div>
++          <div class="recommendation-reasons">
++            <article><span>01</span><strong>Effective-date certainty</strong><p>The wage step is effective July 1 and supported by verified primary authority.</p></article>
++            <article><span>02</span><strong>Controlled exceptions</strong><p>The unresolved facts are separable and need not delay unaffected properties.</p></article>
++            <article><span>03</span><strong>System readiness</strong><p>Rate tables are configured and parallel testing is scheduled before payroll lock.</p></article>
++            <article><span>04</span><strong>Evidence path</strong><p>Every conditional treatment has an owner, deadline, and required proof artifact.</p></article>
++          </div>
++        </div>
++      </section>
++
++      <section class="record-section">
++        <span class="record-section__number">3</span>
++        <div><span class="eyebrow">Alternatives considered</span><h3>Three paths were evaluated against timing, cost, employee impact, and defensibility.</h3>
++          <div class="alternatives-table">
++            <div class="alternatives-table__head"><span>Alternative</span><span>Advantage</span><span>Material consequence</span><span>Status</span></div>
++            <div><strong>Controlled implementation</strong><span>Meets deadline while isolating open facts.</span><span>Requires precise exception and evidence governance.</span><span class="status status--good">Recommended</span></div>
++            <div><strong>Full cash-wage implementation</strong><span>Eliminates benefit-credit fact dependency.</span><span>Higher modeled annual cost and benefit duplication risk.</span><span class="status status--neutral">Available</span></div>
++            <div><strong>Defer all changes</strong><span>More time for reconciliation.</span><span>Misses the effective date and creates avoidable wage exposure.</span><span class="status status--critical">Rejected</span></div>
++          </div>
++        </div>
++      </section>
++
++      <section class="record-section">
++        <span class="record-section__number">4</span>
++        <div><span class="eyebrow">Conditions and guardrails</span><h3>Approval is effective only while these conditions remain satisfied.</h3>
++          <ol class="conditions-list">
++            <li><span>${icon('source')}</span><div><strong>Carrier evidence accepted by June 18</strong><p>Benefit credit remains blocked at DTLA-01 until the June contribution statement is validated.</p></div><b>Marcus Lee · Benefits</b></li>
++            <li><span>${icon('users')}</span><div><strong>Covered population reconciled</strong><p>Payroll and HRIS totals must agree before the final upload population is approved.</p></div><b>Priya Shah · Payroll</b></li>
++            <li><span>${icon('activity')}</span><div><strong>Parallel payroll test passes</strong><p>Every property must produce an exception-free test or an accepted, documented exception.</p></div><b>Jamie Chen · HRIS</b></li>
++            <li><span>${icon('shield')}</span><div><strong>Post-cutover assurance completed</strong><p>First payroll and evidence artifacts must be reviewed by July 8.</p></div><b>Legal Operations</b></li>
++          </ol>
++        </div>
++      </section>
++
++      <section class="record-section">
++        <span class="record-section__number">5</span>
++        <div><span class="eyebrow">Accountable plan</span><h3>The approval becomes work through named owners and controlled dates.</h3>
++          <div class="table-wrap"><table class="data-table owner-table"><thead><tr><th>Owner</th><th>Accountability</th><th>Due</th><th>State</th></tr></thead><tbody>
++            <tr><td><span class="owner-number">1</span><strong>Priya Shah</strong></td><td>Approve rate tables and population reconciliation</td><td>Jun 17</td><td><span class="status status--warn">In progress</span></td></tr>
++            <tr><td><span class="owner-number">2</span><strong>Marcus Lee</strong></td><td>Validate qualifying benefit contributions</td><td>Jun 18</td><td><span class="status status--critical">Evidence due</span></td></tr>
++            <tr><td><span class="owner-number">3</span><strong>Jamie Chen</strong></td><td>Execute parallel payroll tests</td><td>Jun 21</td><td><span class="status status--info">Scheduled</span></td></tr>
++            <tr><td><span class="owner-number">4</span><strong>Elena Ruiz</strong></td><td>Coordinate property communications and assurance</td><td>Jul 8</td><td><span class="status status--neutral">Not started</span></td></tr>
++          </tbody></table></div>
++        </div>
++      </section>
++
++      <section class="record-section">
++        <span class="record-section__number">6</span>
++        <div><span class="eyebrow">Provenance snapshot</span><h3>The basis for this decision is frozen with the approved version.</h3>
++          <div class="provenance-grid">
++            <article><span>${icon('source')}</span><small>Authority</small><strong>3 primary source versions</strong><p>Municipal code, implementation guidance, and state wage-payment provisions.</p><button data-open-overlay="sources">Inspect source chain</button></article>
++            <article><span>${icon('code')}</span><small>Rule</small><strong>LA hotel wage rule v3</strong><p>Coverage, wage, benefit, and effective-date logic approved Jun 13.</p><button data-toast="Rule specification opened.">Inspect rule trace</button></article>
++            <article><span>${icon('database')}</span><small>Fact snapshot</small><strong>Property facts v18</strong><p>Seven property records, workforce snapshot, systems, and benefit state.</p><button data-toast="Property fact snapshot opened.">Inspect facts</button></article>
++            <article><span>${icon('calculator')}</span><small>Scenario</small><strong>SCN-2026-041-06</strong><p>Inputs, assumptions, range, sensitivity, and model version preserved.</p><button data-toast="Scenario model opened.">Inspect model</button></article>
++          </div>
++          <div class="record-limit"><span>${icon('alert')}</span><p><strong>Known limitation:</strong> the modeled cost range remains illustrative until the benefit evidence and covered population are final. The legal effective date and wage-floor obligation are not conditional on those facts.</p></div>
++        </div>
++      </section>
++    </div>
++
++    <footer class="decision-document__signature">
++      <div><span class="eyebrow">Approval action</span><h3>Approve version 4 with the conditions above.</h3><p>Approval preserves this exact provenance snapshot and schedules the post-cutover review.</p></div>
++      <div class="signature-actions"><button class="button button--secondary" data-toast="The decision was returned with requested revisions.">Return with revisions</button><button class="button button--accent" data-approve-decision>${icon('check-circle')} Approve decision</button></div>
++    </footer>
++  </article>`;
++}
++
++function rail() {
++  return `<section class="rail-card rail-card--priority"><header><span>${icon('clock')}</span><span class="status status--critical">Due Jun 16</span></header><small class="eyebrow eyebrow--light">Decision owner</small><h2>General Counsel approval</h2><p>Payroll lock follows one day later. Conditions allow the unresolved evidence to remain isolated.</p><div class="rail-deadline"><span>Time remaining</span><strong>3 days</strong></div><button class="button button--accent" data-approve-decision>${icon('check-circle')} Approve version 4</button></section>
++  <section class="rail-card decision-summary-rail"><header><div><span class="eyebrow">At a glance</span><h2>Decision summary</h2></div></header><ul><li><span>Recommendation</span><strong>Controlled implementation</strong></li><li><span>Properties</span><strong>7</strong></li><li><span>Modeled impact</span><strong>$1.14M</strong></li><li><span>Conditions</span><strong>4</strong></li><li><span>Open fact gaps</span><strong class="critical-text">2</strong></li></ul></section>
++  <section class="rail-card record-integrity"><header><div><span class="eyebrow">Integrity</span><h2>Record completeness</h2></div><span class="status status--good">96%</span></header><ol><li><i class="good-dot"></i><div><strong>Authority current</strong><small>3 primary source versions</small></div></li><li><i class="good-dot"></i><div><strong>Rule approved</strong><small>Version 3 · Jun 13</small></div></li><li><i class="warn-dot"></i><div><strong>Facts conditional</strong><small>2 governed gaps</small></div></li><li><i class="good-dot"></i><div><strong>Owners assigned</strong><small>4 accountabilities</small></div></li><li><i class="good-dot"></i><div><strong>Revalidation defined</strong><small>Source, rule, fact, model</small></div></li></ol></section>
++  <section class="rail-card record-activity"><header><div><span class="eyebrow">Activity</span><h2>Version history</h2></div></header><ol><li><span class="activity-avatar">AK</span><div><strong>Version 4 submitted</strong><small>Jun 13 · 4:18 PM</small></div></li><li><span class="activity-avatar activity-avatar--payroll">PS</span><div><strong>Payroll figures validated</strong><small>Jun 13 · 2:40 PM</small></div></li><li><span class="activity-avatar activity-avatar--benefits">ML</span><div><strong>Benefit evidence gap recorded</strong><small>Jun 13 · 11:05 AM</small></div></li></ol></section>`;
++}
++
++module.exports = function renderBrief() {
++  return appShell({ activeKey: 'decision-records', content: `${pageHeading()}${decisionHead()}${decisionDocument()}`, rail: rail() });
++};
+diff --git a/src/pages/changes.js b/src/pages/changes.js
+new file mode 100644
+index 0000000..fef7162
+--- /dev/null
++++ b/src/pages/changes.js
+@@ -0,0 +1,209 @@
++'use strict';
++
++const { appShell } = require('../components/app-shell');
++const { icon } = require('../components/icons');
++const { changes, properties } = require('../data/platform-data');
++
++function changeInbox() {
++  return `<aside class="change-inbox">
++    <header class="change-inbox__header"><div><span class="eyebrow">Signal queue</span><h2>Material changes</h2></div><span class="count-chip">4 open</span></header>
++    <div class="change-filters">
++      <button class="is-active" data-change-filter="all">All <b>12</b></button>
++      <button data-change-filter="critical">Critical <b>1</b></button>
++      <button data-change-filter="high">High <b>2</b></button>
++      <button data-change-filter="elevated">Elevated <b>4</b></button>
++    </div>
++    <label class="inbox-search">${icon('search')}<input aria-label="Filter legal changes" placeholder="Filter by jurisdiction or issue"></label>
++    <div class="change-inbox-list">
++      ${changes.map((item, index) => `<button class="change-inbox-item ${index === 0 ? 'is-active' : ''}" data-change-item data-materiality="${item.materiality}" data-title="${item.title}" data-meta="${item.id} · ${item.jurisdiction}">
++        <i class="change-inbox-item__marker materiality-marker--${item.materiality}"></i>
++        <span class="change-inbox-item__date"><strong>${item.date.split(' ')[1]}</strong><small>${item.date.split(' ')[0]}</small></span>
++        <span class="change-inbox-item__body"><small>${item.jurisdiction}</small><strong>${item.title}</strong><span>${item.meta}</span></span>
++        <span class="change-inbox-item__meta"><b class="status status--${item.materiality === 'critical' ? 'critical' : item.materiality === 'high' ? 'warn' : 'info'}">${item.status}</b><small>${item.id}</small></span>
++        ${icon('chevron-right')}
++      </button>`).join('')}
++    </div>
++    <footer><span>8 additional items monitored</span><button data-toast="The full monitored-change archive would open here.">View all ${icon('arrow-right')}</button></footer>
++  </aside>`;
++}
++
++function impactPath() {
++  return `<div class="impact-path" aria-label="Source to decision impact path">
++    <article><span>${icon('source')}</span><small>Authority</small><strong>Verified change</strong><p>Municipal code and official implementation guidance.</p><button data-open-overlay="sources">3 source versions</button></article>
++    <i>${icon('arrow-right')}</i>
++    <article class="impact-path__scope"><span>${icon('building')}</span><small>Portfolio</small><strong>7 likely properties</strong><p>Locality, room count, workforce, and benefit predicates.</p><a href="/app/properties/dtla-01/">Inspect scope</a></article>
++    <i>${icon('arrow-right')}</i>
++    <article class="impact-path__controls"><span>${icon('shield')}</span><small>Operations</small><strong>3 controls affected</strong><p>Rate tables, benefit substantiation, and parallel testing.</p><a href="/app/controls/">Open controls</a></article>
++    <i>${icon('arrow-right')}</i>
++    <article class="impact-path__decision"><span>${icon('decision')}</span><small>Decision</small><strong>Approval due Jun 16</strong><p>Controlled implementation with evidence conditions.</p><a href="/app/briefs/la-hotel-wage-2026/">Open decision</a></article>
++  </div>`;
++}
++
++function changeDetail() {
++  return `<article class="change-detail" data-change-detail>
++    <header class="change-detail__header">
++      <div class="change-detail__identity"><i class="materiality-dot--critical"></i><div><small data-change-detail-meta>CHG-2026-118 · California · Los Angeles</small><h2 data-change-detail-title>Hotel wage and health-benefit step takes effect July 1</h2></div></div>
++      <div class="change-detail__actions"><button class="icon-button" aria-label="Share change" data-toast="Change record link copied.">${icon('share')}</button><button class="button button--secondary button--small" data-open-overlay="sources">${icon('source')} Source chain</button></div>
++    </header>
++    <section class="change-verdict"><div><span class="eyebrow">Legal delta</span><h3>The hotel wage floor increases and the health-benefit differential must be resolved property by property.</h3></div><div class="change-verdict__status"><span class="status status--critical">Material response required</span><small>Effective in 18 days</small></div></section>
++    <section class="change-facts">
++      <div><small>Published</small><strong>Jun 13, 2026</strong><span>${icon('check-circle')} Verified</span></div>
++      <div><small>Effective</small><strong>Jul 1, 2026</strong><span>${icon('clock')} 18 days</span></div>
++      <div><small>Primary authority</small><strong>LAMC § 187.02</strong><span>${icon('source')} 3 passages</span></div>
++      <div><small>Source health</small><strong>Current</strong><span class="good-text">${icon('shield')} No conflict</span></div>
++    </section>
++    <section class="impact-map"><header><div><span class="eyebrow">Enterprise consequence</span><h3>One legal change. Four governed transitions.</h3></div><span>Current as of Jun 13 · property facts v18</span></header>${impactPath()}</section>
++    <section class="scope-differential"><header><div><span class="eyebrow">Property scope</span><h3>Likely reach and remaining fact resolution</h3></div><button data-toast="All seven scoped properties would be shown.">View all 7 properties</button></header>
++      <div class="table-wrap"><table class="data-table data-table--compact"><thead><tr><th>Property</th><th>Coverage</th><th>Material condition</th><th>Fact state</th><th>Response</th></tr></thead><tbody>
++        ${properties.map((property, index) => `<tr><td><a href="/app/properties/dtla-01/"><strong>${property.name}</strong><small>${property.id} · ${property.rooms} rooms</small></a></td><td><span class="status status--${index === 0 ? 'critical' : index === 1 ? 'warn' : index === 2 ? 'info' : 'good'}">${index < 3 ? 'Covered' : 'Review'}</span></td><td>${index === 0 ? 'Benefit credit not substantiated' : index === 1 ? 'Population reconciliation' : index === 2 ? 'Rate table approval' : 'No material gap'}</td><td><span class="readiness"><i><em style="width:${property.readiness}%"></em></i><b>${property.readiness}%</b></span></td><td><a class="row-arrow" href="/app/matters/la-hotel-wage-2026/">${icon('arrow-right')}</a></td></tr>`).join('')}
++      </tbody></table></div>
++    </section>
++    <section class="decision-conversion"><div><span>${icon('matter')}</span><div><small>Governed response</small><h3>MTR-2026-041 · Los Angeles hotel wage step</h3><p>Scope, facts, analysis, controls, owners, evidence, and decision remain on one record.</p></div></div><a class="button button--light" href="/app/matters/la-hotel-wage-2026/">Open matter ${icon('arrow-right')}</a></section>
++  </article>`;
++}
++
++function rail() {
++  return `<section class="rail-card rail-card--priority"><header><span>${icon('clock')}</span><span class="status status--critical">Decision due</span></header><small class="eyebrow eyebrow--light">Next required action</small><h2>Approve the implementation posture.</h2><p>General Counsel approval is required before the first payroll configuration lock.</p><div class="rail-deadline"><span>Due</span><strong>Jun 16 · 5:00 PM</strong></div><a class="button button--accent" href="/app/briefs/la-hotel-wage-2026/">Open decision record</a></section>
++  <section class="rail-card"><header><div><span class="eyebrow">Materiality</span><h2>Why this is high priority</h2></div><span class="status status--critical">92 / 100</span></header><div class="materiality-model"><ul><li><span>Portfolio reach</span><strong>7 / 34 properties</strong></li><li><span>Effective-date proximity</span><strong>18 days</strong></li><li><span>Systems affected</span><strong>Payroll + benefits</strong></li><li><span>Open facts</span><strong class="critical-text">2 material</strong></li><li><span>Decision required</span><strong>Yes</strong></li></ul><p>The score is a transparent triage index—not a legal conclusion.</p></div></section>
++  <section class="rail-card"><header><div><span class="eyebrow">Horizon</span><h2>Change calendar</h2></div></header><div class="horizon-chart"><span><b>4</b><i class="critical" style="height:78%"></i><small>0–30d</small></span><span><b>7</b><i class="warn" style="height:55%"></i><small>31–60d</small></span><span><b>5</b><i style="height:40%"></i><small>61–90d</small></span><span><b>3</b><i class="good" style="height:25%"></i><small>90+d</small></span><span><b>8</b><i class="neutral" style="height:18%"></i><small>Watch</small></span></div></section>`;
++}
++
++function pageHeading() {
++  return `<header class="page-heading"><div><span class="eyebrow">Change intelligence</span><h1>Turn legal change into accountable response.</h1><p>Every development is tied to its authority, effective date, likely portfolio reach, control impact, decision requirement, and remaining fact gaps.</p></div><div class="page-heading__actions"><button class="button button--secondary" data-toast="Monitoring configuration opened.">${icon('settings')} Monitoring</button><button class="button button--primary" data-toast="A new legal change intake was opened.">${icon('plus')} Add change</button></div></header>`;
++}
++
++module.exports = function renderChanges() {
++  const content = `${pageHeading()}<section class="panel change-workspace">${changeInbox()}${changeDetail()}</section>`;
++  return appShell({ activeKey: 'changes', content, rail: rail() });
++};
+diff --git a/src/pages/controls.js b/src/pages/controls.js
+new file mode 100644
+index 0000000..e2e76e2
+--- /dev/null
++++ b/src/pages/controls.js
+@@ -0,0 +1,227 @@
++'use strict';
++
++const { appShell } = require('../components/app-shell');
++const { icon } = require('../components/icons');
++const { controls } = require('../data/platform-data');
++
++function heading() {
++  return `<header class="page-heading"><div><span class="eyebrow">Control assurance</span><h1>Turn obligations into controls. Turn controls into proof.</h1><p>A policy is not evidence. This registry distinguishes obligation, control design, implementation, operation, testing, accepted evidence, exceptions, and remediation.</p></div><div class="page-heading__actions"><button class="button button--secondary" data-toast="The evidence-request composer was opened.">${icon('upload')} Request evidence</button><button class="button button--primary" data-toast="A new control design workflow was opened.">${icon('plus')} Add control</button></div></header>`;
++}
++
++function hero() {
++  return `<section class="control-assurance-hero">
++    <div class="control-assurance-hero__score"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9"/><circle class="score" cx="21" cy="21" r="15.9" pathLength="100"/></svg><span><strong>87%</strong><small>Assurance coverage</small></span></div>
++    <div class="control-assurance-hero__copy"><span class="eyebrow eyebrow--light">Portfolio assurance posture</span><h2>Most obligations are controlled. Three conditions require action.</h2><p>Coverage is weighted by materiality, evidence currency, open exceptions, and independent testing. The score does not represent legal compliance.</p><div><span class="status status--good">42 operating</span><span class="status status--warn">5 review</span><span class="status status--critical">3 exceptions</span></div></div>
++    <div class="control-assurance-hero__facts"><span><small>Current evidence</small><strong>91%</strong><b>+4 pts this month</b></span><span><small>Open exceptions</small><strong>3</strong><b>2 material</b></span><span><small>Tests due · 30d</small><strong>9</strong><b>4 scheduled</b></span></div>
++  </section>`;
++}
++
++function domainCards() {
++  const domains = [
++    ['Payroll', 91, '2 exceptions', '14 controls'],
++    ['Timekeeping', 94, 'No material exception', '11 controls'],
++    ['Benefits', 76, '1 material evidence gap', '7 controls'],
++    ['Scheduling', 89, '1 exception', '6 controls'],
++    ['Tips & service charges', 84, '2 reviews', '9 controls'],
++    ['Workload & staffing', 88, '1 review', '5 controls']
++  ];
++  return `<section class="control-domain-grid">${domains.map(([name, score, note, count]) => `<article><div class="domain-card__score" style="--score:${score}"><svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9"/><circle class="score" cx="21" cy="21" r="15.9" pathLength="100"/></svg><strong>${score}%</strong></div><div><small>${count}</small><h3>${name}</h3><p>${note}</p></div><a href="#control-register" aria-label="View ${name} controls">${icon('arrow-right')}</a></article>`).join('')}</section>`;
++}
++
++function matrix() {
++  return `<section class="panel control-matrix"><header class="panel-heading"><div><span class="eyebrow">Coverage matrix</span><h2>Obligation-to-control coverage</h2><p>Design, operation, evidence, assurance, and exception status remain separate.</p></div><div class="matrix-legend"><span><i class="good"></i> Effective</span><span><i class="warn"></i> Review</span><span><i class="critical"></i> Exception</span><span><i class="neutral"></i> Not tested</span></div></header>
++    <div class="matrix-wrap"><div class="matrix-head"><span>Obligation</span><span>Design</span><span>Operate</span><span>Evidence</span><span>Assure</span><span>Accountable owner</span></div>
++      <div class="matrix-row"><strong>LA hotel wage floor<small>RULE-LA-HOTEL-3.0</small></strong><button class="matrix-cell matrix-cell--good" data-toast="Control design is approved.">A</button><button class="matrix-cell matrix-cell--warn" data-toast="Operating test is in progress.">IP</button><button class="matrix-cell matrix-cell--warn" data-toast="One evidence item remains outstanding.">4/5</button><button class="matrix-cell matrix-cell--neutral" data-toast="Assurance is scheduled for July 8.">Jul 8</button><span>Priya Shah · Payroll</span></div>
++      <div class="matrix-row"><strong>Health-benefit differential<small>RULE-LA-HB-3.0</small></strong><button class="matrix-cell matrix-cell--good">A</button><button class="matrix-cell matrix-cell--critical">EX</button><button class="matrix-cell matrix-cell--critical">Gap</button><button class="matrix-cell matrix-cell--neutral">—</button><span>Marcus Lee · Benefits</span></div>
++      <div class="matrix-row"><strong>Housekeeper workload cap<small>RULE-LA-HK-2.2</small></strong><button class="matrix-cell matrix-cell--good">A</button><button class="matrix-cell matrix-cell--good">OP</button><button class="matrix-cell matrix-cell--good">7/7</button><button class="matrix-cell matrix-cell--good">Pass</button><span>Elena Ruiz · Operations</span></div>
++      <div class="matrix-row"><strong>Predictive-schedule premium<small>RULE-CHI-FWW-1.4</small></strong><button class="matrix-cell matrix-cell--good">A</button><button class="matrix-cell matrix-cell--warn">RV</button><button class="matrix-cell matrix-cell--good">6/6</button><button class="matrix-cell matrix-cell--warn">Review</button><span>Jamie Chen · HRIS</span></div>
++      <div class="matrix-row"><strong>Service-charge classification<small>RULE-SVC-4.1</small></strong><button class="matrix-cell matrix-cell--warn">RV</button><button class="matrix-cell matrix-cell--good">OP</button><button class="matrix-cell matrix-cell--warn">8/9</button><button class="matrix-cell matrix-cell--neutral">Jun 27</button><span>Noah Williams · F&B</span></div>
++    </div>
++  </section>`;
++}
++
++function register() {
++  return `<section class="panel control-register" id="control-register"><header class="panel-heading panel-heading--table"><div><span class="eyebrow">Control registry</span><h2>50 governed controls</h2></div><div class="table-actions"><label>${icon('search')}<input aria-label="Filter controls" placeholder="Filter controls"></label><select aria-label="Filter by domain"><option>All domains</option><option>Payroll</option><option>Benefits</option><option>Timekeeping</option></select><button data-toast="Control filters opened.">${icon('filter')} Filters</button></div></header>
++    <div class="table-wrap"><table class="data-table"><thead><tr><th>Control</th><th>Domain</th><th>Coverage</th><th>Evidence</th><th>Exceptions</th><th>Next test</th><th></th></tr></thead><tbody>
++      ${controls.map((control, index) => `<tr data-control-row data-control-title="${control.name}" data-control-id="${control.id}"><td><div class="control-name"><span class="control-icon control-icon--${index}">${icon(index === 0 ? 'calculator' : index === 1 ? 'shield' : index === 2 ? 'clock' : index === 3 ? 'calendar' : 'users')}</span><span><strong>${control.name}</strong><small>${control.id} · ${index === 0 ? 'Automated preventive' : index === 1 ? 'Hybrid preventive' : 'Detective review'}</small></span></div></td><td>${control.domain}</td><td><span class="coverage-meter"><i><em style="width:${control.coverage}%"></em></i><b>${control.coverage}%</b></span></td><td><span class="status status--${control.evidence === 'Current' ? 'good' : control.evidence === 'Gap' ? 'critical' : 'warn'}">${control.evidence}</span></td><td>${control.exceptions ? `<span class="${control.exceptions > 1 ? 'critical-text' : 'warn-text'}">${control.exceptions} open</span>` : '<span class="good-text">None</span>'}</td><td>${control.nextTest}</td><td><button class="row-arrow" aria-label="Open control">${icon('arrow-right')}</button></td></tr>`).join('')}
++    </tbody></table></div><footer class="table-footer"><span>Showing 5 of 50 controls</span><a href="#" data-toast="The complete control registry would open here.">View complete registry ${icon('arrow-right')}</a></footer></section>`;
++}
++
++function cycle() {
++  return `<section class="panel assurance-cycle"><header class="panel-heading"><div><span class="eyebrow">Assurance lifecycle</span><h2>From legal obligation to operating proof</h2></div><button data-open-overlay="sources">Inspect evidence contract</button></header><ol><li><span>${icon('source')}</span><small>01 · Obligation</small><strong>Define the outcome</strong><p>Rule, scope, effective date, and legal owner.</p></li><li><span>${icon('settings')}</span><small>02 · Design</small><strong>Specify the control</strong><p>Owner, cadence, population, system, and procedure.</p></li><li><span>${icon('activity')}</span><small>03 · Operate</small><strong>Execute the control</strong><p>Performance event with retained metadata.</p></li><li><span>${icon('database')}</span><small>04 · Evidence</small><strong>Collect operating proof</strong><p>Immutable artifact, period, population, and hash.</p></li><li><span>${icon('shield')}</span><small>05 · Assure</small><strong>Test and accept</strong><p>Independent result, exception, remediation, and retest.</p></li></ol></section>`;
++}
++
++function controlDrawer() {
++  return `<div class="control-detail-backdrop" data-overlay="control-detail" hidden><aside class="control-detail-drawer" data-control-drawer role="dialog" aria-modal="true" aria-labelledby="control-drawer-title"><header><div><span class="eyebrow" data-control-drawer-id>CTL-PAY-014</span><h2 id="control-drawer-title" data-control-drawer-title>Hotel wage rate table deployment</h2></div><button data-close-overlay aria-label="Close control detail">${icon('close')}</button></header><section class="control-detail-state"><div><small>Operating status</small><strong>In progress</strong><p>Parallel test scheduled before production payroll lock.</p></div><span class="status status--warn">1 exception</span></section><section><span class="eyebrow">Control objective</span><h3>Every covered worker receives the effective property wage and any residual benefit amount on the first applicable payroll.</h3></section><section><span class="eyebrow">Design</span><div class="control-test"><span>${icon('code')}</span><div><strong>Automated configuration + independent review</strong><p>Effective-dated rate table, covered-population reconciliation, two-person approval, and test payroll evidence.</p></div></div></section><section><span class="eyebrow">Evidence required</span><ul class="feature-list"><li>${icon('check-circle')} Approved rate table export</li><li>${icon('check-circle')} Covered-population reconciliation</li><li>${icon('alert')} DTLA-01 benefit evidence</li><li>${icon('clock')} Parallel payroll result</li></ul></section><footer><button class="button button--secondary" data-toast="Control work history opened.">View history</button><button class="button button--primary" data-toast="Evidence request sent to the accountable owner.">Request evidence</button></footer></aside></div>`;
++}
++
++function rail() {
++  return `<section class="rail-card rail-card--priority"><header><span>${icon('alert')}</span><span class="status status--critical">Material exception</span></header><small class="eyebrow eyebrow--light">CTL-BEN-006</small><h2>Benefit credit evidence is incomplete.</h2><p>DTLA-01 cannot use the planned credit until the carrier contribution statement is accepted.</p><div class="rail-deadline"><span>Evidence due</span><strong>Jun 18</strong></div><button class="button button--accent" data-toast="Evidence request opened for CTL-BEN-006.">Open exception</button></section>
++  <section class="rail-card"><header><div><span class="eyebrow">Test calendar</span><h2>June assurance</h2></div><button class="icon-button" aria-label="Open assurance calendar" data-toast="The full assurance calendar opened.">${icon('calendar')}</button></header><div class="calendar-month"><strong>June 2026</strong><span><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b><b>S</b></span><div>${Array.from({length:30},(_,i)=>`<b class="${i+1===13?'today':i+1===18||i+1===20||i+1===27?'has-event':''}">${i+1}</b>`).join('')}</div></div></section>
++  <section class="rail-card"><header><div><span class="eyebrow">Evidence health</span><h2>Portfolio evidence</h2></div><span class="status status--good">91%</span></header><div class="confidence-factor"><div><strong>Current and accepted</strong><small>246 evidence items</small></div><b class="good-text">91%</b></div><div class="confidence-factor"><div><strong>Expiring in 30 days</strong><small>17 evidence items</small></div><b class="warn-text">6%</b></div><div class="confidence-factor"><div><strong>Rejected or missing</strong><small>8 evidence items</small></div><b class="critical-text">3%</b></div></section>`;
++}
++
++module.exports = function renderControls() {
++  const content = `${heading()}${hero()}${domainCards()}${matrix()}${register()}${cycle()}${controlDrawer()}`;
++  return appShell({ activeKey: 'controls', content, rail: rail() });
++};
+diff --git a/src/pages/home.js b/src/pages/home.js
+new file mode 100644
+index 0000000..6e0cb1a
+--- /dev/null
++++ b/src/pages/home.js
+@@ -0,0 +1,195 @@
++'use strict';
++
++const { publicShell } = require('../components/public-shell');
++const { icon } = require('../components/icons');
++const { product } = require('../data/platform-data');
++
++function hero() {
++  return `<section class="home-hero">
++    <div class="hero-aurora"></div><div class="hero-grid"></div>
++    <div class="home-hero__inner">
++      <div class="home-hero__copy">
++        <span class="hero-kicker"><i></i> Hospitality wage-and-hour intelligence</span>
++        <h1>See the change.<br>Know the impact.<br><em>Prove the response.</em></h1>
++        <p>The control plane that connects verified legal authority to your properties, people, payroll systems, accountable actions, executive decisions, and operating evidence.</p>
++        <div class="hero-actions"><a class="button button--accent button--large" href="/app/">Enter portfolio command ${icon('arrow-right')}</a><a class="button button--ghost-light button--large" href="#how-it-works">See how the system works</a></div>
++        <div class="hero-trustline"><span>${icon('shield')} Source governed</span><span>${icon('calendar')} Effective dated</span><span>${icon('source')} Passage cited</span><span>${icon('eye')} Gaps disclosed</span></div>
++      </div>
++      <div class="hero-system" aria-label="Illustrative enterprise matter flow">
++        <div class="hero-system__top"><span><i></i> Active enterprise matter</span><button data-open-overlay="command">Ask across this matter ${icon('spark')}</button></div>
++        <header class="hero-matter-head"><div><span>MTR-2026-041 · Southern California</span><h2>Los Angeles hotel wage step</h2><p>Effective July 1, 2026 · 7 properties under review</p></div><span class="status status--critical">Decision due</span></header>
++        <div class="system-thread"><i></i><i></i><i></i><i></i></div>
++        <ol class="hero-flow">
++          <li class="hero-flow__authority"><span class="flow-icon">${icon('source')}</span><div><small>Verified authority</small><strong>Hotel wage and benefit step</strong><p>Primary law · effective date · approved rule version</p></div><b>Current</b></li>
++          <li class="hero-flow__scope"><span class="flow-icon">${icon('building')}</span><div><small>Portfolio applicability</small><strong>7 properties · 842 employees</strong><p>Location · room count · workforce · benefit facts</p></div><b>2 gaps</b></li>
++          <li class="hero-flow__controls"><span class="flow-icon">${icon('shield')}</span><div><small>Accountable response</small><strong>3 controls · 4 owners</strong><p>Payroll · benefits · testing · evidence</p></div><b>In progress</b></li>
++          <li class="hero-flow__decision"><span class="flow-icon">${icon('decision')}</span><div><small>Executive decision</small><strong>Controlled implementation</strong><p>Recommendation · conditions · provenance</p></div><b>Due Jun 16</b></li>
++        </ol>
++        <footer class="hero-system__footer"><span><strong>96%</strong><small>record completeness</small></span><span><strong>3</strong><small>primary authorities</small></span><span><strong>1</strong><small>disclosed fact gap</small></span><a href="/app/matters/la-hotel-wage-2026/">Open governed matter ${icon('arrow-right')}</a></footer>
++      </div>
++    </div>
++    <div class="hero-proof"><div class="proof-metric"><strong>${product.corpus.issueBriefs}</strong><span>Deep issue briefs</span><small>Curated legal intelligence</small></div><div class="proof-metric"><strong>${product.corpus.jurisdictions}</strong><span>State + D.C. guides</span><small>Effective-dated comparisons</small></div><div class="proof-metric"><strong>${product.corpus.hotelLaws}</strong><span>Hotel-specific laws</span><small>Wage, benefit, workload, retention</small></div><div class="proof-metric"><strong>${product.corpus.tools}</strong><span>Inspectable workflows</span><small>Inputs, logic, sources, outputs</small></div></div>
++  </section>`;
++}
++
++function thesis() {
++  return `<section class="home-thesis" id="how-it-works"><header class="section-lead section-lead--split"><div><span class="eyebrow">The operating model</span><h2>Legal intelligence is only useful when it survives the handoff.</h2></div><p>A development should not be summarized in one system, analyzed in another, assigned in email, briefed in slides, and proven in a shared drive. One governed record should carry the law, facts, analysis, ownership, decision, and evidence.</p></header>
++    <div class="consequence-chain">
++      <article><span>01</span>${icon('signal')}<h3>Detect change</h3><p>Capture the source, identify the changed rule, preserve the version, and rank materiality.</p><small>Authority graph</small></article>
++      <article><span>02</span>${icon('building')}<h3>Resolve reach</h3><p>Apply effective-dated law to property, workforce, pay, benefit, schedule, and system facts.</p><small>Applicability engine</small></article>
++      <article><span>03</span>${icon('matter')}<h3>Govern response</h3><p>Carry findings into owners, actions, controls, evidence requests, and approved exceptions.</p><small>Matter graph</small></article>
++      <article><span>04</span>${icon('decision')}<h3>Preserve decision</h3><p>Give leadership a concise recommendation without severing it from its legal and factual basis.</p><small>Decision record</small></article>
++    </div>
++  </section>`;
++}
++
++function controlPlane() {
++  return `<section class="control-plane-section"><div class="control-plane-copy"><span class="eyebrow eyebrow--light">The control plane</span><h2>One record from authority to assurance.</h2><p>Every experience is a view of the same governed object graph—not a disconnected dashboard, calculator, article, or slide deck.</p><ul class="feature-list feature-list--light"><li>${icon('check-circle')} One rule version across every surface</li><li>${icon('check-circle')} One effective-dated property fact model</li><li>${icon('check-circle')} Deterministic logic separated from counsel judgment</li><li>${icon('check-circle')} Approved decisions linked to operating proof</li><li>${icon('check-circle')} Revalidation when a dependency changes</li></ul><a class="text-link text-link--light" href="/methodology/">Inspect the evidence and governance standard ${icon('arrow-right')}</a></div>
++    <div class="control-plane-window">
++      <div class="window-chrome"><span><i></i><i></i><i></i></span><strong>North America portfolio</strong><small>Current through Jun 13, 2026</small></div>
++      <div class="window-shell"><aside><span class="mini-logo">HWL</span><span class="active">${icon('grid')} Overview</span><span>${icon('signal')} Changes</span><span>${icon('matter')} Matters</span><span>${icon('shield')} Controls</span><span>${icon('building')} Portfolio</span><span>${icon('book')} Research</span></aside>
++        <main class="window-main"><header class="window-heading"><div><small>PORTFOLIO COMMAND</small><h3>What requires attention now?</h3></div><button>${icon('spark')} Ask</button></header>
++          <div class="window-kpis"><span><small>Material decisions</small><strong>3</strong><i>2 due in 7 days</i></span><span><small>Open matters</small><strong>7</strong><i>4 on track</i></span><span><small>Control assurance</small><strong>87%</strong><i>+5 pts</i></span></div>
++          <div class="window-grid"><article class="window-matter"><header><span>MATTER MTR-2026-041</span><b>Decision due</b></header><h4>Los Angeles hotel wage step</h4><p>7 properties · 842 employees · July 1 effective date</p><div class="mini-lifecycle"><span class="done">Assess</span><span class="active">Decide</span><span>Implement</span><span>Assure</span></div><footer><span>1 fact gap · 3 controls</span><a href="/app/matters/la-hotel-wage-2026/">Open matter →</a></footer></article><article class="window-exposure"><header><span>PORTFOLIO REACH</span><span>34 properties</span></header><div class="exposure-row"><span>Southern California</span><i><em style="width:88%"></em></i><b>7</b></div><div class="exposure-row"><span>Northeast</span><i><em style="width:56%"></em></i><b>5</b></div><div class="exposure-row"><span>Pacific Northwest</span><i><em style="width:41%"></em></i><b>4</b></div></article><article class="window-actions"><header><span>EXECUTIVE ACTIONS</span><b>3 due</b></header><div><i class="critical-dot"></i><span><strong>Approve wage-step response</strong><small>Due Jun 16 · General Counsel</small></span></div><div><i class="warn-dot"></i><span><strong>Accept benefit evidence</strong><small>Due Jun 18 · Benefits</small></span></div></article></div>
++        </main>
++      </div>
++    </div>
++  </section>`;
++}
++
++function audiences() {
++  return `<section class="audience-section"><header class="section-lead"><span class="eyebrow">One system · role-relevant emphasis</span><h2>Shared truth without shared noise.</h2><p>Every leader sees the depth appropriate to the decision they own. No role gets a divergent version of the law or facts.</p></header><div class="audience-grid">
++    <article><span>${icon('decision')}</span><small>General Counsel</small><h3>Material posture and decisions</h3><p>See what changed, which obligations are material, what judgment is required, and whether the response remains defensible.</p><a href="/app/">Open portfolio command ${icon('arrow-right')}</a></article>
++    <article><span>${icon('book')}</span><small>Employment counsel</small><h3>Facts, analysis, and authority</h3><p>Resolve scope, inspect every proposition, model alternatives, approve findings, and draft the decision record.</p><a href="/app/matters/la-hotel-wage-2026/">Open governed matter ${icon('arrow-right')}</a></article>
++    <article><span>${icon('calculator')}</span><small>Payroll + HR</small><h3>Configuration and accountable action</h3><p>Translate approved findings into effective-dated rate tables, worker populations, testing, and communications.</p><a href="/app/controls/">Open control assurance ${icon('arrow-right')}</a></article>
++    <article><span>${icon('building')}</span><small>Hotel operations</small><h3>Property obligations and proof</h3><p>Know which local requirements apply, what process changes, who owns them, and what evidence must be retained.</p><a href="/app/properties/dtla-01/">Open property intelligence ${icon('arrow-right')}</a></article>
++  </div></section>`;
++}
++
++function evidence() {
++  const layers = [
++    ['01','Primary authority','Statutes, regulations, ordinances, cases, and official publications','Immutable source'],
++    ['02','Official guidance','Agency rules, FAQs, notices, and enforcement materials','Versioned guidance'],
++    ['03','Canonical analysis','Approved explanations, issue structures, and interpretation notes','Attorney reviewed'],
++    ['04','Enterprise facts','Property, workforce, payroll, benefits, schedule, and policy data','Provenance + freshness'],
++    ['05','Deterministic logic','Coverage predicates, calculations, branch traces, and tests','Reproducible'],
++    ['06','Counsel judgment','Interpretation, materiality, recommendation, and conditions','Named approval'],
++    ['07','Response evidence','Configuration, tests, communications, and accepted proof','Assured operation']
++  ];
++  return `<section class="evidence-standard-section"><div class="evidence-standard__copy"><span class="eyebrow">Trust architecture</span><h2>Authority is a chain—not a badge.</h2><p>The platform distinguishes every layer that supports a conclusion. Source text, enterprise fact, calculation, legal judgment, and response evidence never collapse into one opaque “confidence score.”</p><a class="button button--primary" href="/methodology/">Read the evidence standard ${icon('arrow-right')}</a></div><ol class="evidence-layers">${layers.map(([n,title,desc,status])=>`<li><span>${n}</span><div><strong>${title}</strong><p>${desc}</p></div><b>${status}</b></li>`).join('')}</ol></section>`;
++}
++
++function research() {
++  return `<section class="research-foundation"><header class="research-foundation__head"><div><span class="eyebrow">Public authority foundation</span><h2>Deep research remains the visible foundation.</h2></div><p>The public site continues to carry rigorous issue, jurisdiction, development, methodology, and tool content. The enterprise control plane adds property applicability and governed response without weakening public access.</p></header><div class="research-foundation__grid"><article class="research-feature"><span>Featured intelligence</span><h3>Hotel ordinances are no longer edge cases.</h3><p>Local wage floors, health-benefit differentials, workload caps, panic-button obligations, scheduling rules, recall rights, and retention duties increasingly determine the hotel operating model.</p><footer><span>Updated Jun 13, 2026</span><b>${icon('source')} 28 primary authorities</b></footer></article><div class="research-stack"><a href="/intelligence/"><span>${icon('book')}</span><div><small>Issue intelligence</small><strong>Eighteen structured issue briefs</strong><p>Direct answers, deeper analysis, operational implications, and sources.</p></div>${icon('arrow-right')}</a><a href="/jurisdictions/"><span>${icon('map')}</span><div><small>Jurisdictions</small><strong>All 50 states + D.C.</strong><p>Effective-dated rules, local overlays, and property relevance.</p></div>${icon('arrow-right')}</a><a href="/tools/"><span>${icon('calculator')}</span><div><small>Inspectable workflows</small><strong>Ten governed tools</strong><p>Inputs, assumptions, rule branches, math, citations, and outputs.</p></div>${icon('arrow-right')}</a></div></div></section>`;
++}
++
++function closing() {
++  return `<section class="closing-manifesto"><div><span class="eyebrow eyebrow--light">The standard</span><h2>Every conclusion should be usable. Every action should be accountable. Every decision should be provable.</h2></div><div><p>Hotel Wage Law v2 is designed to become the canonical operating system for hospitality wage-and-hour response—not another place to read about it.</p><a class="button button--accent button--large" href="/app/">Enter the enterprise prototype ${icon('arrow-right')}</a></div></section>`;
++}
++
++module.exports = function renderHome() {
++  return publicShell({ activeKey: 'platform', title: 'Hotel Wage Law · Hospitality intelligence and control', description: 'The hospitality wage-and-hour control plane: verified authority, portfolio applicability, accountable response, executive decisions, and operating evidence.', content: `${hero()}${thesis()}${controlPlane()}${audiences()}${evidence()}${research()}${closing()}` });
++};
+diff --git a/src/pages/intelligence.js b/src/pages/intelligence.js
+new file mode 100644
+index 0000000..b0ed655
+--- /dev/null
++++ b/src/pages/intelligence.js
+@@ -0,0 +1,183 @@
++'use strict';
++
++const { publicShell } = require('../components/public-shell');
++const { icon } = require('../components/icons');
++const { product, changes, toolRecords } = require('../data/platform-data');
++
++function hero() {
++  return `<section class="intelligence-hero"><div class="intelligence-hero__inner"><div><span class="hero-kicker"><i></i> The authority graph</span><h1>Legal intelligence that knows <em>what it changes.</em></h1><p>Developments, issues, jurisdictions, and tools are connected through effective-dated sources and rules—so the platform can identify what requires review when the law moves.</p><div class="hero-actions"><a class="button button--accent button--large" href="#developments">See material developments ${icon('arrow-right')}</a><a class="button button--ghost-light button--large" href="/methodology/">Inspect the evidence standard</a></div><div class="hero-trustline"><span>${icon('source')} Primary-source passages</span><span>${icon('history')} Version history</span><span>${icon('calendar')} Effective dates</span><span>${icon('refresh')} Revalidation triggers</span></div></div>
++    <aside class="intelligence-index"><header><span class="eyebrow eyebrow--light">Current corpus</span><b>Reviewed through Jun 13, 2026</b></header><div><strong>${product.corpus.issueBriefs}</strong><span>Issue briefs</span><small>Structured legal questions</small></div><div><strong>${product.corpus.jurisdictions}</strong><span>Jurisdiction records</span><small>50 states + D.C.</small></div><div><strong>${product.corpus.hotelLaws}</strong><span>Hotel-specific laws</span><small>Local and state overlays</small></div><div><strong>${product.corpus.tools}</strong><span>Inspectable workflows</span><small>Rules, math, and outputs</small></div><footer><span>${icon('shield')} Source governed</span><span>${icon('check-circle')} Attorney reviewed</span><span>${icon('eye')} Gaps disclosed</span></footer></aside>
++  </div></section>`;
++}
++
++function indexNav() {
++  return `<nav class="public-intelligence-nav" aria-label="Intelligence sections"><div><a href="#developments"><span>${icon('signal')}</span><div><strong>Developments</strong><small>What changed</small></div></a><a href="#issues"><span>${icon('book')}</span><div><strong>Issues</strong><small>What the law requires</small></div></a><a href="/jurisdictions/"><span>${icon('map')}</span><div><strong>Jurisdictions</strong><small>Where it applies</small></div></a><a href="/tools/"><span>${icon('calculator')}</span><div><strong>Tools</strong><small>How it computes</small></div></a><a href="/methodology/"><span>${icon('shield')}</span><div><strong>Evidence</strong><small>Why it is supportable</small></div></a></div></nav>`;
++}
++
++function developments() {
++  return `<section class="developments-section" id="developments"><header class="section-lead section-lead--split"><div><span class="eyebrow">Change intelligence</span><h2>Not every update deserves the same response.</h2></div><p>Materiality is triaged against authority, effective date, issue family, jurisdiction, and likely hotel relevance. Enterprise customers can then resolve actual portfolio reach.</p></header><div class="public-signal-layout"><div class="public-signal-list">${changes.slice(0,4).map((change,index)=>`<article class="public-signal ${index===0?'public-signal--lead':''}"><time class="public-signal__date"><strong>${change.date}</strong><small>${change.jurisdiction}</small></time><div class="public-signal__body"><span>${change.id} · ${change.materiality}</span><h3>${change.title}</h3><p>${index===0?'The effective wage and benefit structure changes for covered Los Angeles hotels. Property-specific benefit and workforce facts determine the final implementation path.':'The change has been normalized to its affected rule set and hotel operating implications.'}</p><footer><span class="status status--${change.materiality==='critical'?'critical':change.materiality==='high'?'warn':'info'}">${change.status}</span><button data-open-overlay="command">Search related authority ${icon('search')}</button></footer></div><a href="/app/changes/" aria-label="Open change intelligence">${icon('arrow-right')}</a></article>`).join('')}</div>
++    <aside class="signal-method"><span class="eyebrow eyebrow--light">From signal to response</span><h3>Every published change carries a governed delta.</h3><ol><li><span>01</span><div><strong>Capture the authority</strong><p>Version, hash, publication, effective date, and passage.</p></div></li><li><span>02</span><div><strong>Normalize the rule change</strong><p>Coverage, obligation, exception, and calculation impact.</p></div></li><li><span>03</span><div><strong>Assess materiality</strong><p>Hotel relevance, urgency, downstream objects, and uncertainty.</p></div></li><li><span>04</span><div><strong>Trigger revalidation</strong><p>Identify affected content, tools, properties, findings, and decisions.</p></div></li></ol><a class="button" href="/methodology/">Read the governance standard</a></aside></div></section>`;
++}
++
++const issueFamilies = [
++  { number:'01', title:'Tips & service charges', count:'3 briefs', items:['Tip credit','Tip pooling','Service charges'], className:'' },
++  { number:'02', title:'Pay computation', count:'4 briefs', items:['Overtime & regular rate','Minimum wage','Hotel ordinances','Housekeeper pay'], className:'issue-family--teal' },
++  { number:'03', title:'Workforce structure', count:'3 briefs', items:['Exemptions','Independent contractors','Joint employer'], className:'issue-family--green' },
++  { number:'04', title:'Time & scheduling', count:'3 briefs', items:['Off-the-clock work','Meal & rest breaks','Scheduling'], className:'issue-family--gold' },
++  { number:'05', title:'Enforcement & special populations', count:'5 briefs', items:['Recordkeeping','Tip tax & payroll','PAGA & class actions','Seasonal & resorts','Minors'], className:'issue-family--violet' }
++];
++
++function issues() {
++  return `<section class="issue-library-section" id="issues"><header class="section-lead section-lead--split"><div><span class="eyebrow">Issue architecture</span><h2>Eighteen legal questions. One connected rule system.</h2></div><p>Each issue begins with a direct answer, then exposes scope, effective date, controlling authority, factual dependencies, computation, uncertainty, and operational consequence.</p></header><div class="issue-family-grid">${issueFamilies.map(family=>`<article class="issue-family ${family.className}"><header><span>${family.number}</span><b>${family.count}</b></header><h3>${family.title}</h3><ul>${family.items.map(item=>`<li>${item}</li>`).join('')}</ul><a href="#" data-toast="The ${family.title} issue family would open here.">Explore issue family ${icon('arrow-right')}</a></article>`).join('')}</div><div class="library-callout"><div><span>${icon('source')}</span><div><small>Content contract</small><h3>Direct answer → scope → reasoning → operations → authority → status</h3><p>Every substantive page follows the same supportable-answer pattern.</p></div></div><a class="button button--primary" href="/methodology/">Inspect the standard</a></div></section>`;
++}
++
++function jurisdictionPreview() {
++  return `<section class="jurisdiction-preview"><div class="jurisdiction-preview__copy"><span class="eyebrow eyebrow--light">Jurisdiction intelligence</span><h2>Fifty-one records. Thousands of local consequences.</h2><p>State-level summaries are the starting point. The platform layers local hotel wage, benefit, workload, scheduling, and retention requirements—and then resolves them against actual property facts.</p><ul class="feature-list feature-list--light"><li>${icon('check-circle')} Effective-dated wage and tip-credit rules</li><li>${icon('check-circle')} Daily and weekly overtime architecture</li><li>${icon('check-circle')} Break, scheduling, and pay-frequency overlays</li><li>${icon('check-circle')} Hotel-specific local-law inventory</li></ul><a class="button button--light" href="/jurisdictions/">Open jurisdiction intelligence ${icon('arrow-right')}</a></div><div class="jurisdiction-preview__map"><svg viewBox="0 0 800 450" role="img" aria-label="Illustrative United States portfolio map"><path class="map-country" d="M80 86 180 58l92 30 74-24 85 26 83-10 82 35 62 75-24 94-89 39-82 58-100-9-72-46-76-6-57-67-67-39-10-78Z"/><g class="map-clusters"><circle cx="165" cy="280" r="58"/><circle cx="610" cy="170" r="43"/><circle cx="135" cy="115" r="34"/><circle cx="430" cy="270" r="49"/></g><g class="map-pins"><circle cx="142" cy="285" r="11"/><circle cx="173" cy="268" r="9"/><circle cx="205" cy="293" r="8"/><circle cx="610" cy="164" r="10"/><circle cx="635" cy="188" r="8"/><circle cx="138" cy="115" r="8"/><circle cx="428" cy="271" r="8"/></g></svg><div class="map-legend"><span><i class="tier-4"></i> Tier 4 complexity</span><span><i class="tier-3"></i> Tier 3 complexity</span><span><i class="tier-2"></i> Tier 2 complexity</span><span><i class="tier-1"></i> Baseline</span></div><div class="map-proof"><span><strong>51</strong><small>State + D.C. records</small></span><span><strong>19</strong><small>Hotel-specific laws</small></span><span><strong>8</strong><small>Portfolio jurisdictions</small></span><span><strong>34</strong><small>Illustrative properties</small></span></div></div></section>`;
++}
++
++function tools() {
++  return `<section class="public-tools-section"><header class="section-lead section-lead--split"><div><span class="eyebrow">Inspectable workflows</span><h2>The output is not the product. The process is.</h2></div><p>A serious legal tool preserves scope, inputs, assumptions, rule versions, branch trace, math, citations, limitations, and downstream action.</p></header><div class="public-tool-grid">${toolRecords.slice(0,6).map((tool,index)=>`<article class="public-tool-card"><span class="public-tool-card__number">0${index+1}</span><i>${icon(tool.icon)}</i><small>${tool.label}</small><h3>${tool.title}</h3><p>${tool.description}</p><footer><span>${tool.status}</span><a href="/tools/">Open workflow ${icon('arrow-right')}</a></footer></article>`).join('')}</div><div class="public-tools-footer"><span>${icon('info')} Prototype tools are illustrative until their legal specifications, calculation fixtures, source versions, and attorney approvals are production validated.</span><a class="button button--primary" href="/tools/">Explore all ten workflows</a></div></section>`;
++}
++
++function bridge() {
++  return `<section class="public-enterprise-bridge"><div><span class="eyebrow eyebrow--light">Enterprise continuity</span><h2>Public authority is the beginning of the response—not a separate product.</h2><p>The same approved sources and rules power private property applicability, governed matters, controls, evidence, and executive decision records without exposing tenant data publicly.</p></div><a class="button button--accent button--large" href="/app/">Enter portfolio command ${icon('arrow-right')}</a></section>`;
++}
++
++module.exports = function renderIntelligence() {
++  return publicShell({ activeKey: 'intelligence', title: 'Intelligence · Hotel Wage Law', description: 'Verified hotel wage-and-hour developments, issue architecture, jurisdiction records, inspectable tools, and evidence governance.', content: `${hero()}${indexNav()}${developments()}${issues()}${jurisdictionPreview()}${tools()}${bridge()}` });
++};
+diff --git a/src/pages/jurisdictions.js b/src/pages/jurisdictions.js
+new file mode 100644
+index 0000000..77d61e7
+--- /dev/null
++++ b/src/pages/jurisdictions.js
+@@ -0,0 +1,122 @@
++'use strict';
++
++const { publicShell } = require('../components/public-shell');
++const { icon } = require('../components/icons');
++const { jurisdictionRecords } = require('../data/platform-data');
++
++function hero() {
++  return `<section class="jurisdictions-hero"><div><span class="hero-kicker"><i></i> Jurisdiction intelligence</span><h1>Know the rule.<br>Then resolve <em>the property.</em></h1><p>State and District of Columbia records establish the legal architecture. Hotel-specific local laws and governed property facts determine the answer that operations can actually use.</p><div class="hero-actions"><a class="button button--accent button--large" href="#explorer">Explore 51 jurisdictions ${icon('arrow-right')}</a><a class="button button--ghost-light button--large" href="#compare">Compare complexity</a></div></div><aside class="jurisdiction-metrics"><div><strong>51</strong><span>State + D.C.</span><small>Effective-dated records</small></div><div><strong>19</strong><span>Hotel-specific laws</span><small>Wage, benefit, workload, retention</small></div><div><strong>4</strong><span>Complexity tiers</span><small>Transparent triage—not legal outcomes</small></div><div><strong>100%</strong><span>Source lineage target</span><small>Passage-level primary authority</small></div><footer>${icon('info')} Public jurisdiction records are not property-specific legal determinations.</footer></aside></section>`;
++}
++
++function explorer() {
++  const cards = jurisdictionRecords.map(record => `<button class="jurisdiction-card jurisdiction-card--t${record.tier} ${record.code==='CA'?'is-selected':''}" data-jurisdiction-card data-jurisdiction-code="${record.code}" data-jurisdiction-name="${record.name}" data-jurisdiction-tier="${record.tier}" data-jurisdiction-rate="${record.rate}" data-jurisdiction-tip="${record.tip}" data-jurisdiction-overtime="${record.overtime}" data-jurisdiction-hotel="${record.hotel}"><span><strong>${record.code}</strong><small>${record.name}</small></span>${record.hotel.toLowerCase().includes('hotel')||record.hotel.toLowerCase().includes('hospitality')?icon('building'):''}<b>Tier ${record.tier}</b></button>`).join('');
++  return `<section class="jurisdiction-explorer" id="explorer"><header class="section-lead section-lead--split"><div><span class="eyebrow">Fifty-one records</span><h2>Explore the legal architecture before property facts change the answer.</h2></div><p>Complexity tiers summarize the number and interaction of state, local, industry, scheduling, tip, break, and remedies layers. Every tier remains inspectable.</p></header><div class="tier-ribbon"><button class="is-active" data-jurisdiction-tier="all"><span>${icon('grid')}</span><div><strong>All jurisdictions</strong><small>24 shown in prototype</small></div></button><button data-jurisdiction-tier="4"><i class="tier-4"></i><div><strong>Tier 4</strong><small>Dense interacting layers</small></div></button><button data-jurisdiction-tier="3"><i class="tier-3"></i><div><strong>Tier 3</strong><small>Material state/local overlays</small></div></button><button data-jurisdiction-tier="2"><i class="tier-2"></i><div><strong>Tier 2</strong><small>Meaningful state variance</small></div></button><button data-jurisdiction-tier="1"><i class="tier-1"></i><div><strong>Tier 1</strong><small>Federal-heavy baseline</small></div></button></div>
++    <div class="jurisdiction-workspace"><div><label class="inbox-search">${icon('search')}<input data-jurisdiction-search aria-label="Search jurisdictions" placeholder="Search state or code"></label><div class="jurisdiction-grid">${cards}</div></div><aside class="jurisdiction-inspector" data-jurisdiction-inspector><header><span class="jurisdiction-inspector__code" data-jurisdiction-inspector-code>CA</span><div><small>Selected jurisdiction</small><h2 data-jurisdiction-inspector-name>California</h2><p data-jurisdiction-inspector-tier>Tier 4 complexity</p></div><span class="status status--critical">Hotel overlays</span></header><div class="jurisdiction-inspector__facts"><div><small>State wage floor</small><strong data-jurisdiction-inspector-rate>$16.90+</strong><span>Local rates may control</span></div><div><small>Tip architecture</small><strong data-jurisdiction-inspector-tip>No tip credit</strong><span>Tips separate from wage</span></div><div><small>Overtime</small><strong data-jurisdiction-inspector-overtime>Daily + weekly</strong><span>Alternative schedules possible</span></div><div><small>Hotel layer</small><strong data-jurisdiction-inspector-hotel>Extensive local laws</strong><span>Property location controls</span></div></div><div class="jurisdiction-inspector__obligations"><small>Key hotel dimensions</small><ul><li>${icon('check-circle')} Local hotel wage and benefit ordinances</li><li>${icon('check-circle')} Housekeeper workload caps and premiums</li><li>${icon('check-circle')} Meal, rest, reporting, and split-shift rules</li><li>${icon('check-circle')} Wage statements, waiting time, and PAGA</li></ul></div><footer class="jurisdiction-inspector__actions"><button class="button button--primary" data-toast="The complete jurisdiction guide would open here.">Open full guide</button><button class="button button--secondary" data-toast="California added to the comparison workspace.">Compare</button><a class="button button--secondary" href="/app/properties/dtla-01/">Resolve a property</a></footer></aside></div>
++  </section>`;
++}
++
++function compare() {
++  return `<section class="jurisdiction-compare-demo" id="compare"><header class="section-lead section-lead--split"><div><span class="eyebrow">Side-by-side</span><h2>Compare rules without flattening their differences.</h2></div><p>The comparison makes exceptions, local-law dependencies, effective dates, and evidence quality visible—rather than reducing each state to one checkmark.</p></header><div class="compare-table"><div class="compare-table__row compare-table__row--head"><div>Dimension</div><div><strong>California</strong><small>Tier 4 · Jun 13 review</small></div><div><strong>New York</strong><small>Tier 4 · Jun 10 review</small></div><div><strong>Washington</strong><small>Tier 4 · Jun 8 review</small></div><div><strong>Texas</strong><small>Tier 1 · Jun 1 review</small></div></div><div class="compare-table__row"><div>Cash wage before tips</div><div>Full applicable minimum</div><div>Hospitality cash-wage tiers</div><div>Full applicable minimum</div><div>Federal tip-credit model</div></div><div class="compare-table__row"><div>Daily overtime</div><div>${icon('check-circle')} Yes</div><div>Generally no</div><div>Generally no</div><div>No</div></div><div class="compare-table__row"><div>Break architecture</div><div>Meal + rest premiums</div><div>Meal-period rules</div><div>Paid rest-break layer</div><div>Federal baseline</div></div><div class="compare-table__row"><div>Hotel-specific reach</div><div>Multiple city/county laws</div><div>Hospitality wage order</div><div>Seattle / SeaTac</div><div>No broad hotel layer</div></div><div class="compare-table__row"><div>Material remedies</div><div>Wage, penalties, PAGA</div><div>Wage, liquidated, frequency</div><div>Wage, double damages</div><div>FLSA + state remedies</div></div></div></section>`;
++}
++
++function bridge() {
++  return `<section class="jurisdiction-bridge"><div><span class="eyebrow eyebrow--light">From jurisdiction to applicability</span><h2>A state guide cannot tell you whether one hotel, worker, or pay practice is covered.</h2><p>The enterprise plane resolves the rule against address, locality, room count, ownership/operator relationships, workforce segments, systems, and effective-dated facts.</p></div><a class="button button--accent button--large" href="/app/properties/dtla-01/">Open a property passport ${icon('arrow-right')}</a></section>`;
++}
++
++module.exports = function renderJurisdictions() {
++  return publicShell({ activeKey: 'jurisdictions', title: 'Jurisdictions · Hotel Wage Law', description: 'Effective-dated state and local hospitality wage-and-hour intelligence with property-level applicability context.', content: `${hero()}${explorer()}${compare()}${bridge()}` });
++};
+diff --git a/src/pages/matter.js b/src/pages/matter.js
+new file mode 100644
+index 0000000..8e3936e
+--- /dev/null
++++ b/src/pages/matter.js
+@@ -0,0 +1,332 @@
++'use strict';
++
++const { appShell } = require('../components/app-shell');
++const { icon } = require('../components/icons');
++const { properties } = require('../data/platform-data');
++
++function pageHeading() {
++  return `<header class="page-heading"><div><span class="eyebrow">Governed matter · MTR-2026-041</span><h1>Resolve the matter once. Reuse the answer everywhere.</h1><p>Scope, facts, law, analysis, scenarios, findings, owners, controls, evidence, and decision state remain versioned on one record.</p></div><div class="page-heading__actions"><button class="button button--secondary" data-toast="A matter activity export was prepared.">${icon('download')} Export record</button><a class="button button--primary" href="/app/briefs/la-hotel-wage-2026/">Open decision record ${icon('arrow-right')}</a></div></header>`;
++}
++
++function matterContext() {
++  return `<section class="panel matter-context">
++    <div class="matter-context__identity"><span class="matter-id">MTR<br>041</span><div><small>Material legal response</small><h2>Los Angeles hotel wage and health-benefit step</h2><p>Opened Jun 13, 2026 · Seven properties · Southern California cluster</p></div></div>
++    <div class="matter-context__meta"><div><small>Owner</small><strong>Employment Counsel</strong></div><div><small>Privilege</small><strong>Attorney work product</strong></div><div><small>Due</small><strong class="critical-text">Jun 16 · 5:00 PM</strong></div><button class="source-button" data-open-overlay="sources">${icon('source')} 6 governed sources</button></div>
++    <ol class="matter-lifecycle"><li class="is-complete"><span>${icon('search')}</span><div><small>Stage 01</small><strong>Assess</strong><p>Change and scope confirmed</p></div></li><li class="is-active"><span>${icon('decision')}</span><div><small>Stage 02</small><strong>Decide</strong><p>Executive approval due</p></div></li><li><span>${icon('settings')}</span><div><small>Stage 03</small><strong>Implement</strong><p>Payroll and benefits changes</p></div></li><li><span>${icon('shield')}</span><div><small>Stage 04</small><strong>Assure</strong><p>Evidence and first-payroll test</p></div></li></ol>
++  </section>`;
++}
++
++function decisionBand() {
++  return `<section class="matter-decision"><div><span class="eyebrow eyebrow--light">Decision required</span><h2>Approve the controlled July 1 implementation plan across seven properties.</h2><p>Four properties are implementation-ready. Two require benefit evidence. One requires final population reconciliation. The recommended path releases verified changes while holding only conditional treatment.</p></div><div class="matter-decision__meta"><span class="status status--critical">Due in 3 days</span><small>General Counsel · Jun 16</small><a class="button button--accent" href="/app/briefs/la-hotel-wage-2026/">Review decision ${icon('arrow-right')}</a></div></section>`;
++}
++
++function tabs() {
++  return `<nav class="matter-tabs" role="tablist" aria-label="Matter views"><button class="is-active" role="tab" aria-selected="true" data-matter-tab="analysis">Analysis <span>4 findings</span></button><button role="tab" aria-selected="false" data-matter-tab="actions">Actions & controls <span>7</span></button><button role="tab" aria-selected="false" data-matter-tab="evidence">Evidence <span>12</span></button><button role="tab" aria-selected="false" data-matter-tab="history">History <span>28</span></button></nav>`;
++}
++
++function scenarioWorkbench() {
++  return `<section class="panel scenario-workbench"><header class="panel-heading"><div><span class="eyebrow">Scenario SCN-2026-041-06</span><h2>Implementation impact model</h2></div><div class="table-actions"><span class="status status--info">Illustrative model</span><button data-toast="A new governed scenario version was created.">${icon('copy')} Save version</button></div></header><div class="scenario-grid">
++    <form class="scenario-inputs" onsubmit="return false">
++      <section class="input-section"><header><span>1</span><div><strong>Property scope</strong><small>Governed property records</small></div></header><label class="range-control"><span><strong>Properties included</strong><output data-scenario-properties-output>7</output></span><input type="range" min="3" max="10" value="7" data-scenario-properties data-scenario-input></label><label class="range-control"><span><strong>Covered employees</strong><output data-scenario-employees-output>842</output></span><input type="range" min="400" max="1400" step="10" value="842" data-scenario-employees data-scenario-input></label></section>
++      <section class="input-section"><header><span>2</span><div><strong>Benefit treatment</strong><small>Fact-dependent implementation</small></div></header><label class="radio-card"><input type="radio" name="structure" value="mixed" checked data-scenario-structure><span>${icon('layers')}<strong>Mixed treatment</strong><small>Verified credit where supported; cash residual elsewhere</small></span></label><label class="radio-card"><input type="radio" name="structure" value="cash" data-scenario-structure><span>${icon('calculator')}<strong>Full cash wage</strong><small>No health-benefit credit assumed</small></span></label><label class="radio-card"><input type="radio" name="structure" value="benefit" data-scenario-structure><span>${icon('shield')}<strong>Maximum supported credit</strong><small>Only after evidence acceptance</small></span></label><label class="range-control"><span><strong>Benefit value modeled</strong><output data-scenario-benefit-output>$6.28</output></span><input type="range" min="0" max="8" step=".01" value="6.28" data-scenario-benefit data-scenario-input></label></section>
++      <section class="input-section"><header><span>3</span><div><strong>Key fact gates</strong><small>No silent assumptions</small></div></header><label class="choice-row"><input type="checkbox" checked><span><strong>Locality and room count</strong><small>Verified · property master v18</small></span><b>Complete</b></label><label class="choice-row"><input type="checkbox"><span><strong>June carrier statement</strong><small>Requested · DTLA-01</small></span><b class="critical-text">Open</b></label><label class="choice-row"><input type="checkbox" checked><span><strong>Covered population</strong><small>842 current · one reconciliation</small></span><b class="warn-text">Conditional</b></label></section>
++    </form>
++    <div class="scenario-output"><div class="output-hero"><div><small>Illustrative annual operational impact</small><strong data-scenario-range>$1,036,000 – $1,385,000</strong><p>Range changes with property count, workforce, benefit evidence, and implementation structure.</p></div><span class="confidence-gauge" style="--score:74"><i></i><b data-scenario-readiness>74%</b><small>fact readiness</small></span></div>
++      <div class="output-breakdown"><div><span>Modeled midpoint</span><strong data-scenario-annual>$1,164,000</strong><small>Not a damages opinion</small></div><div><span>Properties ready</span><strong>4 / 7</strong><small>Three conditional states</small></div><div><span>Controls affected</span><strong>3</strong><small>Payroll · benefit · testing</small></div></div>
++      <div class="output-waterfall"><div class="waterfall-axis"><span>$0</span><span>$400K</span><span>$800K</span><span>$1.2M</span></div><div class="waterfall-row"><span>Wage-rate step</span><i><em style="width:68%;background:var(--blue-500)"></em></i><b>$782K</b></div><div class="waterfall-row"><span>Benefit residual</span><i><em style="width:27%;background:var(--teal-500)"></em></i><b>$311K</b></div><div class="waterfall-row"><span>Configuration + testing</span><i><em style="width:7%;background:var(--gold-500)"></em></i><b>$71K</b></div><div class="waterfall-row waterfall-row--total"><span>Modeled midpoint</span><i><em style="width:89%"></em></i><b data-scenario-annual>$1.164M</b></div></div>
++      <div class="model-contract">${icon('info')}<div><strong>Model contract</strong><p>Rule v3 · property facts v18 · calculation engine 0.9-prototype · two disclosed material facts · counsel review required.</p></div><button data-open-overlay="sources">Inspect logic and authority</button></div>
++    </div>
++  </div></section>`;
++}
++
++function findings() {
++  const findingsList = [
++    ['critical','Wage floor is confirmed for four properties','Authority and coverage facts are complete. Configuration may proceed.','Approved'],
++    ['warn','Benefit treatment remains conditional at DTLA-01','June carrier statement is required before any credit is applied.','Fact gap'],
++    ['good','Housekeeper workload obligations remain unchanged','The July wage step does not amend the existing workload-cap mechanics.','Approved'],
++    ['info','One employee population requires reconciliation','Payroll and HRIS counts differ by 17 workers at SM-02.','Review']
++  ];
++  const assumptions = [
++    ['verified','Locality and room count','Verified against property master v18.'],
++    ['gap','Qualifying benefit value','Open at DTLA-01 pending June carrier statement.'],
++    ['judgment','Materiality threshold','Counsel judgment: enterprise decision required due to systems and multi-property reach.'],
++    ['verified','Effective date','July 1, 2026 confirmed in primary authority.']
++  ];
++  return `<section class="matter-findings-grid"><article class="panel finding-register"><header class="panel-heading"><div><span class="eyebrow">Finding register</span><h2>Four governed findings</h2></div><button data-toast="A finding drafting workflow was opened.">${icon('plus')} Add</button></header><ol>${findingsList.map(([state,title,detail,status])=>`<li><span class="finding-state finding-state--${state}">${icon(state==='critical'?'alert':state==='warn'?'clock':state==='good'?'check-circle':'info')}</span><div><small>${status}</small><strong>${title}</strong><p>${detail}</p></div><b><span class="status status--${state==='critical'?'critical':state==='warn'?'warn':state==='good'?'good':'info'}">${status}</span></b></li>`).join('')}</ol></article>
++  <article class="panel assumptions-register"><header class="panel-heading"><div><span class="eyebrow">Fact and judgment ledger</span><h2>What the answer depends on</h2></div><button data-toast="The complete fact and judgment ledger would open here.">View all</button></header><div class="assumption-list">${assumptions.map(([state,title,detail])=>`<div class="assumption-row"><span>${icon(state==='verified'?'check':state==='gap'?'alert':'scale')}</span><div><strong>${title}</strong><small>${state==='verified'?'Enterprise fact':state==='gap'?'Missing fact':'Counsel judgment'}</small><p>${detail}</p></div><span class="assumption-state assumption-state--${state}">${state}</span></div>`).join('')}</div></article></section>`;
++}
++
++function propertyTable() {
++  return `<section class="panel property-impact-table"><header class="panel-heading panel-heading--table"><div><span class="eyebrow">Scope and action</span><h2>Property response register</h2></div><div class="table-actions"><button data-toast="Property filters opened.">${icon('filter')} Filter</button><button data-toast="Property response data exported.">${icon('download')} Export</button></div></header><div class="table-wrap"><table class="data-table"><thead><tr><th>Property</th><th>Fact readiness</th><th>Modeled impact</th><th>Control state</th><th>Owner</th><th></th></tr></thead><tbody>${properties.map((property,index)=>`<tr><td><a href="/app/properties/dtla-01/"><strong>${property.name}</strong><small>${property.id} · ${property.city}</small></a></td><td><span class="readiness"><i><em style="width:${property.readiness}%"></em></i><b>${property.readiness}%</b></span></td><td>${['$356K–$492K','$241K–$318K','$188K–$256K','$72K–$104K'][index]}</td><td><span class="status status--${index===0?'critical':index===1?'warn':index===2?'info':'good'}">${['Evidence gap','Reconciliation','Testing','Ready'][index]}</span></td><td>${['Marcus Lee','Priya Shah','Jamie Chen','Elena Ruiz'][index]}</td><td><a class="row-arrow" href="/app/properties/dtla-01/">${icon('arrow-right')}</a></td></tr>`).join('')}</tbody></table></div></section>`;
++}
++
++function otherPanels() {
++  return `<section class="matter-tab-panel" data-matter-panel="actions" hidden><article class="panel"><header class="panel-heading"><div><span class="eyebrow">Actions and controls</span><h2>Seven accountable work items</h2></div></header><div class="control-plan-grid"><article><span>${icon('calculator')}</span><small>Payroll</small><h3>Deploy rate tables</h3><p>Configure effective-dated property rates and reconcile the covered population.</p><span class="status status--warn">In progress</span></article><article><span>${icon('shield')}</span><small>Benefits</small><h3>Validate contribution</h3><p>Collect and accept June carrier evidence before using the credit.</p><span class="status status--critical">Blocked</span></article><article><span>${icon('activity')}</span><small>HRIS</small><h3>Run parallel payroll</h3><p>Test the first affected workweek and preserve all exception evidence.</p><span class="status status--info">Scheduled</span></article><article><span>${icon('users')}</span><small>Operations</small><h3>Communicate locally</h3><p>Issue property instructions and employee-facing rate communication.</p><span class="status status--neutral">Not started</span></article></div></article></section>
++  <section class="matter-tab-panel" data-matter-panel="evidence" hidden><article class="panel"><header class="panel-heading"><div><span class="eyebrow">Evidence register</span><h2>Twelve governed artifacts</h2></div></header><div class="evidence-register-grid">${[['source','Municipal code snapshot','Verified · hash retained'],['source','OWS implementation guidance','Verified · Jun 13'],['database','Property fact snapshot v18','7 properties'],['users','Covered worker population','One reconciliation'],['shield','Carrier contribution statement','Outstanding · DTLA-01'],['activity','Parallel payroll test','Scheduled Jun 21']].map(([ic,title,meta])=>`<article>${icon(ic)}<div><strong>${title}</strong><small>${meta}</small></div>${icon('chevron-right')}</article>`).join('')}</div></article></section>
++  <section class="matter-tab-panel" data-matter-panel="history" hidden><article class="panel"><header class="panel-heading"><div><span class="eyebrow">Immutable history</span><h2>Twenty-eight material events</h2></div></header><div class="table-wrap"><table class="data-table"><thead><tr><th>Time</th><th>Actor</th><th>Event</th><th>Record</th></tr></thead><tbody><tr><td>Jun 13 · 4:18 PM</td><td>Arthur K.</td><td>Decision version 4 submitted</td><td>DR-2026-018</td></tr><tr><td>Jun 13 · 2:40 PM</td><td>Priya S.</td><td>Payroll facts approved</td><td>FACTSET-018</td></tr><tr><td>Jun 13 · 11:05 AM</td><td>Marcus L.</td><td>Benefit evidence gap opened</td><td>EXC-2026-012</td></tr><tr><td>Jun 13 · 9:22 AM</td><td>System</td><td>Rule version 3 linked to seven properties</td><td>RULE-LA-HOTEL-3.0</td></tr></tbody></table></div></article></section>`;
++}
++
++function analysisPanel() {
++  return `<section class="matter-tab-panel" data-matter-panel="analysis">${scenarioWorkbench()}${findings()}${propertyTable()}</section>`;
++}
++
++function rail() {
++  return `<section class="rail-card rail-card--priority"><header><span>${icon('decision')}</span><span class="status status--critical">Decision due</span></header><small class="eyebrow eyebrow--light">General Counsel</small><h2>Approve the controlled implementation plan.</h2><p>The recommendation isolates unresolved facts without delaying verified wage changes.</p><div class="rail-deadline"><span>Due</span><strong>Jun 16 · 5:00 PM</strong></div><a class="button button--accent" href="/app/briefs/la-hotel-wage-2026/">Open decision record</a></section>
++  <section class="rail-card matter-confidence"><header><div><span class="eyebrow">Matter integrity</span><h2>Supportability</h2></div><span class="status status--good">Strong</span></header><div class="confidence-factor"><div><strong>Authority</strong><small>3 primary sources</small></div><b class="good-text">100%</b></div><div class="confidence-factor"><div><strong>Rule verification</strong><small>Version 3 approved</small></div><b class="good-text">100%</b></div><div class="confidence-factor"><div><strong>Fact readiness</strong><small>2 material gaps</small></div><b class="warn-text">74%</b></div><div class="confidence-factor"><div><strong>Model coverage</strong><small>9 fixtures · prototype</small></div><b class="warn-text">82%</b></div><button data-open-overlay="sources">Why this conclusion is supportable ${icon('arrow-right')}</button></section>
++  <section class="rail-card gap-card"><header><span>${icon('alert')}</span><div><small>Material fact gaps</small><strong>Two conditions remain open</strong></div></header><div><span>DTLA-01 benefit statement</span><b>Jun 18</b></div><div><span>SM-02 population reconciliation</span><b>Jun 17</b></div><button data-toast="The fact-resolution workflow opened.">Resolve facts</button></section>
++  <section class="rail-card activity-card"><header><div><span class="eyebrow">Activity</span><h2>Recent matter events</h2></div></header><ol><li><span class="activity-avatar">AK</span><div><strong>Decision version 4 submitted</strong><small>28 minutes ago</small></div></li><li><span class="activity-avatar activity-avatar--payroll">PS</span><div><strong>Population facts approved</strong><small>2 hours ago</small></div></li><li><span class="activity-avatar activity-avatar--benefits">ML</span><div><strong>Evidence request escalated</strong><small>4 hours ago</small></div></li><li><span class="activity-avatar activity-avatar--system">SY</span><div><strong>Rule v3 evaluation completed</strong><small>5 hours ago</small></div></li></ol><button data-matter-tab="history">View complete history ${icon('arrow-right')}</button></section>`;
++}
++
++module.exports = function renderMatter() {
++  const content = `${pageHeading()}${matterContext()}${decisionBand()}${tabs()}${analysisPanel()}${otherPanels()}`;
++  return appShell({ activeKey: 'matters', content, rail: rail() });
++};
