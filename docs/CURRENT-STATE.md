@@ -1,6 +1,6 @@
 # Current state
 
-Evidence reviewed and updated: July 13, 2026. This document describes the Phase 0 branch state and the live repository evidence available at that time. It does not certify production readiness.
+Evidence reviewed and updated: July 14, 2026. This document describes the Phase 0 branch state and the live repository evidence available at that time. It does not certify production readiness.
 
 ## Phase 0 boundary
 
@@ -31,9 +31,11 @@ The latest pre-repair CI run was [Actions run 29296844721](https://github.com/ka
 
 The latest pre-repair Pages run was [Actions run 29296844059](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29296844059). It failed before creating a job because `environment` was placed at workflow root rather than on the deploy job. The expected project URL, `https://karadzhyan.github.io/hotel-wage-law-v2/`, returned HTTP 404, the public Pages API returned 404, and no deployment records were exposed. These facts mean that Pages was not remotely proven before this repair.
 
-The exact captured failure signatures, one-time workflow dispositions, and verification commands are retained in [`docs/evidence/phase-0/README.md`](evidence/phase-0/README.md). Post-repair PR, CI, artifact, deployment, and site evidence must be added there and to Issue #11 only after GitHub reports the corresponding result.
+The exact captured failure signatures, one-time workflow dispositions, verification commands, artifact identifiers, deployment identifiers, and live-route checks are retained in [`docs/evidence/phase-0/README.md`](evidence/phase-0/README.md).
 
-The implementation head `66c0ba884c062c5dda5695ca39ab3e85030ad487` is proposed in [PR #12](https://github.com/karadzhyan/hotel-wage-law-v2/pull/12). GitHub reported [CI run 29301415897](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415897) successful for both Verify and Browser/accessibility jobs, with dist and Playwright artifacts. GitHub also reported [Pages run 29301415898](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415898) successful for artifact validation. Its deploy job was skipped because the event was a pull request; this is not deployment or live-site evidence.
+Evidence head `9ac515d752cdc9cc6edbe5e1677889379b52e083` is proposed in [PR #12](https://github.com/karadzhyan/hotel-wage-law-v2/pull/12). GitHub reported [CI run 29374016730](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016730) successful for both Verify and Browser/accessibility jobs, with dist and Playwright artifacts. GitHub also reported [Pages PR run 29374016777](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016777) successful for artifact validation.
+
+The owner configured Pages source `GitHub Actions` and added the feature branch to the `github-pages` environment. The first deploy attempt in [Pages run 29375868588](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29375868588) was rejected by the prior `main`-only environment rule. Attempt 2 succeeded in deploy job `87229859990`; GitHub deployment `5449284201` recorded success for `https://karadzhyan.github.io/hotel-wage-law-v2/`. Independent HTTPS checks observed HTTP 200 for all twelve routes and nine assets, and headless Chromium rendered every registered live route without a console, page, request, or project-resource HTTP error.
 
 ## Workflow state
 
@@ -42,13 +44,13 @@ Two continuing workflows remain:
 - `CI` runs deterministic installation, unit/render/routing tests, structural checks, root and Pages-path generated-output checks, browser interaction smoke tests, automated accessibility smoke tests, and uploads build and browser evidence.
 - `Pages` validates the Pages-path artifact with the same route, browser, and accessibility contract; uploads the Pages artifact; and deploys only for non-PR events using job-scoped `pages: write` and `id-token: write` permissions.
 
-Both workflows have least-privilege defaults, explicit timeouts, concurrency control, deterministic installs, and pinned major action versions. Five marker-driven release workflows and their `.release` trigger files were removed because live history and their full contents showed that they were one-time, self-mutating release scaffolding—not continuing CI or deployment automation. Their evidence is retained in the Phase 0 evidence record.
+Both workflow files declare least-privilege permissions, explicit timeouts, concurrency control, deterministic installs, and pinned major action versions. The owner separately selected broad repository-level default workflow permissions and allowed Actions to create and approve pull requests; those owner settings are broader than the file-level defaults and remain tracked in Issue #10. Five marker-driven release workflows and their `.release` trigger files were removed because live history and their full contents showed that they were one-time, self-mutating release scaffolding—not continuing CI or deployment automation. Their evidence is retained in the Phase 0 evidence record.
 
 ## Owner-setting dependencies
 
 Repository visibility and every owner-level control in Issue #10 require separate live-setting evidence. Phase 0 does not infer branch protection, rulesets, Actions defaults, environment protection, security features, collaborator access, installed apps, or private visibility from repository files.
 
-GitHub Pages must be configured to use GitHub Actions before deployment can succeed. The workflow can upload and deploy an artifact but cannot prove or silently create the required repository-level Pages setting with its normal `GITHUB_TOKEN`. Any setting changed during Phase 0 must be recorded with old/new state, timestamp, and live evidence in Issue #10.
+GitHub Pages is configured to use GitHub Actions. The `github-pages` environment currently allows both `main` and `agent/repair-phase-0-ci-pages`, which permitted the retained feature-branch deployment. Repository-level Actions defaults are broad read/write and Actions may create and approve pull requests. Any later tightening or other setting change remains an owner decision to be recorded with old/new state, timestamp, and live evidence in Issue #10.
 
 ## Legal, security, privacy, and accessibility state
 
@@ -56,12 +58,11 @@ GitHub Pages must be configured to use GitHub Actions before deployment can succ
 - Security: workflow permissions and synthetic-data boundaries receive structural checks. No comprehensive threat model, SAST, secret scan, dependency review, authorization test, or security review has been completed or claimed.
 - Privacy: the repository is public and restricted to synthetic prototype data. No production or privileged data is authorized. No privacy assessment is complete.
 - Accessibility: semantic labels, keyboard-close behavior, focus restoration, visible focus, reduced-motion handling, responsive navigation, and automated axe smoke tests are covered by Phase 0 regression tests. This is not a WCAG 2.2 AA audit and does not replace manual keyboard, zoom, reflow, contrast-mode, or assistive-technology testing.
-- Deployment and production: a green local or remote build proves only the tested static artifact. Production readiness, legal approval, security approval, privacy approval, and deployment success require their own retained evidence.
+- Deployment and production: the Phase 0 feature-branch artifact has a successful GitHub Pages deployment and live-route evidence. That proves only this static prototype deployment; it does not establish production readiness, legal approval, security approval, privacy approval, or approval to rely on the prototype content.
 
 ## Known residual work
 
-- Retain the final head's remote CI and Pages validation links in Issue #11 after any evidence-only commit reruns.
-- Configure and verify the repository-level Pages source, then retain the successful deployment run and live HTTP evidence.
+- Retain the final evidence-only head's remote CI and Pages validation links in Issue #11 after this documentation update reruns.
 - Review and decide the remaining owner-level settings in Issue #10.
 - Merge the Phase 0 PR only after the governing issue's required remote CI and deployment evidence are green.
 - Do not begin the Issue #2 migration inventory until Phase 0 is merged and proven.

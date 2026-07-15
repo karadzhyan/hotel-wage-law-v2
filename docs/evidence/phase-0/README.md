@@ -1,6 +1,6 @@
 # Phase 0 retained evidence
 
-Captured July 13, 2026 for Issue [#11](https://github.com/karadzhyan/hotel-wage-law-v2/issues/11). This record distinguishes observed evidence from pending verification.
+Captured July 13–14, 2026 for Issue [#11](https://github.com/karadzhyan/hotel-wage-law-v2/issues/11). This record distinguishes observed evidence from unsupported conclusions.
 
 ## Pre-change local verification
 
@@ -79,22 +79,27 @@ These local results are not remote CI or deployment evidence.
 
 ## Post-change remote verification
 
-GitHub evaluated implementation head `66c0ba884c062c5dda5695ca39ab3e85030ad487` in draft PR [#12](https://github.com/karadzhyan/hotel-wage-law-v2/pull/12):
+GitHub evaluated evidence head `9ac515d752cdc9cc6edbe5e1677889379b52e083` in draft PR [#12](https://github.com/karadzhyan/hotel-wage-law-v2/pull/12):
 
 | Surface | Evidence | Observed result |
 | --- | --- | --- |
-| CI | [run 29301415897](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415897) | Successful. Verify job `86985779879` and Browser/accessibility job `86985806235` both completed successfully. |
-| Dist artifact | [artifact 8298647971](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415897/artifacts/8298647971) | `hotel-wage-law-v2-dist`, 46,674 bytes, SHA-256 `d7cf5dbebe45071a3421c2ef55469d6cc13470961e82f25da4db02428d669471`, retained through July 28, 2026. |
-| Browser artifact | [artifact 8298671843](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415897/artifacts/8298671843) | `playwright-report`, 235,526 bytes, SHA-256 `b02c0eb425ae170889c62383fdfcbabc9ad21ab6de6e8ea5f873eed9a73f3be5`, retained through July 28, 2026. |
-| Pages validation | [run 29301415898](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415898), [job 86985779987](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415898/job/86985779987) | Successful deterministic install, project-path build, Chromium suite, and Pages artifact upload. |
-| Pages artifact | artifact `8298659423` in [run 29301415898](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29301415898) | `github-pages`, 38,688 bytes, SHA-256 `502306d7ed62661d154c369119613ec9f94cda2411b3b242677139df5e3a0f86`, retained through July 15, 2026. |
-| Pages deployment | deploy job `86985904640` | Skipped as designed on the pull-request event. No deployment success is claimed. |
+| CI | [run 29374016730](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016730) | Successful. Verify job `87223479762` and Browser/accessibility job `87223529500` both completed successfully; the browser job reported 32/32 tests passed. |
+| Dist artifact | [artifact 8327173367](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016730/artifacts/8327173367) | `hotel-wage-law-v2-dist`, 46,674 bytes, SHA-256 `8b8a190312b563cab2f9d4002d239e018d2e11cfc6667723222dc6a0f62bfc54`, retained through July 28, 2026. |
+| Browser artifact | [artifact 8327193497](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016730/artifacts/8327193497) | `playwright-report`, 236,071 bytes, SHA-256 `a35dd942d4aa85cc14a6342c044dcd68a20d1507f76b83fe4037d60fc141887d`, retained through July 28, 2026. |
+| Pages PR validation | [run 29374016777](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016777), job `87223479859` | Successful deterministic install, project-path build, Chromium suite, and Pages artifact upload. Its deploy job was skipped as designed for the pull-request event. |
+| Pages PR artifact | artifact `8327187680` in [run 29374016777](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016777) | `github-pages`, 38,694 bytes, SHA-256 `95b4b7711771c22e9926a074caf15eb71a9a0e87dc46106609ae080c5db2f545`, retained through July 15, 2026. |
+| Pages deployment attempt 1 | [run 29375868588](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29375868588), job `87229271901`, deployment `5449251334` | Failed before steps because the `github-pages` environment allowed only `main`; GitHub annotated that the feature branch did not satisfy the environment protection rule. |
+| Pages deployment attempt 2 | [same run, attempt 2](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29375868588), [job 87229859990](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29375868588/job/87229859990), deployment `5449284201`, status `15491107818` | Successful after the owner added the exact feature branch to the environment. GitHub recorded deployment state `success` and environment URL `https://karadzhyan.github.io/hotel-wage-law-v2/`. |
+| Deployed Pages artifact | [artifact 8327853647](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29375868588/artifacts/8327853647) | `github-pages`, 38,694 bytes, SHA-256 `857d3ef9d9d0d60b0fb81b871a47ef9810a04e7de2f4c85d37ecf368308c4b7c`, retained through July 15, 2026. |
 
-Pending deployment evidence:
+## Live Pages verification
 
-- Repository-level Pages source enabled for GitHub Actions with old/new state retained in Issue #10.
-- A non-PR Pages run with successful Deploy job and deployment identifier.
-- Live project URL returning the deployed artifact, including a direct deep link.
-- Issue #11 evidence comment.
+After GitHub recorded the successful deployment on July 14, 2026, independent HTTPS checks observed:
+
+- HTTP 200 for all twelve registered routes: `/`, `/intelligence/`, `/jurisdictions/`, `/tools/`, `/methodology/`, `/app/`, `/app/changes/`, `/app/matters/`, `/app/controls/`, `/app/research/`, `/app/decisions/`, and `/app/properties/` under `https://karadzhyan.github.io/hotel-wage-law-v2`.
+- HTTP 200 for all nine generated assets: `favicon.svg`, `icons.svg`, `layout.css`, `data.js`, `main.js`, `pages-public.js`, `lib.js`, `styles.css`, and `pages-app.js`.
+- A headless Chromium navigation of every registered live route returned HTTP 200, rendered visible `main#main` and `h1` elements, and produced no console errors, page errors, failed requests, or HTTP responses of 400 or greater for project-path resources.
+
+Repository owner settings observed during deployment were Pages source `GitHub Actions`; broad default `GITHUB_TOKEN` read/write permissions; Actions permission to create and approve pull requests; and `github-pages` environment branch rules for `main` and `agent/repair-phase-0-ci-pages`. These settings are owner-controlled evidence, not repository-file guarantees, and remain tracked in Issue #10.
 
 Automated axe results are smoke-test evidence only. No manual accessibility audit, legal review, security review, privacy review, production-readiness review, or final deployment approval is represented by this file.
