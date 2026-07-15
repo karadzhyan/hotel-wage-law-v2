@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import { routes } from '../src/data.js';
-import { normalizeRoutePrefix } from './url.mjs';
+import { isDeploymentOrigin, normalizeRoutePrefix } from './url.mjs';
 
 const remoteBaseURL = process.env.PLAYWRIGHT_BASE_URL;
 const inferredRemotePrefix = remoteBaseURL
@@ -27,18 +27,22 @@ test.describe('generated project-path application', () => {
       page.on('pageerror', error => browserErrors.push(error.message));
       page.on('requestfailed', request => failedRequests.push(`${request.url()} — ${request.failure()?.errorText}`));
       page.on('response', response => {
-        if (response.url().startsWith(`${testedOrigin}/`) && response.status() >= 400) {
-          failedResponses.push(`${response.status()} ${response.url()}`);
+        if (response.status() >= 400) {
+          failedResponses.push({ status: response.status(), url: response.url() });
         }
       });
 
       const response = await page.goto(projectUrl(route));
+      const deploymentOrigins = new Set([testedOrigin, new URL(page.url()).origin]);
+      const deploymentFailures = failedResponses
+        .filter(failure => isDeploymentOrigin(failure.url, deploymentOrigins))
+        .map(failure => `${failure.status} ${failure.url}`);
       expect(response?.status()).toBe(200);
       await expect(page.locator('main#main')).toBeVisible();
       await expect(page.locator('h1').first()).toBeVisible();
       expect(browserErrors).toEqual([]);
       expect(failedRequests).toEqual([]);
-      expect(failedResponses).toEqual([]);
+      expect(deploymentFailures).toEqual([]);
     });
   }
 
