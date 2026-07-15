@@ -60,6 +60,8 @@ assert(/actions\/upload-artifact@v7/.test(ci), 'CI lacks retained build and brow
 assert(/\n  deploy:\n[\s\S]*?\n    environment:\n      name: github-pages/.test(pages), 'Pages environment must be scoped to the deploy job');
 assert(/\n    permissions:\n      contents: read\n      pages: write\n      id-token: write/.test(pages), 'Pages deploy permissions are incomplete or overbroad');
 assert(/actions\/upload-pages-artifact@v5/.test(pages), 'Pages artifact upload is missing');
+assert(/concurrency:\n  group: pages\n  cancel-in-progress: false/.test(pages), 'Pages workflows must share one deployment concurrency group');
+assert(/actions\/upload-pages-artifact@v5\n        with:\n          path: dist\n          include-hidden-files: true/.test(pages), 'Pages artifact upload must preserve verified hidden files');
 assert(/actions\/deploy-pages@v5/.test(pages), 'Pages deployment is missing');
 
 const currentState = await readFile(join(root,'docs','CURRENT-STATE.md'),'utf8');
