@@ -1,46 +1,61 @@
-name: Deploy Pages
+name: Pages
 
 on:
+  pull_request:
   push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
-environment:
-  name: github-pages
-  url: ${{ steps.deployment.outputs.page_url }}
-
 jobs:
-  build:
+  validate:
+    name: Validate Pages artifact
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
-      - run: npm install --ignore-scripts --no-audit --no-fund
-      - run: npm run verify
-        env:
-          BASE_PATH: /hotel-wage-law-v2/
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Deterministic install
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Unit, structural, and root-build verification
+        run: npm run verify
+      - name: Verify project-path build
+        run: npm run verify:pages
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Exercise project-path routes and accessibility
+        run: npm run test:browser
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+          include-hidden-files: true
+
   deploy:
-    needs: build
+    name: Deploy Pages
+    if: github.event_name != 'pull_request'
+    needs: validate
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Confirm Pages configuration
+        uses: actions/configure-pages@v6
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

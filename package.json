@@ -9,8 +9,17 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
+    "build:pages": "BASE_PATH=/hotel-wage-law-v2/ node scripts/build.mjs",
     "check": "node scripts/check.mjs",
+    "check:build": "node scripts/verify-build.mjs",
+    "check:pages": "BASE_PATH=/hotel-wage-law-v2/ node scripts/verify-build.mjs",
     "test": "node --test",
-    "verify": "npm run test && npm run check && npm run build"
+    "test:browser": "playwright test",
+    "verify": "npm run test && npm run check && npm run build && npm run check:build",
+    "verify:pages": "npm run build:pages && npm run check:pages"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.61.1"
   }
 }

@@ -14,34 +14,52 @@ concurrency:
 
 jobs:
   verify:
+    name: Verify
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
-      - name: Install
-        run: npm install --ignore-scripts --no-audit --no-fund
-      - name: Test
-        run: npm test
-      - name: Structural checks
-        run: npm run check
-      - name: Production build
-        run: BASE_PATH=/hotel-wage-law-v2/ npm run build
-      - name: Verify generated routes
-        run: |
-          test -f dist/index.html
-          test -f dist/intelligence/index.html
-          test -f dist/app/index.html
-          test -f dist/app/decisions/index.html
-          test -f dist/assets/main.js
-          test -f dist/.nojekyll
-      - name: Upload verified build
-        uses: actions/upload-artifact@v4
+      - name: Deterministic install
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Unit, structural, and root-build verification
+        run: npm run verify
+      - name: Pages-path build verification
+        run: npm run verify:pages
+      - name: Upload verified Pages build
+        uses: actions/upload-artifact@v7
         with:
           name: hotel-wage-law-v2-dist
           path: dist
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+
+  browser:
+    name: Browser and accessibility smoke
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+      - name: Deterministic install
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Exercise routes, interactions, and accessibility
+        run: npm run test:browser
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report
           if-no-files-found: error
           retention-days: 14

@@ -1,15 +1,17 @@
-import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { routes } from '../src/data.js';
 import { pageDocument } from '../src/lib.js';
 
 const root = new URL('..', import.meta.url).pathname;
 const out = join(root, 'dist');
-const basePath = (process.env.BASE_PATH || '/').replace(/\/+$/, '') + '/';
+const baseSegments = (process.env.BASE_PATH || '/').split('/').filter(Boolean);
+const basePath = baseSegments.length ? `/${baseSegments.join('/')}/` : '/';
+const assets = ['main.js','data.js','lib.js','pages-public.js','pages-app.js','styles.css','layout.css','icons.svg','favicon.svg'];
 
 await rm(out, { recursive:true, force:true });
 await mkdir(join(out, 'assets'), { recursive:true });
-for (const name of ['main.js','data.js','lib.js','pages-public.js','pages-app.js','styles.css','layout.css']) {
+for (const name of assets.slice(0, 7)) {
   await cp(join(root,'src',name), join(out,'assets',name));
 }
 await cp(join(root,'src','icons.svg'), join(out,'assets','icons.svg'));
@@ -25,6 +27,11 @@ for (const [route,label] of routes) {
   await writeFile(join(path,'index.html'), html);
 }
 
-await writeFile(join(out,'404.html'), pageDocument('Not found','The requested Hotel Wage Law prototype route was not found.').replace('<head>',`<head><base href="${basePath}">`).replace('<div id="app"></div>','<main style="padding:10vh 8vw"><h1>Page not found</h1><p><a href="./">Return to Hotel Wage Law</a></p></main>'));
+await writeFile(join(out,'404.html'), pageDocument('Not found','The requested Hotel Wage Law prototype route was not found.','not-found',false).replace('<head>',`<head><base href="${basePath}">`).replace('<div id="app"></div>','<main id="main" style="padding:10vh 8vw"><h1>Page not found</h1><p><a href="./">Return to Hotel Wage Law</a></p></main>'));
 await writeFile(join(out,'.nojekyll'),'');
+await writeFile(join(out,'build-manifest.json'), `${JSON.stringify({
+  basePath,
+  routes: routes.map(([route]) => route),
+  assets: assets.map(name => `assets/${name}`),
+}, null, 2)}\n`);
 console.log(`Built ${routes.length} routes at ${basePath}`);
