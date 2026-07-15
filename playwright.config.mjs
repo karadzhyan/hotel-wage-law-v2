@@ -9,10 +9,12 @@ export default defineConfig({
   fullyParallel: false,
   timeout: 30_000,
   expect: { timeout: 5_000 },
-  reporter: [
-    ['line'],
-    ['html', { outputFolder: 'playwright-report', open: 'never' }],
-  ],
+  reporter: protectionBypass
+    ? [['line']]
+    : [
+        ['line'],
+        ['html', { outputFolder: 'playwright-report', open: 'never' }],
+      ],
   use: {
     baseURL: remoteBaseURL || `http://127.0.0.1:4173${basePath}`,
     extraHTTPHeaders: protectionBypass
@@ -22,7 +24,7 @@ export default defineConfig({
         }
       : undefined,
     screenshot: 'only-on-failure',
-    trace: 'retain-on-failure',
+    trace: protectionBypass ? 'off' : 'retain-on-failure',
   },
   webServer: remoteBaseURL
     ? undefined
