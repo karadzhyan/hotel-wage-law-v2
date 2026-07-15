@@ -22,6 +22,10 @@ npm run test:browser
 
 See [PROJECT.md](PROJECT.md) for the architecture and production boundary and [docs/CURRENT-STATE.md](docs/CURRENT-STATE.md) for the repository, CI, Pages, legal-review, security, and accessibility evidence state.
 
+## Hosting
+
+Vercel is the intended production hosting platform. The checked-in [`vercel.json`](vercel.json) requires deterministic installation, the full `npm run verify` gate, publication from the verified `dist/` directory only, and the registered trailing-slash route contract. GitHub Pages remains deployed as a fallback until the Vercel production deployment and `hospitalitywagelaw.com` are independently verified.
+
 ## Boundary
 
-This repository is a public prototype, not a production legal application. All enterprise identities, properties, people, scores, ranges, and workflow states are synthetic and illustrative. Substantive legal content and calculations require source-level validation and attorney review before production use. No customer data, employee data, privileged material, credentials, or production configuration may be added.
+This repository is a public prototype, not a production legal application. All enterprise identities, properties, people, scores, ranges, and workflow states are synthetic and illustrative. Substantive legal content and calculations require source-level validation and attorney review before production use. No customer data, employee data, privileged material, credentials, secrets, or private environment configuration may be added; the public hosting configuration contains no credential.

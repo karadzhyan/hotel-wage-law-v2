@@ -1,6 +1,6 @@
 # Current state
 
-Evidence reviewed and updated: July 14, 2026. This document describes the Phase 0 branch state and the live repository evidence available at that time. It does not certify production readiness.
+Evidence reviewed and updated: July 14, 2026. This document describes the merged Phase 0 baseline and the current hosting workstream. It does not certify production readiness.
 
 ## Phase 0 boundary
 
@@ -10,8 +10,8 @@ The implementation source of truth is `src/`. `dist/` is generated and ignored. 
 
 ## Repository and implementation inventory
 
-- Repository: `karadzhyan/hotel-wage-law-v2`; default branch `main`.
-- Phase 0 branch: `agent/repair-phase-0-ci-pages`, created from `main` commit `6e28b524dcc77d9cd0ad098ee9f60f8c4641dcf2`.
+- Repository: `karadzhyan/hotel-wage-law-v2`; default branch `main` at Phase 0 merge commit `1f296fe5adeedc67844f64a4dcdc3176661baca8`.
+- Phase 0 branch: `agent/repair-phase-0-ci-pages`, created from `main` commit `6e28b524dcc77d9cd0ad098ee9f60f8c4641dcf2` and merged through PR [#12](https://github.com/karadzhyan/hotel-wage-law-v2/pull/12).
 - Merged baseline: PR [#1](https://github.com/karadzhyan/hotel-wage-law-v2/pull/1), including its unresolved review threads.
 - Governing baseline contract: Issue [#11](https://github.com/karadzhyan/hotel-wage-law-v2/issues/11). Owner-level settings remain tracked in Issue [#10](https://github.com/karadzhyan/hotel-wage-law-v2/issues/10).
 - Route registry: twelve generated routes—five public routes and seven enterprise-prototype routes.
@@ -33,9 +33,11 @@ The latest pre-repair Pages run was [Actions run 29296844059](https://github.com
 
 The exact captured failure signatures, one-time workflow dispositions, verification commands, artifact identifiers, deployment identifiers, and live-route checks are retained in [`docs/evidence/phase-0/README.md`](evidence/phase-0/README.md).
 
-Evidence head `9ac515d752cdc9cc6edbe5e1677889379b52e083` is proposed in [PR #12](https://github.com/karadzhyan/hotel-wage-law-v2/pull/12). GitHub reported [CI run 29374016730](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016730) successful for both Verify and Browser/accessibility jobs, with dist and Playwright artifacts. GitHub also reported [Pages PR run 29374016777](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29374016777) successful for artifact validation.
+Final PR head `475d16886e902060fa733823c1a29c916a5d8221` passed [CI run 29394429007](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29394429007) and [Pages validation run 29394428968](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29394428968). All six actionable review threads were resolved, and the fresh final-head review reported no major issue. PR #12 merged as `1f296fe5adeedc67844f64a4dcdc3176661baca8`; post-merge [CI run 29394911196](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29394911196) and [Pages run 29394911088](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29394911088), including its deploy job, succeeded.
 
 The owner configured Pages source `GitHub Actions` and added the feature branch to the `github-pages` environment. The first deploy attempt in [Pages run 29375868588](https://github.com/karadzhyan/hotel-wage-law-v2/actions/runs/29375868588) was rejected by the prior `main`-only environment rule. Attempt 2 succeeded in deploy job `87229859990`; GitHub deployment `5449284201` recorded success for `https://karadzhyan.github.io/hotel-wage-law-v2/`. Independent HTTPS checks observed HTTP 200 for all twelve routes and nine assets, and headless Chromium rendered every registered live route without a console, page, request, or project-resource HTTP error.
+
+After the Phase 0 merge, the main-branch Pages deploy job `87286274382` succeeded. Independent checks again observed HTTP 200 at the fallback root and `/app/changes/`, and Chromium rendered all twelve registered routes without browser or request errors.
 
 ## Workflow state
 
@@ -45,6 +47,14 @@ Two continuing workflows remain:
 - `Pages` validates the Pages-path artifact with the same route, browser, and accessibility contract; uploads the Pages artifact; and deploys only for non-PR events using job-scoped `pages: write` and `id-token: write` permissions.
 
 Both workflow files declare least-privilege permissions, explicit timeouts, concurrency control, deterministic installs, and pinned major action versions. The owner separately selected broad repository-level default workflow permissions, allowed Actions to create and approve pull requests, and removed branch/tag restrictions from the `github-pages` environment; those owner settings are broader than the file-level defaults and remain tracked in Issue #10. Five marker-driven release workflows and their `.release` trigger files were removed because live history and their full contents showed that they were one-time, self-mutating release scaffolding—not continuing CI or deployment automation. Their evidence is retained in the Phase 0 evidence record.
+
+## Hosting platform state
+
+Vercel is the intended production hosting platform; GitHub Pages remains the verified fallback. The Vercel account audit found an authenticated owner account and the team `karadzhyans-projects`. The legacy `hotel-wage-hour` Vercel project remains connected to the reference repository and initially owns `hospitalitywagelaw.com` and `www.hospitalitywagelaw.com`. The new isolated `hotel-wage-law-v2` project is the only intended target for this repository.
+
+The public `vercel.json` requires deterministic installation, `npm run verify` as the build gate, `dist/` as the only output directory, and trailing-slash routing. It contains no credential or private environment value. DNS remains hosted at Squarespace; before reassignment, the apex resolves to Vercel and redirects to `www`, whose CNAME also resolves to Vercel.
+
+The review-candidate protected preview deployment `dpl_B3mG9ScEUJQanqmYfoYriwPJzVF4` reached `READY`. Its deployed manifest matched the local twelve-route and nine-asset registries; every registered route and asset returned a non-empty HTTP 200 response; and all 33 remote Playwright tests passed, including the existing interaction coverage and serious/critical axe smoke. This is deployment and automated-test evidence only, not an accessibility-conformance or readiness claim. Preview and production evidence is retained in [`docs/evidence/vercel/README.md`](evidence/vercel/README.md) and Issue #10.
 
 ## Owner-setting dependencies
 
@@ -58,11 +68,11 @@ GitHub Pages is configured to use GitHub Actions. The `github-pages` environment
 - Security: workflow permissions and synthetic-data boundaries receive structural checks. No comprehensive threat model, SAST, secret scan, dependency review, authorization test, or security review has been completed or claimed.
 - Privacy: the repository is public and restricted to synthetic prototype data. No production or privileged data is authorized. No privacy assessment is complete.
 - Accessibility: semantic labels, keyboard-close behavior, focus restoration, visible focus, reduced-motion handling, responsive navigation, and automated axe smoke tests are covered by Phase 0 regression tests. This is not a WCAG 2.2 AA audit and does not replace manual keyboard, zoom, reflow, contrast-mode, or assistive-technology testing.
-- Deployment and production: the Phase 0 feature-branch artifact has a successful GitHub Pages deployment and live-route evidence. That proves only this static prototype deployment; it does not establish production readiness, legal approval, security approval, privacy approval, or approval to rely on the prototype content.
+- Deployment and production: the merged baseline has successful main-branch CI and a successful GitHub Pages fallback deployment with live-route evidence. Vercel is the intended production host, but a Vercel deployment proves only that the static prototype is reachable; it does not establish legal approval, security approval, privacy approval, accessibility conformance, or readiness to rely on the prototype content.
 
 ## Known residual work
 
-- Retain the final evidence-only head's remote CI and Pages validation links in Issue #11 after this documentation update reruns.
+- Merge the reviewed Vercel repository configuration, connect the isolated project to `karadzhyan/hotel-wage-law-v2`, then verify a fresh production deployment and both custom-domain forms without removing the GitHub Pages fallback.
 - Review and decide the remaining owner-level settings in Issue #10.
-- Merge the Phase 0 PR only after the governing issue's required remote CI and deployment evidence are green.
-- Do not begin the Issue #2 migration inventory until Phase 0 is merged and proven.
+- Do not treat hosting deployment as legal, security, privacy, accessibility, or production-readiness approval.
+- Do not begin the Issue #2 migration inventory as part of this hosting workstream.

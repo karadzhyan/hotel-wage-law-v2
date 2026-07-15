@@ -1,8 +1,18 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import { routes } from '../src/data.js';
+import { isDeploymentOrigin, normalizeRoutePrefix } from './url.mjs';
 
-const projectBase = '/hotel-wage-law-v2';
+const remoteBaseURL = process.env.PLAYWRIGHT_BASE_URL;
+const inferredRemotePrefix = remoteBaseURL
+  ? new URL(remoteBaseURL).pathname
+  : undefined;
+const projectBase = normalizeRoutePrefix(process.env.PLAYWRIGHT_ROUTE_PREFIX
+  ?? inferredRemotePrefix
+  ?? '/hotel-wage-law-v2');
+const testedOrigin = remoteBaseURL
+  ? new URL(remoteBaseURL).origin
+  : 'http://127.0.0.1:4174';
 const projectUrl = route => `${projectBase}${route}`;
 
 test.describe('generated project-path application', () => {
@@ -17,18 +27,22 @@ test.describe('generated project-path application', () => {
       page.on('pageerror', error => browserErrors.push(error.message));
       page.on('requestfailed', request => failedRequests.push(`${request.url()} — ${request.failure()?.errorText}`));
       page.on('response', response => {
-        if (response.url().startsWith('http://127.0.0.1:4173/') && response.status() >= 400) {
-          failedResponses.push(`${response.status()} ${response.url()}`);
+        if (response.status() >= 400) {
+          failedResponses.push({ status: response.status(), url: response.url() });
         }
       });
 
       const response = await page.goto(projectUrl(route));
+      const deploymentOrigins = new Set([testedOrigin, new URL(page.url()).origin]);
+      const deploymentFailures = failedResponses
+        .filter(failure => isDeploymentOrigin(failure.url, deploymentOrigins))
+        .map(failure => `${failure.status} ${failure.url}`);
       expect(response?.status()).toBe(200);
       await expect(page.locator('main#main')).toBeVisible();
       await expect(page.locator('h1').first()).toBeVisible();
       expect(browserErrors).toEqual([]);
       expect(failedRequests).toEqual([]);
-      expect(failedResponses).toEqual([]);
+      expect(deploymentFailures).toEqual([]);
     });
   }
 
