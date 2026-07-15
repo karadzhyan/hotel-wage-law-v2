@@ -1,6 +1,12 @@
 .git
 .vercel
 .env*
+.npmrc
+.yarnrc
+.yarnrc.yml
+.pnpmrc
+.bunfig.toml
+.netrc
 node_modules
 dist
 coverage

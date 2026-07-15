@@ -41,7 +41,7 @@ assert(vercel.buildCommand === 'npm run verify', 'Vercel must run the full verif
 assert(vercel.installCommand === 'npm ci --ignore-scripts --no-audit --no-fund', 'Vercel install must remain deterministic');
 assert(vercel.outputDirectory === 'dist', 'Vercel must publish only the verified dist directory');
 assert(vercel.trailingSlash === true, 'Vercel must preserve the registered trailing-slash route contract');
-for (const ignored of ['.vercel','.env*','node_modules','dist','playwright-report','test-results']) {
+for (const ignored of ['.vercel','.env*','.npmrc','.yarnrc','.yarnrc.yml','.pnpmrc','.bunfig.toml','.netrc','node_modules','dist','playwright-report','test-results']) {
   assert(vercelIgnore.split(/\r?\n/).includes(ignored), `.vercelignore must exclude ${ignored}`);
 }
 

@@ -16,7 +16,7 @@ export default defineConfig({
         ['html', { outputFolder: 'playwright-report', open: 'never' }],
       ],
   use: {
-    baseURL: remoteBaseURL || `http://127.0.0.1:4173${basePath}`,
+    baseURL: remoteBaseURL || `http://127.0.0.1:4174${basePath}`,
     extraHTTPHeaders: protectionBypass
       ? {
           'x-vercel-protection-bypass': protectionBypass,
@@ -29,8 +29,8 @@ export default defineConfig({
   webServer: remoteBaseURL
     ? undefined
     : {
-        command: `npm run build:pages && BASE_PATH=${basePath} PORT=4173 node scripts/serve.mjs`,
-        url: `http://127.0.0.1:4173${basePath}`,
+        command: `npm run build:pages && BASE_PATH=${basePath} PORT=4174 node scripts/serve.mjs`,
+        url: `http://127.0.0.1:4174${basePath}`,
         reuseExistingServer: false,
         timeout: 120_000,
       },

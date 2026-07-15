@@ -1,17 +1,18 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import { routes } from '../src/data.js';
+import { normalizeRoutePrefix } from './url.mjs';
 
 const remoteBaseURL = process.env.PLAYWRIGHT_BASE_URL;
 const inferredRemotePrefix = remoteBaseURL
-  ? new URL(remoteBaseURL).pathname.replace(/\/$/, '')
+  ? new URL(remoteBaseURL).pathname
   : undefined;
-const projectBase = process.env.PLAYWRIGHT_ROUTE_PREFIX
+const projectBase = normalizeRoutePrefix(process.env.PLAYWRIGHT_ROUTE_PREFIX
   ?? inferredRemotePrefix
-  ?? '/hotel-wage-law-v2';
+  ?? '/hotel-wage-law-v2');
 const testedOrigin = remoteBaseURL
   ? new URL(remoteBaseURL).origin
-  : 'http://127.0.0.1:4173';
+  : 'http://127.0.0.1:4174';
 const projectUrl = route => `${projectBase}${route}`;
 
 test.describe('generated project-path application', () => {
