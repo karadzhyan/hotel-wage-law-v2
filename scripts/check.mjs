@@ -19,7 +19,7 @@ assert(new Set(jurisdictions.map(item=>item.code)).size === jurisdictions.length
 assert(tools.length === 10 && new Set(tools.map(item=>item.id)).size === tools.length, 'tool registry must contain ten unique records');
 assert(evidenceLayers.length === 7, 'evidence standard must contain seven layers');
 
-for (const file of ['src/main.js','src/styles.css','src/layout.css','src/icons.svg','scripts/build.mjs','scripts/verify-build.mjs','scripts/serve.mjs','playwright.config.mjs','docs/CURRENT-STATE.md','docs/evidence/phase-0/README.md','.github/workflows/ci.yml','.github/workflows/pages.yml']) {
+for (const file of ['src/main.js','src/styles.css','src/layout.css','src/icons.svg','scripts/build.mjs','scripts/verify-build.mjs','scripts/serve.mjs','playwright.config.mjs','vercel.json','.vercelignore','docs/CURRENT-STATE.md','docs/evidence/phase-0/README.md','docs/evidence/vercel/README.md','.github/workflows/ci.yml','.github/workflows/pages.yml']) {
   try { await access(join(root,file)); } catch { failures.push(`missing ${file}`); }
 }
 
@@ -30,11 +30,20 @@ for (const file of ['src/main.js','src/pages-public.js','src/pages-app.js','src/
 
 const packageJson = JSON.parse(await readFile(join(root,'package.json'),'utf8'));
 const lockfile = JSON.parse(await readFile(join(root,'package-lock.json'),'utf8'));
+const vercel = JSON.parse(await readFile(join(root,'vercel.json'),'utf8'));
+const vercelIgnore = await readFile(join(root,'.vercelignore'),'utf8');
 assert(packageJson.scripts?.verify?.includes('check:build'), 'verify must inspect generated output');
 assert(packageJson.scripts?.['verify:pages']?.includes('build:pages'), 'verify:pages must create a project-path build');
 assert(packageJson.scripts?.['test:browser'] === 'playwright test', 'browser smoke command is missing');
 assert(lockfile.packages?.['']?.devDependencies?.['@playwright/test'] === packageJson.devDependencies?.['@playwright/test'], 'Playwright lockfile version is stale');
 assert(lockfile.packages?.['']?.devDependencies?.['@axe-core/playwright'] === packageJson.devDependencies?.['@axe-core/playwright'], 'axe lockfile version is stale');
+assert(vercel.buildCommand === 'npm run verify', 'Vercel must run the full verification contract');
+assert(vercel.installCommand === 'npm ci --ignore-scripts --no-audit --no-fund', 'Vercel install must remain deterministic');
+assert(vercel.outputDirectory === 'dist', 'Vercel must publish only the verified dist directory');
+assert(vercel.trailingSlash === true, 'Vercel must preserve the registered trailing-slash route contract');
+for (const ignored of ['.vercel','.env*','node_modules','dist','playwright-report','test-results']) {
+  assert(vercelIgnore.split(/\r?\n/).includes(ignored), `.vercelignore must exclude ${ignored}`);
+}
 
 const workflowDirectory = join(root,'.github','workflows');
 const workflows = (await readdir(workflowDirectory)).filter(file => /\.ya?ml$/.test(file)).sort();

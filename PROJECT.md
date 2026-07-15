@@ -56,7 +56,8 @@ The repository implements twelve responsive prototype surfaces:
 - Deterministic route, data, rendering, governance, and boundary tests
 - Static production build under `dist/`
 - GitHub Actions CI
-- GitHub Pages deployment workflow
+- Vercel deployment configuration with the full verification contract as its build gate
+- GitHub Pages deployment workflow retained as a fallback
 - Explicit prototype and legal-validation boundaries
 
 ## Commands
@@ -74,6 +75,8 @@ To reproduce the GitHub Pages base path locally:
 ```bash
 BASE_PATH=/hotel-wage-law-v2/ npm run build
 ```
+
+Vercel uses the root-path build contract in `vercel.json`: deterministic `npm ci`, `npm run verify`, and `dist/` as the only publish directory. `hospitalitywagelaw.com` is the intended production domain; the GitHub Pages project URL remains the fallback until Vercel production is independently verified.
 
 Serve the generated directory with any static server:
 

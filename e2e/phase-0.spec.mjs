@@ -2,7 +2,10 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import { routes } from '../src/data.js';
 
-const projectBase = '/hotel-wage-law-v2';
+const projectBase = process.env.PLAYWRIGHT_ROUTE_PREFIX ?? '/hotel-wage-law-v2';
+const testedOrigin = process.env.PLAYWRIGHT_BASE_URL
+  ? new URL(process.env.PLAYWRIGHT_BASE_URL).origin
+  : 'http://127.0.0.1:4173';
 const projectUrl = route => `${projectBase}${route}`;
 
 test.describe('generated project-path application', () => {
@@ -17,7 +20,7 @@ test.describe('generated project-path application', () => {
       page.on('pageerror', error => browserErrors.push(error.message));
       page.on('requestfailed', request => failedRequests.push(`${request.url()} — ${request.failure()?.errorText}`));
       page.on('response', response => {
-        if (response.url().startsWith('http://127.0.0.1:4173/') && response.status() >= 400) {
+        if (response.url().startsWith(`${testedOrigin}/`) && response.status() >= 400) {
           failedResponses.push(`${response.status()} ${response.url()}`);
         }
       });
