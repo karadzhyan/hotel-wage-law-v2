@@ -48,6 +48,18 @@ test.describe('generated project-path application', () => {
     await expect(page).toHaveURL(new RegExp(`${projectBase}/app/$`));
     await expect(page.locator('main#main')).toBeVisible();
   });
+
+  test('fragment navigation remains on the current generated route', async ({ page }) => {
+    await page.goto(projectUrl('/intelligence/'));
+    await page.getByRole('link', { name: /See material developments/ }).click();
+    await expect(page).toHaveURL(new RegExp(`${projectBase}/intelligence/#developments$`));
+    await expect(page.locator('#developments')).toBeVisible();
+
+    await page.goto(projectUrl('/app/research/'));
+    await page.getByRole('link', { name: 'Rule differential' }).click();
+    await expect(page).toHaveURL(new RegExp(`${projectBase}/app/research/#rules$`));
+    await expect(page.locator('#rules')).toBeVisible();
+  });
 });
 
 test.describe('responsive navigation and core interactions', () => {

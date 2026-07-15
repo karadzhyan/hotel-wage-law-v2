@@ -57,17 +57,20 @@ for (const [name, workflow] of [['CI',ci],['Pages',pages]]) {
 }
 assert(/Browser and accessibility smoke/.test(ci), 'CI lacks browser and accessibility coverage');
 assert(/actions\/upload-artifact@v7/.test(ci), 'CI lacks retained build and browser artifacts');
+assert(/name: hotel-wage-law-v2-dist\n          path: dist\n          include-hidden-files: true/.test(ci), 'Retained Pages build must preserve verified hidden files');
 assert(/\n  deploy:\n[\s\S]*?\n    environment:\n      name: github-pages/.test(pages), 'Pages environment must be scoped to the deploy job');
 assert(/\n    permissions:\n      contents: read\n      pages: write\n      id-token: write/.test(pages), 'Pages deploy permissions are incomplete or overbroad');
 assert(/actions\/upload-pages-artifact@v5/.test(pages), 'Pages artifact upload is missing');
 assert(/concurrency:\n  group: pages\n  cancel-in-progress: false/.test(pages), 'Pages workflows must share one deployment concurrency group');
 assert(/actions\/upload-pages-artifact@v5\n        with:\n          path: dist\n          include-hidden-files: true/.test(pages), 'Pages artifact upload must preserve verified hidden files');
+assert(/run: npm run verify\n[\s\S]*?run: npm run verify:pages/.test(pages), 'Pages deployment must run the full verification contract before its project-path build');
 assert(/actions\/deploy-pages@v5/.test(pages), 'Pages deployment is missing');
 
 const currentState = await readFile(join(root,'docs','CURRENT-STATE.md'),'utf8');
 for (const phrase of ['Phase 0 boundary','Remote baseline evidence','Owner-setting dependencies','Legal, security, privacy, and accessibility state']) {
   assert(currentState.includes(phrase), `CURRENT-STATE.md is missing ${phrase}`);
 }
+assert(currentState.includes('6e28b524dcc77d9cd0ad098ee9f60f8c4641dcf2'), 'CURRENT-STATE.md must name the verified Phase 0 base commit');
 
 if (failures.length) {
   console.error(failures.map(item=>`✗ ${item}`).join('\n'));

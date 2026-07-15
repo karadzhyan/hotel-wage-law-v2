@@ -12,6 +12,11 @@ if (deploymentBase) {
     link.setAttribute('href', `${deploymentBase}${link.getAttribute('href')}`);
   });
 }
+// A document-wide base changes fragment-only links into root navigation unless
+// they are made explicit against the current generated route.
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.setAttribute('href', `${deploymentBase}${route}${link.getAttribute('href')}`);
+});
 
 const $ = (selector, context=document) => context.querySelector(selector);
 const $$ = (selector, context=document) => [...context.querySelectorAll(selector)];

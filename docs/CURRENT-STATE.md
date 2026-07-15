@@ -11,7 +11,7 @@ The implementation source of truth is `src/`. `dist/` is generated and ignored. 
 ## Repository and implementation inventory
 
 - Repository: `karadzhyan/hotel-wage-law-v2`; default branch `main`.
-- Phase 0 branch: `agent/repair-phase-0-ci-pages`, created from `main` commit `6e28b524a7b0df881981cc1046caa6225b37a768`.
+- Phase 0 branch: `agent/repair-phase-0-ci-pages`, created from `main` commit `6e28b524dcc77d9cd0ad098ee9f60f8c4641dcf2`.
 - Merged baseline: PR [#1](https://github.com/karadzhyan/hotel-wage-law-v2/pull/1), including its unresolved review threads.
 - Governing baseline contract: Issue [#11](https://github.com/karadzhyan/hotel-wage-law-v2/issues/11). Owner-level settings remain tracked in Issue [#10](https://github.com/karadzhyan/hotel-wage-law-v2/issues/10).
 - Route registry: twelve generated routes—five public routes and seven enterprise-prototype routes.

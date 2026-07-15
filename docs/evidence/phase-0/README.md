@@ -4,7 +4,7 @@ Captured July 13–14, 2026 for Issue [#11](https://github.com/karadzhyan/hotel-
 
 ## Pre-change local verification
 
-Commands were run on unchanged `main` at `6e28b524a7b0df881981cc1046caa6225b37a768`:
+Commands were run on unchanged `main` at `6e28b524dcc77d9cd0ad098ee9f60f8c4641dcf2`:
 
 ```text
 npm ci
